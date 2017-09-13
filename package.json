@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gcaliene/node-capstone.git"
+  },
+  "scripts":{
+    "test":"mocha"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +19,10 @@
   "homepage": "https://github.com/gcaliene/node-capstone#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
     "express": "^4.15.4",
+    "mocha": "^3.5.3",
     "mongoose": "^4.11.10"
   }
 }
