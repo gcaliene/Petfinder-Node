@@ -48,9 +48,9 @@ function getRecentStatusUpdates(callbackFn) {
 // this function stays the same when we connect
 // to real API later
 function displayStatusUpdates(data) {
-    for (index in data.statusUpdates) {
+    for (index in data.sightings) {
 	   $('body').append(
-        '<p>' + data.statusUpdates[index].text + '</p>');
+        '<p>' + data.sightings[index].text + '</p>');
     }
 }
 
