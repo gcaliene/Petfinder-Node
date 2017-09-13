@@ -1,36 +1,22 @@
-const isEqual = require('../isEqual');
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+var server = require('../server.js');
 
-require('chai').should();
+var should = chai.should();
+var app = server.app;
+var storage = server.storage;
 
-describe('isEqual', function() {
-    it('should give right answers for equal and unequal inputs', function() {
-        // we're going to the `isEqual` function on a range of inputs
-        // that the function should return true for.
-        const equalInputs = [
-            [1, 1],
-            [true, true],
-            ['foo', 'foo']
-        ];
-        // loop through inputs and check that each set returns true
-        equalInputs.forEach(function(input) {
-            const answer = isEqual(input[0], input[1]);
-            // use `chai.should`'s keywords to set expectations for
-            // `isEqual`'s behavior
-            answer.should.be.true;
-        });
+chai.use(chaiHttp);
 
-        // range of inputs that the function should return false for
-        const unequalInputs = [
-            ['1', 1],
-            [1, 2],
-            [1, true],
-            [0, false]
-        ];
-        // loop through inputs and check that each set returns false
-        unequalInputs.forEach(function(input) {
-            const answer = isEqual(input[0], input[1]);
-            answer.should.be.false;
-        });
+
+describe('index page', function() {
+  it('exists', function(done) {
+    chai.request(app)
+      .get('/')
+      .end(function(err, res) {
+        res.should.have.status(200);
+        res.should.be.html;
+        done();
     });
-  }
-);
+  });
+});
