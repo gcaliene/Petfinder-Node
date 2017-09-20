@@ -6,7 +6,7 @@ const PetPost = require('./models');
 
 const app = express();
 
-const {PORT, DATABASE_URL}= require('./config');
+const {DATABASE_URL}= require('./config');
 
 mongoose.Promise =global.Promise;
 mongoose.connect('mongodb://localhost:27017/fullstackcapstone')
