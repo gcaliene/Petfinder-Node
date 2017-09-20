@@ -18,6 +18,9 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+	res.send('Hello nad welcome')
+})
 
 app.post('/posts', (req, res) => {
 	const newPost = new PetPost()
@@ -30,11 +33,9 @@ app.post('/posts', (req, res) => {
 		if(err) {
 			res.send(err)
 		}
-
 		res.json(record)
 	})
 })
-
 
 app.get('/posts', (req, res) => {
 	PetPost
