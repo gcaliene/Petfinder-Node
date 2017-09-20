@@ -8,8 +8,8 @@
     "url": "git+https://github.com/gcaliene/node-capstone.git"
   },
   "scripts": {
-    "start": "index.js"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
