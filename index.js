@@ -6,7 +6,7 @@ const PetPost = require('./models');
 
 const app = express();
 
-const {DATABASE_URL}= require('./config');
+const {PORT, DATABASE_URL}= require('./config');
 
 mongoose.Promise =global.Promise;
 mongoose.connect('mongodb://localhost:27017/fullstackcapstone')
@@ -19,7 +19,7 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-	res.send('Hello nad welcome')
+	res.send('Hello nad')
 })
 
 app.post('/posts', (req, res) => {
@@ -36,6 +36,19 @@ app.post('/posts', (req, res) => {
 		res.json(record)
 	})
 })
+
+app.get('/posts', (req, res) => {
+	PetPost
+		.find()
+		.then(posts => {
+			res.json(posts.map(post => post.apiRepr()));
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: 'something went wrong'});
+		});
+});
+
 
 
 
