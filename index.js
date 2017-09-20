@@ -9,7 +9,7 @@ const app = express();
 const {PORT, DATABASE_URL}= require('./config');
 
 mongoose.Promise =global.Promise;
-mongoose.connect('mongodb://localhost:27017/fullstackcapstone')
+mongoose.connect('mongodb://localhost:27017/fullstackcapstone');
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
 	res.send('Hello nad')
-})
+});
 
 app.post('/posts', (req, res) => {
 	const newPost = new PetPost()
@@ -35,7 +35,7 @@ app.post('/posts', (req, res) => {
 		}
 		res.json(record)
 	})
-})
+});
 
 app.get('/posts', (req, res) => {
 	PetPost
