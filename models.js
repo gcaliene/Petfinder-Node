@@ -20,6 +20,6 @@ petPostSchema.methods.apiRepr = function() {
 	};
 }
 
-const PetPost = mongoose.model('PetPost', petPostSchema);
+module.exports = mongoose.model('PetPost', petPostSchema);
 
-module.exports = {PetPost};
+//line 23 and 25 can be merged 
