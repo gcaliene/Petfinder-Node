@@ -9,7 +9,7 @@ const app = express();
 const {PORT, DATABASE_URL}= require('./config');
 
 mongoose.Promise =global.Promise;
-mongoose.connect('mongodb://localhost:27017/fullstackcapstone');
+mongoose.connect('mongodb://gcaliene:GC04151989@ds141524.mlab.com:41524/fullstackcapstone');
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
