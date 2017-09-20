@@ -9,7 +9,7 @@ const app = express();
 const {PORT, DATABASE_URL}= require('./config');
 
 mongoose.Promise =global.Promise;
-mongoose.connect('mongodb://gcaliene:GC04151989@ds141524.mlab.com:41524/fullstackcapstone');
+mongoose.connect('mongodb://gerson:12345@ds141524.mlab.com:41524/fullstackcapstone');
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-	res.send('Hello nad')
+	res.send('Hello')
 });
 
 app.post('/posts', (req, res) => {
