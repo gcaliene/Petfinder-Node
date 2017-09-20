@@ -37,19 +37,6 @@ app.post('/posts', (req, res) => {
 	})
 })
 
-app.get('/posts', (req, res) => {
-	PetPost
-		.find()
-		.then(posts => {
-			res.json(posts.map(post => post.apiRepr()));
-		})
-		.catch(err => {
-			console.error(err);
-			res.status(500).json({error: 'something went wrong'});
-		});
-});
-
-
 
 
 app.listen(process.env.PORT || 8080, () => {
