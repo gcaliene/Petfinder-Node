@@ -6,17 +6,22 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<h1>Pet Findr</h1>
+
+	<div class="center">
+	<h1>In</h1>
 		<p>Demo of how you can use mock data to build your client when you don't have a live API to call yet.</p>
 
 	<form id="form-js" class="form">
 		Description of when last seen pet <br>
-  		<input type="text" name="firstname" value="Mickey"><br>
-  		Your name please <br>
- 		 <input type="text" name="lastname" value="Mouse"><br><br>
+  		<input type="text" name="description" placeholder="Description"><br>
+  		 Provide your name, please<br>
+ 		 <input type="text" name="name" value="" placeholder="Your name here"><br><br>
   		<input type="submit" value="Submit">
 			<!-- give form id, form submit listener, use prevent default, give input class, .val(), send data to server via ajax (how to comm to backend) -->
 	</form>
+	</div>
+
+
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
