@@ -16,6 +16,9 @@ var $posts = $('#posts');
 			$.each(posts, function(index, item){
 				$posts.append('<li> text: ' + item.text + " name: " + item.name + '</li>');
 			});
+		},
+		error: function(){
+			alert('Couldn\'t load previous posts!');
 		}
 	});
 
