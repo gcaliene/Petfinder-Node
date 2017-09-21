@@ -1,9 +1,14 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../index.js');
+const faker = require('faker');
 
+
+//this allows the should syntax available throughout this file
 var should = chai.should();
+
 var app = server.app;
+
 var storage = server.storage;
 
 chai.use(chaiHttp);

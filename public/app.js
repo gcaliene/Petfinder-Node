@@ -4,16 +4,26 @@ $("#form-js").submit(function(event){
 	//what happens when submit is selected
 	console.log("you just clicked submit");
 });
+var description = $("#description").val();
+var name = $("#name").val();
 
-function getValues (){
-	var description = $("#description").val();
-	var name = $("#name").val();
-
+$(function(){
+var $posts = $('#posts');
 	$.ajax({
-		type:'POST'
-		ur
-	})
-}
+		type:'GET',
+		url: '/posts',
+		success: function(posts){
+			$.each(posts, function(index, item){
+				$posts.append('<li> text: ' + item.text + " name: " + item.name + '</li>');
+			});
+		}
+	});
+
+	$.aja
+
+});
+
+
 
 
 
