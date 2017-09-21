@@ -1,20 +1,17 @@
 //this is where the front end javascript code goes
-$("#form-js").submit(function(event){
-	event.preventDefault();
-	//what happens when submit is selected
-	console.log("you just clicked submit");
-});
-var description = $("#description").val();
-var name = $("#name").val();
+
+
 
 $(function(){
 var $posts = $('#posts');
+var $text = $("#text");
+var $name = $("#name");
 	$.ajax({
 		type:'GET',
 		url: '/posts',
 		success: function(posts){
-			$.each(posts, function(index, item){
-				$posts.append('<li> text: ' + item.text + " name: " + item.name + '</li>');
+			$.each(posts, function(index, post){
+				$posts.append('<li> text: ' + post.text + " name: " + post.name + 'at' + post.created + '</li>');
 			});
 		},
 		error: function(){
@@ -22,8 +19,30 @@ var $posts = $('#posts');
 		}
 	});
 
-	$.aja
+	$("#submit").on('click', function(){
+		event.preventDefault();
+		//what happens when submit is selected
+		console.log("you just clicked submit");
 
+
+		
+		var post = {
+			text: $text.val(),
+			name: $name.val(),
+		};
+
+		$.ajax({
+			type:'POST',
+			url:'/posts',
+			data: post,
+			success: function(newPost) {
+				$posts.append('<li> text: ' + newPost.text + " name: " + newPost.userName + " at " +newPost.created + ' </li>');
+			},
+			error: function(){
+				alert('Couldn\'t load previous posts!');
+			},
+		})
+	});
 });
 
 

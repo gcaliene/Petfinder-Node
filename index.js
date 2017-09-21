@@ -18,9 +18,6 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-	res.send('Hello')
-});
 
 app.post('/posts', (req, res) => {
 	const newPost = new PetPost()
