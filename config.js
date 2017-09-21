@@ -4,5 +4,4 @@ exports.DATABASE_URL = process.env.DATABASE_URL ||
 exports.PORT = process.env.PORT || 8080;
 
 
-//crashes the app with error [nodemon] app crashed - waiting for file changes before starting...
 
