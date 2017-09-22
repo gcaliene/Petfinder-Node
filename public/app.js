@@ -11,7 +11,7 @@ var $name = $("#name");
 		url: '/posts',
 		success: function(posts){
 			$.each(posts, function(index, post){
-				$posts.append('<li> text: ' + post.text + " name: " + post.name + 'at' + post.created + '</li>');
+				$posts.append('<li> text: ' + post.text + " name: " + post.name + 'at' + Date(post.created) + '</li>');
 			});
 		},
 		error: function(){
