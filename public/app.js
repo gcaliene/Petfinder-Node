@@ -28,7 +28,8 @@ var $name = $("#name");
 		
 		var post = {
 			text: $text.val(),
-			name: $name.val(),
+			userName: $name.val(),
+			created: new Date(),
 		};
 
 		$.ajax({
@@ -36,7 +37,7 @@ var $name = $("#name");
 			url:'/posts',
 			data: post,
 			success: function(newPost) {
-				$posts.append('<li> text: ' + newPost.text + " name: " + newPost.userName + " at " +newPost.created + ' </li>');
+				$posts.append('<li> text: ' + post.text + " name: " + post.userName + ' at ' + post.created + ' </li>');
 			},
 			error: function(){
 				alert('Couldn\'t load previous posts!');

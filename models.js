@@ -2,7 +2,7 @@ const uuid = require ('uuid');
 const mongoose = require ('mongoose');
 
 const petPostSchema = mongoose.Schema({ 
-	text: {type:String, required: true},
+	text: {type:String, required:true},
 	userName: {type:String, required: true},
 	created: {type: Date}
 });

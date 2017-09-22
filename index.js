@@ -22,9 +22,9 @@ app.use(bodyParser.json());
 app.post('/posts', (req, res) => {
 	const newPost = new PetPost()
 
-	newPost.text = req.body.text
-	newPost.userName = req.body.userName
-	newPost.created = new Date()
+	newPost.text = req.body.text,
+	newPost.userName = req.body.userName,
+	newPost.created = new Date(),
 
 	newPost.save((err, record) => {
 		if(err) {
