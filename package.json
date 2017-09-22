@@ -9,7 +9,6 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "mocha"
   },
   "keywords": [],
   "author": "",
