@@ -19,7 +19,6 @@
   "homepage": "https://github.com/gcaliene/node-capstone#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "express": "^4.15.4",
     "faker": "^4.1.0",
@@ -27,5 +26,8 @@
     "mongoose": "^4.11.10",
     "morgan": "^1.8.2",
     "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2"
   }
 }

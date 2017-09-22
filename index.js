@@ -75,7 +75,8 @@ app.put(`/posts/:id`, jsonParser, (req, res) => {
 		name: req.body.userName,
 	});
 	res.status(204).end();
-})
+});
+
 
 
 app.listen(process.env.PORT || 8080, () => {
