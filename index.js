@@ -11,6 +11,7 @@ const {PORT, DATABASE_URL}= require('./config');
 
 mongoose.Promise =global.Promise;
 mongoose.createConnection('mongodb://gerson:12345@ds141524.mlab.com:41524/fullstackcapstone');
+//mongoose.createConnection('mongodb://gcaliene:12345@ds133251.mlab.com:33251/test-fullstackcapstone)');
 //mongoose.connect('mongodb://localhost:27017/fullstackcapstone'); //adding this line will make it not work!!!
 
 app.use(bodyParser.urlencoded({ extended: true}));
