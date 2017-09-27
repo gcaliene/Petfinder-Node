@@ -42,7 +42,7 @@ var $name = $("#name");
 	});
 
 	
-	$posts.delegate('#removeButton','click', function(){
+	$posts.delegate('#deleteButton','click', function(){
 		console.log('Sending request to Ajax to delete post'); //not showing up because no delete button exists yet.
 
 
