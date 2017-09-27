@@ -11,7 +11,7 @@ var $name = $("#name");
 		url: '/posts',
 		success: function(posts){
 			$.each(posts, function(index, post){
-				$posts.append('<li> <input data-id=`{{id}}` type="button" id="deleteButton"> Delete</input> <input type="button"  id="updateButton">Update</input> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + post.created + '</li>');
+				$posts.append('<li> <button data-id=`{{id}}` type="button" id="deleteButton"> Delete</button> <button type="button"  id="updateButton">Update</button> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + post.created + '</li>');
 			});
 		},
 		error: function(){
@@ -46,7 +46,7 @@ var $name = $("#name");
 		console.log('Sending request to Ajax to delete post'); //not showing up because no delete button exists yet.
 		$.ajax({
 			type:'DELETE',
-			url:'/posts' + $(this).attr('data-id'),
+			url:'/posts:' + $(this).attr('data-id'),
 		});
 
 	});
