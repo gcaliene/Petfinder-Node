@@ -46,7 +46,7 @@ var $name = $("#name");
 		console.log('Sending request to Ajax to delete post'); //not showing up because no delete button exists yet.
 		$.ajax({
 			type:'DELETE',
-			url:'/posts:' + $(this).attr('data-id'),
+			url:'/posts/' + $(this).attr('data-id'),
 		});
 
 	});
