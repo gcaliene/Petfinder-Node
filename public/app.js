@@ -11,7 +11,7 @@ var $name = $("#name");
 		url: '/posts',
 		success: function(posts){
 			$.each(posts, function(index, post){
-				$posts.append('<li> <button id="deleteButton"> Delete</button> <button id="updateButton">Update</button> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + Date(post.created) + '</li>');
+				$posts.append('<li> <button id="deleteButton"> Delete</button> <button id="updateButton">Update</button> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + post.created + '</li>');
 			});
 		},
 		error: function(){
@@ -42,8 +42,7 @@ var $name = $("#name");
 	});
 
 	$("#deleteButton").on('click', function(){
-		event.preventDefault();
-		console.log('Sending request to Ajax to delete post');
+		console.log('Sending request to Ajax to delete post'); //not showing up
 
 	});
 
