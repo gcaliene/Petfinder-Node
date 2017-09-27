@@ -48,7 +48,7 @@ $(function(){
 		console.log('Sending request to Ajax to delete post'); //not showing up
 
 	});
-}
+});
 
 
 
