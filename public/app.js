@@ -11,7 +11,7 @@ var $name = $("#name");
 		url: '/posts',
 		success: function(posts){
 			$.each(posts, function(index, post){
-				$posts.append('<li> <button data-id=`{{id}}` type="button" id="deleteButton"> Delete</button> <button type="button"  id="updateButton">Update</button> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + post.created + '</li>');
+				$posts.append('<li> <button data-id=`{{_id}}` type="button" id="deleteButton"> Delete</button> <button type="button"  id="updateButton">Update</button> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + post.created + '</li>');
 			});
 		},
 		error: function(){
