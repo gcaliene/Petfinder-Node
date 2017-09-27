@@ -41,10 +41,10 @@ var $name = $("#name");
 		})
 	});
 
-	$("deleteButton").on('click', function(){
+	$("#deleteButton").on('click', function(){
 		event.preventDefault();
 		console.log('Sending request to Ajax to delete post');
-		
+
 	})
 
 });
