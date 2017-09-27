@@ -45,7 +45,7 @@ var $name = $("#name");
 		event.preventDefault();
 		console.log('Sending request to Ajax to delete post');
 
-	})
+	});
 
 });
 
