@@ -11,7 +11,7 @@ var $name = $("#name");
 		url: '/posts',
 		success: function(posts){
 			$.each(posts, function(index, post){
-				$posts.append('<li> <button data-UUID="'+ post._id +'" type="button" id="deleteButton"> Delete</button> <button type="button"  id="updateButton">Update</button> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + post.created + '</li>');
+				$posts.append('<li> <button data-UUID="'+ post.id +'" type="button" id="deleteButton"> Delete</button> <button type="button"  id="updateButton">Update</button> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + post.created + '</li>');
 			});
 		},
 		error: function(){
@@ -34,7 +34,7 @@ var $name = $("#name");
 			data: post,
 			success: function(newPost) {
 				console.log(newPost);
-				$posts.append('<li> <button data-UUID="'+ newPost._id +'" type="button" id="deleteButton"> Delete</button> <button type="button" id="updateButton">Update</button> text: ' + newPost.text + " name: " + newPost.userName + '  at ' + Date(newPost.created) + ' </li>');
+				$posts.append('<li> <button data-UUID="'+ newPost.id +'" type="button" id="deleteButton"> Delete</button> <button type="button" id="updateButton">Update</button> text: ' + newPost.text + " name: " + newPost.userName + '  at ' + Date(newPost.created) + ' </li>');
 			},
 			error: function(){
 				alert('Couldn\'t load previous posts!');
@@ -43,17 +43,18 @@ var $name = $("#name");
 	});
 
 	
-	$posts.delegate('#deleteButton','click', function(){
-		console.log('Sending request to Ajax to delete post'); //not showing up because no delete button exists yet.
+	$posts.delegate('#deleteButton','click', function(){ //have to use delegate instead of on click to work
+		console.log('Sending request to Ajax to delete post'); 
 		$.ajax({
 			type:'DELETE',
 			url:'/posts/' + $(this).attr('data-UUID'),
 			success: function(posts) {
 				console.log(posts);
-				$posts.html("");
+				$posts.html(""); //this clears page
+				
 				$.each(posts, function(index, post){
-				$posts.append('<li> <button data-UUID="'+ post._id +'" type="button" id="deleteButton"> Delete</button> <button type="button"  id="updateButton">Update</button> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + post.created + '</li>');
-			});
+					$posts.append('<li> <button data-UUID="'+ post.id +'" type="button" id="deleteButton"> Delete</button> <button type="button"  id="updateButton">Update</button> <b>text:</b> ' + post.text + " name: " + post.name + ' at ' + post.created + '</li>');
+				});
 			}
 		});
 
