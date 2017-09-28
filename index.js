@@ -50,9 +50,21 @@ app.get('/posts', (req, res) => {
 });
 
 app.delete('/posts/:id', (req, res) => {
-	PetPost.delete(req.params.id);
-	console.log(`Deleted post \` ${req.params.id}\``);
-	res.status(204).end();
+	PetPost.findByIdAndRemove(req.params.id, (error) => {
+		if (error){
+			res.send(error);
+		} else {
+			PetPost
+			.find()
+			.then(posts => {
+				res.json(posts.map(post => post.apiRepr()));
+			})
+			.catch(err => {
+				console.error(err);
+				res.status(500).json({error: 'something went wrong'});
+			});
+		}
+	})
 });
 
 app.put(`/posts/:id`, jsonParser, (req, res) => {
