@@ -23,13 +23,13 @@ app.use(bodyParser.json());
 
 
 app.post('/posts', (req, res) => {
-	const newPost = new PetPost()
+	var post = new PetPost()
 
-	newPost.text = req.body.text,
-	newPost.userName = req.body.userName,
-	newPost.created = new Date(),
+	post.text = req.body.text,
+	post.userName = req.body.userName,
+	post.created = new Date(),
 
-	newPost.save((err, record) => {
+	post.save((err, record) => {
 		if(err) {
 			res.send(err)
 		}
@@ -82,10 +82,10 @@ app.put(`/posts/:id`, jsonParser, (req, res) => {
 		console.error(message);
 		return res.status(400).send(message);
 	}
-	console.log(`updating shopping list item \` ${req.params.id}\``);
+	console.log(`updating post item \` ${req.params.id}\``);
 
 	PetPost.update({
-		id: req.params.id,
+		//id: req.params.id,
 		text: req.body.text,
 		name: req.body.userName,
 	});

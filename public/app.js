@@ -34,7 +34,7 @@ var $name = $("#name");
 			data: post,
 			success: function(newPost) {
 				console.log(newPost);
-				$posts.append('<li> <button data-UUID="'+ post.id +'" type="button" id="deleteButton">X</button>  <b>text:</b> <span class="noEdit text">' + newPost.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + newPost.name + '</span> <input class="edit name"/> <b>at</b> ' + newPost.created + ' <button type="button"  class="editPost noEdit">Edit</button> <button type="button" class="saveEdit edit">Save</button><button class="cancelEdit edit">Cancel</button></li>');
+				$posts.append('<li> <button data-UUID="'+ newPost._id +'" type="button" id="deleteButton">X</button>  <b>text:</b> <span class="noEdit text">' + newPost.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + newPost.userName + '</span> <input class="edit name"/> <b>at</b> ' + newPost.created + ' <button type="button"  class="editPost noEdit">Edit</button> <button type="button" class="saveEdit edit">Save</button><button class="cancelEdit edit">Cancel</button></li>');
 			},
 			error: function(){
 				alert('Couldn\'t load previous posts!');
@@ -77,19 +77,22 @@ error: function(){
 		var $li= $(this).closest('li');
 		var post = {
 			text: $li.find('input.text').val(),
-			name: $li.find('input.name').val()
+			userName: $li.find('input.name').val(),
+			created: new Date(),	
 		};
+
+		console.log(post);
 
 		$.ajax({
 			type:'PUT',
-			url:'/posts/' + $(this).attr('data-UUID'),
+			url:'/posts/' + $(this).closest('li').attr('data-UUID'),
 			data: post,
 			success: function(newPost) {
 				console.log(newPost);
-				$posts.append('<li> <button data-UUID="'+ newPost.id +'" type="button" id="deleteButton"> Delete</button> <button type="button" id="updateButton">Update</button> text: ' + newPost.text + " name: " + newPost.userName + '  at ' + Date(newPost.created) + ' </li>');
+				$posts.append('<li> <button data-UUID="'+ post.id +'" type="button" id="deleteButton"> Delete</button> <button type="button" id="updateButton">Update</button> text: ' + newPost.text + " name: " + newPost.userName + '  at ' + newPost.created + ' </li>');
 				$li.find('span.text').html(newPost.text);
 				$li.find('span.name').html(newPost.name);
-				$li.removeClass('edit');				
+				$li.removeClass('edit');
 			},
 			error: function(){
 				alert('Couldn\'t load previous posts!');
