@@ -4,7 +4,7 @@ const mongoose = require ('mongoose');
 const petPostSchema = mongoose.Schema({ 
 	text: {type:String, required:true},
 	userName: {type:String, required: true},
-	created: {type: Date}
+	created: {type: Date, default: Date.now}
 });
 
 petPostSchema.virtual('name').get(function() {
@@ -18,11 +18,11 @@ petPostSchema.virtual('name').get(function() {
 
 petPostSchema.methods.apiRepr = function() {
 	return {
-		id: this._id,
+		_id: this._id,
 		text: this.text,
-		name: this.userName,
-		created: this.created
-	};
+		name: this.userName,   //name is the api representation (what shows in get) and username is how it is stored as.
+ 		created: this.created
+	}; 
 }
 
 //make sure everything is defined before exporting 
