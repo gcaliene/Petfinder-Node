@@ -10,12 +10,10 @@ const {PORT, DATABASE_URL}= require('./config');
 
 
 mongoose.Promise =global.Promise;
-mongoose.createConnection('mongodb://gerson:12345@ds141524.mlab.com:41524/fullstackcapstone');
-//mongoose.createConnection('mongodb://gcaliene:12345@ds133251.mlab.com:33251/test-fullstackcapstone)');
-//mongoose.connect('mongodb://localhost:27017/fullstackcapstone'); //adding this line will make it not work!!!
+
 
 app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.json());//initializes body parser
 
 app.use(express.static('public'));
 app.use(morgan('common'));
@@ -23,13 +21,13 @@ app.use(bodyParser.json());
 
 
 app.post('/posts', (req, res) => {
-	const newPost = new PetPost()
+	var post = new PetPost()
 
-	newPost.text = req.body.text,
-	newPost.userName = req.body.userName,
-	newPost.created = new Date(),
+	post.text = req.body.text,
+	post.userName = req.body.userName,
+	post.created = new Date(),
 
-	newPost.save((err, record) => {
+	post.save((err, record) => {
 		if(err) {
 			res.send(err)
 		}
@@ -50,6 +48,7 @@ app.get('/posts', (req, res) => {
 });
 
 app.delete('/posts/:id', (req, res) => {
+	console.log(req.params.id);
 	PetPost.findByIdAndRemove(req.params.id, (error) => {
 		if (error){
 			res.send(error);
@@ -68,28 +67,28 @@ app.delete('/posts/:id', (req, res) => {
 });
 
 app.put(`/posts/:id`, jsonParser, (req, res) => {
-	const requiredFields = ['text', 'name', 'id'];
-	for( let i=0; i<requiredFields; i++) {
-		const field = requiredFields[i];
-		if (!(field in req.body)) {
-			const message = `Missing \`${field}\` in request body`
-			console.error(message);
-			return res.status(400).send(message);
-		}
-	}
-	if (req.params.id !== req.body.id) {
-		const message = `Request path id (${req.params.id}) and request body id (${req.body.id}) must match`;
-		console.error(message);
-		return res.status(400).send(message);
-	}
-	console.log(`updating shopping list item \` ${req.params.id}\``);
+	console.log(req.body);
+	console.log(req.params.id);
 
-	PetPost.update({
-		id: req.params.id,
-		text: req.body.text,
-		name: req.body.userName,
-	});
-	res.status(204).end();
+	PetPost.update({ _id: req.params.id }, {text: req.body.text,
+		userName: req.body.userName}, (err) => { //issue was that it wasn't updating the name field, i was using name rather than userName on this line.
+			if (err) {
+				res.send(err);
+			} else {
+				PetPost
+				.find()
+				.then(posts => {
+					res.json(posts.map(post => post.apiRepr()));//its reading the code but not updating?
+				})
+				.catch(err => {
+					console.error(err);
+					res.status(500).json({error: 'something went wrong'});
+				});
+			}
+		});
+
+
+	//res.status(204).end();
 });
 
 // catch-all endpoint if client makes request to non-existent endpoint

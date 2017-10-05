@@ -6,6 +6,6 @@ deploy:
   provider: heroku
   api_key:
     secure: PZVenMRmWJtQR8rrDfsRoTXdX2jaG9uRolShD/GlHf4yNpDf+tjraijR//390zNluWEVvJ0aGatP2vD46s9pxO/nzRrReocqZyJxj3mNGV70MrZla//C8JMA7HwGsxZHocVdZMQ9uJNPDZDKZdXyPjmAydjlnDAZG0vZTA+Cb2zJckjm//wNkyBsgYK95dqhqEuNIek6bpZfKVBz2Nm6O/n2V0jUYFWQZYSA2rORN+alYZPryfRGVW73jw1yOcmMdXenFiUT+LDhpncSEqOLwEY7e5jzSKPiBIzds1EvDpYq5YUjUKIC1J8vs+qc8rTiCtsptKhLjeXUv3S9aoLHG+3NhfqJa4Fp7oPNjyYroUdvPQCVJGthueafNT2kAhRNpzbTgCiVLyunCzwxiXmeCSK+35OzoeDCGglFm64WGwgvuA4SSHHXxpZXmlnRpBlNStkftzQ6cEuYkiHFfry/SX66FP56+JYKw3cPgXJcexk72KmlVS76AiyTEHWeefJ5pErKssh75MMKAtUp6U+py08UhLRjVrw5OX5bnuM3H/sE7PCEIu9sDasQv2p7Oa0KiXJ5C2ARZlrw412sbhOfrqiDVZIkrXIYTOwNGkiiVqa674w+kgGH/GzocamTbQzXQAael3LB2UkrD/OqvYUpJuWqsvWzCffCdM0r/vizGIw=
-  app: evening-badlands-87289
+  app: lit-beach-73059
   on: 
     repo: gcaliene/node-capstone

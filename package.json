@@ -1,5 +1,5 @@
 {
-  "name": "node-capstone",
+  "name": "capstone",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,9 +22,11 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "faker": "^4.1.0",
-    "mongoose": "^4.11.10",
+    "mongoose": "^4.11.13",
     "morgan": "^1.8.2",
     "request": "^2.82.0",
+    "superagent": "^3.6.3",
+    "supertest-chai": "0.0.8",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
@@ -33,5 +35,8 @@
     "mocha": "^3.5.3",
     "should": "^13.1.0",
     "should-http": "^0.1.1"
+  },
+  "directories": {
+    "test": "test"
   }
 }

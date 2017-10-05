@@ -1,30 +1,20 @@
 var expect = require('chai').expect;
-var chaiHttp = require('chai-http');
+//var chaiHttp = require('chai-http');
 var server = require('../index.js');
 const faker = require('faker');
 var request = require('request');
 var chai = require('chai');
 var mongoose =require('mongoose');
-var should = require('chai').should(); //actually call the function
+//var should = require('chai').should(); //actually call the function
+const should = require('should');
 
-chai.use(chaiHttp);
+//superchai no longer giving should errs
+var supertestChai = require('supertest-chai');
+var request = supertestChai.request;
+chai.should();
+chai.use(supertestChai.httpAsserts);
 
-
-
-
-
-
-
-
-
-
-//simple test
-//it('Main page content', function(){
-//	request('http://localhost:8080', function(error, response, body){
-//		expect(body).to.equal('In');
-//	});
-//});
-
+var express = require('express');
 
 
 const {PetPost} = require('../models');
@@ -69,30 +59,20 @@ describe('PetPost API resource', function() {
     return seedPetPostData();
   });
 
-  afterEach(function() {
-    return tearDownDb();
-  });
-
-  after(function() {
-    return closeServer();
-  })
-
   describe('GET endpoint', function() {
 
     it('should return all existing posts', function() {
       let res;
-      return chai.request(app)
+      return request(app)// was chai.request
         .get('/posts')
-        .then(function(_res) {
+        .end(function(_res) { //end was then
           res = _res;
           console.log(res.body);
+          should.exist(res.body);
           res.should.have.status(200);
           // this part shows up with the status. below gives the error
           //res.body.posts.should.have.length.of.at.least(1);
           return PetPost.count();
-        })
-        .then(function(count) {
-          res.body.posts.should.have.length.of(count);
         });
     });
 
@@ -100,30 +80,43 @@ describe('PetPost API resource', function() {
     it('should return posts with right fields', function() {
 
       let resPetPost;
-      return chai.request(app)
+      return request(app) //was chai.request
         .get('/posts')
-        .then(function(res) {
+        .end(function(res) { // end was then
           res.should.have.status(200);
           res.should.be.json;
-          //res.body.posts.should.be.a('array');
-          //res.body.posts.should.have.length.of.at.least(1);
+          res.body.posts.should.be.a('array');
+          res.body.posts.should.have.length.of.at.least(1);
           console.log(res.body);
-          //res.body.posts.forEach(function(post) {
-            //post.should.be.a('object');
-            //post.should.include.keys(
-              //'id', 'userName', 'text', 'created');
-          //});
+          res.body.posts.forEach(function(post) {
+            post.should.be.a('object');
+            post.should.include.keys(
+              'id', 'userName', 'text', 'created');
+          });
           resPetPost = res.body.posts[0];
-          return PetPost.findById(resPetPost.id);
+          return PetPost.findById(resPetPost._id); //_id was id
         })
-        .then(function(post) {
+        /*.end(function(post) { // end was then
 
           resPetPost.id.should.equal(post.id);
           resPetPost.userName.should.equal(post.userName);
           resPetPost.text.should.equal(post.text);
           resPetPost.created.should.equal(post.created);
-        });
+        });*/
     });
   });
+/*
+  describe('POST endpoint', function() {
+    it('should return ')
+  });
+
+  describe('DELETE endpoint', function(){
+
+  });
+
+  describe('PUT endpoint', function(){
+
+  });*/
+
 });
   
