@@ -20,7 +20,7 @@ petPostSchema.methods.apiRepr = function() {
 	return {
 		_id: this._id,
 		text: this.text,
-		name: this.userName,   //name is the api representation (what shows in get) and username is how it is stored as.
+		name: this.userName,   //name is the api representation (what shows in get) and userName is how it is stored as.
  		created: this.created
 	}; 
 }
