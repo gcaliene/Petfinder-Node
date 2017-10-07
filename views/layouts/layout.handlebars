@@ -8,23 +8,37 @@
 
 </head>
 <body>
+        {{#if user}}
 
-    <div class="container">
-      <div class="header clearfix">
+    <div class="container1">
+      <!--
+      <header class="header v-header container2 clearfix">
+      -->
+      <header>  
         <nav>
           <ul class="nav nav-pills pull-right">
-           {{#if user}}
+            <li role="presentation" class="nav-list"><a href="/users/logout">Logout</a></li>       
             <li role="presentation" class="nav-list"><a href="/users/home">My PetFinder</a></li> <!--Home-Personal User page-->
-            <li role="presentation" class="nav-list"><a href="/users/logout">Logout</a></li>            
-            {{else}}
-            <li role="presentation" class="nav-list"><a href="/">Home</a></li> <!--Home intro page-->
+                 
+            <!-- will use links within video background
+            <li role="presentation" class="nav-list"><a href="/">Home</a></li> <!-Home intro page-
             <li role="presentation" class="nav-list"><a href="/users/login">Login</a></li>
             <li role="presentation" class="nav-list"><a href="/users/register">Register</a></li>
-            {{/if}}
+           -->
+          
           </ul>
         </nav>
+
         <h3 class="text-muted">Pet Finder App</h3>
-      </div>
+        
+        
+
+      </header>
+  </div>
+  {{/if}}
+
+
+
 
       <div class="row">
  			<div class="col-lg-12">
@@ -49,7 +63,6 @@
         <p>&copy; 2017 PetFinder, Inc.</p>
       </footer>
 
-    </div> <!-- /container -->
 
 
 </body>
