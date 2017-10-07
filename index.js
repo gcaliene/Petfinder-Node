@@ -6,16 +6,93 @@ const {PetPost} = require('./models');
 const jsonParser = bodyParser.json();
 const app = express();
 
+
+
+
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var exphbs = require('express-handlebars');
+var expressValidator = require('express-validator');
+var flash = require('connect-flash');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongo = require('mongodb');
+
+
 const {PORT, DATABASE_URL}= require('./config');
 
+var db = mongoose.connection; //just added this might delete
 
 mongoose.Promise =global.Promise;
 
+//The following code added from passport tutorial
+var routes = require('./routes/index');
+var users = require('./routes/users');
+//View Engine
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.set('view engine', 'handlebars');
 
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(cookieParser());
+//Set static folder
+app.use(express.static(path.join(__dirname,'public')));
+
+//Express session
+app.use(session({
+	secret:'secret',
+	saveUninitialized:true,
+	resave: true
+}));
+
+
+//Passport initialization : not working had to put in routes folder, but will leave in here until otherwise noted
+app.use(passport.initialize());
+app.use(passport.session());
+
+//express validator
+// Express Validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+// Connect Flash
+app.use(flash());
+
+// Global Vars for flash
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
+
+
+
+app.use('/', routes);
+app.use('/users', users);
+
+
+
+//end of code tutorial
+app.use(bodyParser.urlencoded({ extended: false})); //tutorial says to make extended false
 app.use(bodyParser.json());//initializes body parser
 
-app.use(express.static('public'));
+//app.use(express.static('public')); will use the tutorial method above
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
