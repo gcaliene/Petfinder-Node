@@ -1,0 +1,53 @@
+.registration-body{
+	margin: auto;
+	max-width: 700px;
+    width: 50%;
+    border: 1px solid #ccc;
+    padding:16px;
+}
+
+.page-header{
+	    text-align: center;
+
+}
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=email]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.btn{
+	background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-red {
+    padding: 14px 20px;
+    background-color: #f44336;	
+}
+
+.btn-red, .btn-green {
+	float:left;
+	width:50%;
+}
+
+.clearfix::after { /*if you don't do this, they will float down beyond the border*/
+	content:"";
+	clear:both;
+	display:table;
+}
+
+footer{
+	   text-align: center;
+}
+
+

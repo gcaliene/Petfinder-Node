@@ -1,3 +1,5 @@
+/*style for api*/
+
 html {
   box-sizing: border-box;
 }
@@ -60,9 +62,7 @@ ul li.edit .noEdit {
 
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
+.header{
   padding-right: 15px;
   padding-left: 15px;
 }
@@ -77,13 +77,6 @@ ul li.edit .noEdit {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 40px;
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
 }
 
 /* Customize container */
@@ -106,20 +99,13 @@ ul li.edit .noEdit {
   font-size: 21px;
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
   .header,
   .marketing,
-  .footer {
+   {
     padding-right: 0;
     padding-left: 0;
   }
