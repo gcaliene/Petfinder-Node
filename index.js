@@ -27,9 +27,7 @@ mongoose.Promise =global.Promise;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-//routes again... might see which is which later
-app.use('/', routes);
-app.use('/users', users);
+
 
 
 //View Engine
@@ -90,6 +88,9 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({ extended: false})); //make extended false. find out why.
 app.use(bodyParser.json());//initializes body parser
 
+//routes again... if remove then get error with flash
+app.use('/', routes);
+app.use('/users', users);
 //app.use(express.static('public')); will use the tutorial method above
 app.use(morgan('common'));
 app.use(bodyParser.json());
