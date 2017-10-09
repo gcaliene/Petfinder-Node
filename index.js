@@ -26,7 +26,6 @@ var db = mongoose.connection; //just added this might delete
 
 mongoose.Promise =global.Promise;
 
-//The following code added from passport tutorial
 var routes = require('./routes/index');
 var users = require('./routes/users');
 //View Engine
@@ -88,7 +87,6 @@ app.use('/users', users);
 
 
 
-//end of code tutorial
 app.use(bodyParser.urlencoded({ extended: false})); //tutorial says to make extended false
 app.use(bodyParser.json());//initializes body parser
 
