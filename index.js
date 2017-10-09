@@ -21,19 +21,23 @@ var mongo = require('mongodb');
 
 
 const {PORT, DATABASE_URL}= require('./config');
-
-var db = mongoose.connection; //just added this might delete
+var db = mongoose.connection; //just added this might delete, but not affecting outcome
 
 mongoose.Promise =global.Promise;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+//routes again... might see which is which later
+app.use('/', routes);
+app.use('/users', users);
+
+
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine', 'handlebars');
-
 app.use(cookieParser());
+
 //Set static folder
 app.use(express.static(path.join(__dirname,'public')));
 
@@ -49,7 +53,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//express validator
 // Express Validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
@@ -82,12 +85,9 @@ app.use(function (req, res, next) {
 
   
 
-app.use('/', routes);
-app.use('/users', users);
 
 
-
-app.use(bodyParser.urlencoded({ extended: false})); //tutorial says to make extended false
+app.use(bodyParser.urlencoded({ extended: false})); //make extended false. find out why.
 app.use(bodyParser.json());//initializes body parser
 
 //app.use(express.static('public')); will use the tutorial method above
@@ -197,7 +197,7 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
 }
 
 // this function closes the server, and returns a promise. we'll
-// use it in our integration tests later.
+// use it in our integration tests later. gives error if not used.
 function closeServer() {
   return mongoose.disconnect().then(() => {
      return new Promise((resolve, reject) => {
@@ -212,15 +212,11 @@ function closeServer() {
   });
 }
 
-// if server.js is called directly (aka, with `node server.js`), this block
+// if server.js is called directly (aka, with `node index.js`), this block
 // runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
   runServer().catch(err => console.error(err));
 };
 
 module.exports = {app, runServer, closeServer};
-
-//app.listen(process.env.PORT || 8080, () => {
-//	console.log("server is up and running")
-//}); //telling server what to listen
 
