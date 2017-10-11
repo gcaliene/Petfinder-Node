@@ -2,14 +2,15 @@
   <link rel="stylesheet" href="/styles/register.css">
 </head>
 
-<section class="registration-body">
-    <h2 class="page-header">Register</h2>
+<div class="registration-body">
+
     {{#if errors}}
           {{#each errors}}
             <div class="alert alert-danger">{{msg}}</div>
           {{/each}}
     {{/if}}
     <form method="POST" action="/users/register">
+       <h2>Register</h2>
        <div class="form-group">
         <label>Name</label>
         <br>
@@ -43,6 +44,6 @@
         <a href="/"><button type="button" class="btn btn-red btn-default">Home</button></a>
       </div>
     </form>
-</section>
+</div>
 
     

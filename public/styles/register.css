@@ -1,19 +1,9 @@
-.registration-body{
-    margin-top: 60px;
-    display:block;
-    margin-right: auto;
-    margin-left: auto;
-	max-width: 800px;
-    width: 100%;
-    border: 1px solid #ccc;
-    padding:16px;
-}
+html{
+    box-sizing: border-box;
+        background: #FFFBD0;
+    
+    }
 
-
-.page-header{
-	    text-align: center;
-
-}
 /* Full-width input fields */
 input[type=text], input[type=password], input[type=email]{
     width: 100%;
@@ -22,7 +12,8 @@ input[type=text], input[type=password], input[type=email]{
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    font-size: 25px;
+    height: 60px;
+    font-size: 28px;
 }
 
 .btn{
@@ -35,6 +26,38 @@ input[type=text], input[type=password], input[type=email]{
     width: 100%;
 }
 
+/*
+.registration-body{
+        max-width: 640px;
+        margin-top: 60px;
+        display:block;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 6400px;
+        width: 100%;
+}
+*/
+
+.registration-body {
+    padding:16px;
+}
+
+@media screen and (min-width: 960px) {
+	.registration-body{
+        width: 760px;
+        display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}	
+
+/*
+@media screen and (min-width: 960px) {
+    .registration-body{
+
+    }
+}
+*/
 .btn-red {
     padding: 14px 20px;
     background-color: #f44336;	
@@ -44,7 +67,13 @@ input[type=text], input[type=password], input[type=email]{
 	float:left;
 	width:50%;
 }
+.clearfix{
+	max-width: 500px;
+		display: block;
+	margin-right: auto;
+	margin-left: auto;
 
+}
 .clearfix::after { /*if you don't do this, they will float down beyond the border*/
 	content:"";
 	clear:both;
@@ -52,7 +81,9 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 h2{
-    font-size: 38px;
+    font-size: 60px;
+    text-align: center;
+	font-size: 60px;
 }
 
 label{
