@@ -3,24 +3,23 @@
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
-}
+
 
 .center {
   max-width: 500px;
   margin: auto;
-  margin:0px auto;
+  margin-top:75px;
 }
 
 .form {
-	margin: auto;
+	margin: auto; 
 	margin:0px auto;
 	width: 50%;
 }
 
 body {
 	padding: 50px;
+
 }
 
 h1 {
