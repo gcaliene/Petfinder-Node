@@ -54,7 +54,7 @@ html {
 @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops  }
 */
 
-@media (min-width:961px) { /* hi-res laptops and desktops */ 
+@media (min-width:961px) { /* hi-res laptops and desktops */
 
   .pull-right,logout {
     float: right;
@@ -74,6 +74,7 @@ html {
     width:50%;
   }
 }
+
 
 .nav-list {
   background-color: #DD631C;

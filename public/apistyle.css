@@ -60,7 +60,8 @@ ul li.edit .noEdit {
 }
 
 #deleteButton {
-	background-color: red;
+  border: none;
+  background: none;
 }
 
 

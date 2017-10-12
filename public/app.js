@@ -12,7 +12,7 @@ $(function(){
 		success: function(posts){
 			$.each(posts, function(index, post){
 				console.log(post);
-				$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\">X</button>  <b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + post.name + "</span> <input class=\"edit name\"/> <b>at</b> " + post.created + " <button type=\"button\"  class=\"editPost noEdit\">Edit</button> <button data-UUID=\""+ post._id +"\" type=\"button\" class=\"saveEdit edit\">Save</button><button class=\"cancelEdit edit\">Cancel</button></li>");
+				$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x edit' aria-hidden='true'></i></button>  <b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + post.name + "</span> <input class=\"edit name\"/> <b>at</b> " + post.created + " <button type=\"button\"  class=\"editPost noEdit\">Edit</button> <button data-UUID=\""+ post._id +"\" type=\"button\" class=\"saveEdit edit\">Save</button><button class=\"cancelEdit edit\">Cancel</button></li>");
 			});
 		},
 		error: function(){
@@ -35,7 +35,7 @@ $(function(){
 			data: post,
 			success: function(newPost) {
 				console.log(newPost);
-				$posts.append("<li> <button data-UUID=\""+ newPost._id +"\" type=\"button\" id=\"deleteButton\">X</button>  <b>text:</b> <span class=\"noEdit text\">" + newPost.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + newPost.userName + "</span> <input class=\"edit name\"/> <b>at</b> " + newPost.created + " <button type=\"button\"  class=\"editPost noEdit\">Edit</button> <button data-UUID=\""+ newPost._id +" \"type=\"button\" class=\"saveEdit edit\">Save</button><button class=\"cancelEdit edit\">Cancel</button></li>");
+				$posts.append("<li> <button data-UUID=\""+ newPost._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x edit' aria-hidden='true'></i></button>  <b>text:</b> <span class=\"noEdit text\">" + newPost.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + newPost.userName + "</span> <input class=\"edit name\"/> <b>at</b> " + newPost.created + " <button type=\"button\"  class=\"editPost noEdit\">Edit</button> <button data-UUID=\""+ newPost._id +" \"type=\"button\" class=\"saveEdit edit\">Save</button><button class=\"cancelEdit edit\">Cancel</button></li>");
 			},
 			error: function(){
 				alert("Couldn't load previous posts!");
@@ -53,7 +53,7 @@ $(function(){
 				console.log(posts);
 				$posts.html(""); //this clears page
 				$.each(posts, function(index, post){
-					$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\">X</button>  <b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + post.name + "</span> <input class=\"edit name\"/> <b>at</b> " + post.created + " <button type=\"button\"  class=\"editPost noEdit\">Edit</button> <button data-UUID=\""+ post._id +"\"type=\"button\" class=\"saveEdit edit\">Save</button><button class=\"cancelEdit edit\">Cancel</button></li>");
+					$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x edit' aria-hidden='true'></i></button>  <b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + post.name + "</span> <input class=\"edit name\"/> <b>at</b> " + post.created + " <button type=\"button\"  class=\"editPost noEdit\">Edit</button> <button data-UUID=\""+ post._id +"\"type=\"button\" class=\"saveEdit edit\">Save</button><button class=\"cancelEdit edit\">Cancel</button></li>");
 				});
 			},
 			error: function(){
@@ -93,7 +93,7 @@ $(function(){
 				console.log("currently putting", posts, post);
 				$posts.html("");
 				$.each(posts, function(index, post) {
-					$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\">X</button>  <b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + post.name + "</span> <input class=\"edit name\"/> <b>at</b> " + post.created + " <button type=\"button\"  class=\"editPost noEdit\">Edit</button> <button data-UUID=\""+ post._id +"\" type=\"button\" class=\"saveEdit edit\">Save</button><button class=\"cancelEdit edit\">Cancel</button></li>");
+					$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x edit' aria-hidden='true'></i></button>  <b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + post.name + "</span> <input class=\"edit name\"/> <b>at</b> " + post.created + " <button type=\"button\"  class=\"editPost noEdit\">Edit</button> <button data-UUID=\""+ post._id +"\" type=\"button\" class=\"saveEdit edit\">Save</button><button class=\"cancelEdit edit\">Cancel</button></li>");
 				});
 				$li.find("span.text").html(posts.text);
 				$li.find("span.name").html(posts.name);
