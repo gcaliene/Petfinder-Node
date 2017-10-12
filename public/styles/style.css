@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+html {
+  background: #FFFBD0;  
+}
+
 
 /**, *:before, *:after {
   box-sizing: inherit;
@@ -16,6 +20,7 @@
 */
 .nav{
   display:inline;
+  overflow: hidden;
 }
 
 .form {
@@ -34,9 +39,20 @@
 
 .nav-list {
     float: right;
-    background-color: #3B5998;
+    background-color: #DD631C;
+    border-radius: 25px;
 
 }
+.pull-right {
+  margin: 0px 20px;
+}
+
+.pull-left{
+  float:left;
+  background-color: #DD631C;
+  
+}
+
 
 .nav-list a {
     display: block;

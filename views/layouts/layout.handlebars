@@ -17,10 +17,10 @@
       -->
       <header>  
         <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="nav-list"><a href="/users/logout">Logout</a></li>       
-            <li role="presentation" class="nav-list"><a href="/users/home">My PetFinder</a></li> <!--Home-Personal User page-->
-                 
+          <ul class="nav nav-pills ">
+            <li role="presentation" class="nav-list pull-right"><a href="/users/logout">Logout</a></li>       
+            <li role="presentation" class="nav-list pull-right"><a href="/users/home">My Dashboard</a></li> <!--Home-Personal User page-->
+            <li role="presentation" class="nav-list pull-left"><a href="/">Pet Finder</a></li>
             <!-- will use links within video background
             <li role="presentation" class="nav-list"><a href="/">Home</a></li> <!-Home intro page-
             <li role="presentation" class="nav-list"><a href="/users/login">Login</a></li>
@@ -28,9 +28,10 @@
            -->
           
           </ul>
+          
         </nav>
 
-        <h3 class="text-muted">Pet Finder App</h3>
+        
         
         
 
@@ -41,24 +42,24 @@
 
 
 
-      <div class="row">
+     
  			<div class="col-lg-12">
-			{{#if success_msg}}
-            <div class="alert alert-success">{{success_msg}}</div>
-       	   {{/if}}
+          {{#if success_msg}}
+                <div class="alert alert-success">{{success_msg}}</div>
+              {{/if}}
 
-          {{#if error_msg}}
-            <div class="alert alert-danger">{{error_msg}}</div>
-          {{/if}}
+              {{#if error_msg}}
+                <div class="alert alert-danger">{{error_msg}}</div>
+              {{/if}}
 
-          {{#if error}}
-            <div class="alert alert-danger">{{error}}</div>
-          {{/if}}
+              {{#if error}}
+                <div class="alert alert-danger">{{error}}</div>
+              {{/if}}
 
- 			{{{body}}}
+          {{{body}}}
 
  			</div>
-      </div>
+
 
      <footer class="footer">
         <p>&copy; 2017 PetFinder, Inc.</p> 
