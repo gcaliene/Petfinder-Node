@@ -11,7 +11,7 @@ var $name = $("#name");
 		url: '/posts',
 		success: function(posts){
 			$.each(posts, function(index, post){
-				console.log(posts);
+				console.log(post);
 				$posts.append('<li> <button data-UUID="'+ post._id +'" type="button" id="deleteButton">X</button>  <b>text:</b> <span class="noEdit text">' + post.text + " </span> <input class='edit text'/> <b>name:</b> <span class='noEdit name'>" + post.name + '</span> <input class="edit name"/> <b>at</b> ' + post.created + ' <button type="button"  class="editPost noEdit">Edit</button> <button data-UUID="'+ post._id +'" type="button" class="saveEdit edit">Save</button><button class="cancelEdit edit">Cancel</button></li>');
 			});
 		},
