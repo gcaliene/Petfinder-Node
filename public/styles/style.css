@@ -36,21 +36,48 @@ html {
     overflow: hidden; /*make sure that there are no horizontal scroll bars*/
     background-color: #111;
 }
+@media only screen (min-width:320px) and (max-width:961) { /* smartphones, iPhone, portrait 480x320 phones */ 
+  
+  .nav {
+    display: flex;
+    background-color: #DD631C; 
+  }
+  .nav-list{
+    width: 100%;
+  }
+}
+
+/*
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide.  }
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones  }
+@media (min-width:1281px)  { /* tablet, landscape iPad, lo-res laptops ands desktops  }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops  }
+*/
+
+@media (min-width:961px) { /* hi-res laptops and desktops */ 
+
+  .pull-right,logout {
+    float: right;
+    margin: 0px 10px;
+  }
+
+  .pull-left{
+    float:left;
+    background-color: #fff;
+  }
+  .nav{
+    display: flex;
+    background-color: #DD631C; 
+    
+  }
+  .nav-list{
+    width:50%;
+  }
+}
 
 .nav-list {
-    float: right;
-    background-color: #DD631C;
-    border-radius: 25px;
-
-}
-.pull-right {
-  margin: 0px 20px;
-}
-
-.pull-left{
-  float:left;
   background-color: #DD631C;
-  
+  border-radius: 25px;
 }
 
 
@@ -58,7 +85,7 @@ html {
     display: block;
     color: white; /* text color*/
     text-align: center;
-    padding: 14px 16px;
+    padding: 12px 14px;
     text-decoration: none;
 }
 
