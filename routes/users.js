@@ -1,11 +1,11 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
 const app = express();
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-var expressValidator = require('express-validator');
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
+var expressValidator = require("express-validator");
 
 
 //Passport initialization wasn't happening because i left this in server code and wasn't routing to here.
@@ -17,31 +17,31 @@ app.use(passport.session());
 router.use(bodyParser.urlencoded({ extended: false }));//this was causing the issue: TypeError: the name was undefined
 
 //model route
-var User = require('../models/user');
+var User = require("../models/user");
 
 //register route 
-router.get('/register',function(req,res){
-	console.log("GET worked")
-	res.render('register');
+router.get("/register",function(req,res){
+	console.log("GET worked");
+	res.render("register");
 });
 
 //login route 
-router.get('/login',function(req,res){
-	res.render('login');
+router.get("/login",function(req,res){
+	res.render("login");
 });
 
 //Home - My Petfinder Route
-router.get('/home', ensureAuthenticated, function(req,res){
-	console.log('going to the dashboard')
-	res.render('home');
+router.get("/home", ensureAuthenticated, function(req,res){
+	console.log("going to the dashboard")
+	res.render("home");
 })
 //only logged in users can see this page
 function ensureAuthenticated(req,res,next){
 	if(req.isAuthenticated()){
 		return next();
 	}else{
-		req.flash('error_msg', 'You need to log in first')
-		res.redirect('/users/login');
+		req.flash("error_msg", "You need to log in first")
+		res.redirect("/users/login");
 	}
 };
 
@@ -60,7 +60,7 @@ function ensureAuthenticated(req,res,next){
 
 });
 */
-router.post('/register', function(req, res){
+router.post("/register", function(req, res){
 	//console.log('?????????????')
 	//console.log(req);
 	var name = req.body.name;
@@ -69,28 +69,24 @@ router.post('/register', function(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
 	var password2 = req.body.password2;
-
 	// Validation
-	req.checkBody('name', 'Name is required').notEmpty();
-	req.checkBody('email', 'Email is required').notEmpty();
-	req.checkBody('email', 'Email is not valid').isEmail();
-	req.checkBody('username', 'Username is required').notEmpty();
-	req.checkBody('password', 'Password is required').notEmpty();
-	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+	req.checkBody("name", "Name is required").notEmpty();
+	req.checkBody("email", "Email is required").notEmpty();
+	req.checkBody("email", "Email is not valid").isEmail();
+	req.checkBody("username", "Username is required").notEmpty();
+	req.checkBody("password", "Password is required").notEmpty();
+	req.checkBody("password2", "Passwords do not match").equals(req.body.password);
 
 	var errors = req.validationErrors();
 
-/*
-	if (errors){
+	/*if (errors){
 		console.log('yes');
 	} else{
 		console.log('no');
-	}
-*/
-
+	}*/
 
 	if(errors){
-		res.render('register',{
+		res.render("register",{
 			errors:errors
 		});
 	} else {
@@ -106,9 +102,9 @@ router.post('/register', function(req, res){
 			console.log(user);
 		});
 
-		req.flash('success_msg', 'You are registered and can now login');
+		req.flash("success_msg", "You are registered and can now login");
 
-		res.redirect('/users/login');
+		res.redirect("/users/login");
 	}
 
 });
@@ -119,7 +115,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
    User.getUserByUsername(username, function(err, user){
    	if(err) throw err;
    	if(!user){
-   		return done(null, false, {message: 'User Not Registered'});
+   		return done(null, false, {message: "User Not Registered"});
    	}
 
    	User.comparePassword(password, user.password, function(err, isMatch){
@@ -127,7 +123,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
    		if(isMatch){
    			return done(null, user);
    		} else {
-   			return done(null, false, {message: 'Invalid password'});
+   			return done(null, false, {message: "Invalid password"} );
    		}
    	});
    });
@@ -146,18 +142,18 @@ passport.deserializeUser(function(id, done) {
 
 
 
-router.post('/login',
-  passport.authenticate('local', {successRedirect:'/users/home', failureRedirect:'/users/login',failureFlash: true}),//second parameter is an object and options from documentation
+router.post("/login",
+  passport.authenticate("local", {successRedirect:"/users/home", failureRedirect:"/users/login",failureFlash: true}),//second parameter is an object and options from documentation
   function(req, res) {
-    res.redirect('/users/home');
+    res.redirect("/users/home");
   });
 
-router.get('/logout', function(req, res){
+router.get("/logout", function(req, res){
 	req.logout();
 
-	req.flash('success_msg', 'You are logged out');
+	req.flash("success_msg", "You are logged out");
 
-	res.redirect('/users/login');
+	res.redirect("/users/login");
 });
 
 module.exports = router;
