@@ -23,6 +23,7 @@ $(function(){
 	$("#submit").on("click", function(){
 		event.preventDefault();
 		//what happens when submit is selected
+		//$("#form-js").validate();
 		console.log("you just clicked submit");
 		var post = {
 			text: $text.val(),

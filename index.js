@@ -12,7 +12,7 @@ const app = express();
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var exphbs = require('express-handlebars');
-var expressValidator = require('express-validator');
+var expressValidator = require('express-validator');// doc says to move after body parsers
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
@@ -95,22 +95,41 @@ app.use('/users', users);
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-
+//POST
 app.post('/posts', (req, res) => {
-	var post = new PetPost()
+//Validating the field bodies
+	req.checkBody("text", "Please provide a brief description").notEmpty();
+	req.checkBody("userName", "Pleae provide a name").notEmpty();
+//Run the validators
+	var errors = req.validationErrors();
+
+//create the post with schema found in the models
+	var post = new PetPost();
 
 	post.text = req.body.text,
 	post.userName = req.body.userName,
-	post.created = new Date(),
+	post.created = new Date();
 
-	post.save((err, record) => {
-		if(err) {
-			res.send(err)
-		}
-		res.json(record)
-	})
+//Now if there are errors
+	if (errors) {
+		//insert how to render errors
+		console.log("there are missing fields");
+		//return $("$text").html("<span class='red'>Hello <b>Again</b></span>");
+		//req.flash("error_msg", "you need to enter")
+		//return done(null, false, {message: "User Not Registered"});
+		//$("$text").html("<span class='red'>Hello <b>Again</b></span>");
+	}	else{
+		post.save((err, record) => {
+			if(err) {
+				res.send(err)
+			}
+			res.json(record)
+		});
+	}
 });
 
+
+//GET
 app.get('/posts', (req, res) => {
 	PetPost
 		.find()
@@ -123,6 +142,8 @@ app.get('/posts', (req, res) => {
 		});
 });
 
+
+//DELETE
 app.delete('/posts/:id', (req, res) => {
 	console.log(req.params.id);
 	PetPost.findByIdAndRemove(req.params.id, (error) => {
@@ -142,6 +163,8 @@ app.delete('/posts/:id', (req, res) => {
 	})
 });
 
+
+//PUT
 app.put(`/posts/:id`, jsonParser, (req, res) => {
 	console.log(req.body);
 	console.log(req.params.id);
