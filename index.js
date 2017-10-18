@@ -9,28 +9,39 @@ const app = express();
 
 
 
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var exphbs = require('express-handlebars');
-var expressValidator = require('express-validator');// doc says to move after body parsers
-var flash = require('connect-flash');
-var session = require('express-session');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const exphbs = require('express-handlebars');
+const expressValidator = require('express-validator');// doc says to move after body parsers
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const mongo = require('mongodb');
 
-
+const {jwtStrategy} = require('./auth/strategies')
 const {PORT, DATABASE_URL}= require('./config');
-var db = mongoose.connection; //just added this might delete, but not affecting outcome
+const db = mongoose.connection; //just added this might delete, but not affecting outcome
 
 mongoose.Promise =global.Promise;
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+const routes = require('./routes/index');
+const users = require('./routes/users');
 
 
 
 //View Engine
+passport.use(jwtStrategy);
+
+app.get('/api/protected',
+	passport.authenticate('jwt', {session: false}),
+	(req, res) => {
+			return res.json({
+					data: 'rosebud'
+			});
+	}
+);
+
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine', 'handlebars');

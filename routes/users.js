@@ -1,23 +1,31 @@
-var express = require("express");
-var router = express.Router();
-var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
-const app = express();
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+//const app = express();
 const bodyParser = require("body-parser");
-const morgan = require("morgan");
-var expressValidator = require("express-validator");
+const expressValidator = require("express-validator");
+const {BasicStrategy} = require("passport-http");
+const {Stategy: JwtStrategy, ExtractJwt} = require("passport-jwt");
+//const passportJWT = require("passport-jwt");
+//const ExtractJwt = passportJWT.ExtractJwt;
+//vr JwtStrategy = passportJWT.Strategy;
+const jwt = require('jsonwebtoken');//this was m
 
+
+const config =require("../config");
+const {JWT_SECRET} = require ("../config");
 
 //Passport initialization wasn't happening because i left this in server code and wasn't routing to here.
-app.use(passport.initialize());
-app.use(passport.session());
+router.use(passport.initialize());
+router.use(passport.session());
 //Why use router vs app.get? because I use app get with my primary rest api and router for registration/login
 
-//app.use(morgan('common'));
 router.use(bodyParser.urlencoded({ extended: false }));//this was causing the issue: TypeError: the name was undefined
+router.use(bodyParser.json());
 
 //model route
-var User = require("../models/user");
+var User = require("../models/user"); //should users be in {}?
 
 //register route 
 router.get("/register",function(req,res){
@@ -96,7 +104,7 @@ router.post("/register", function(req, res){
 			username: username,
 			password: password
 		});
-//going to use that createuser model 
+		//going to use that createuser model 
 		User.createUser(newUser, function(err, user){
 			if(err) throw err;
 			console.log(user);
@@ -110,9 +118,9 @@ router.post("/register", function(req, res){
 });
 
 
-//passportImplementation - getUserByUsername
+//passportImplementation - getUserByUsername. this is the thinkful strategy
 passport.use(new LocalStrategy(function(username, password, done) {
-   User.getUserByUsername(username, function(err, user){
+	User.getUserByUsername(username, function(err, user){
    	if(err) throw err;
    	if(!user){
    		return done(null, false, {message: "User Not Registered"});
@@ -126,8 +134,9 @@ passport.use(new LocalStrategy(function(username, password, done) {
    			return done(null, false, {message: "Invalid password"} );
    		}
    	});
-   });
+	});
 }));
+
 
 
 passport.serializeUser(function(user, done){
@@ -140,13 +149,36 @@ passport.deserializeUser(function(id, done) {
 	});
 });
 
+const createAuthToken = user => {
+	return jwt.sign({user}, config.JWT_SECRET, {
+		subject: user.username,
+		expiresIn: config.JWT_EXPIRY,
+		algorithm: "HS256"
+	});
+};
 
 
-router.post("/login",
-  passport.authenticate("local", {successRedirect:"/users/home", failureRedirect:"/users/login",failureFlash: true}),//second parameter is an object and options from documentation
-  function(req, res) {
-    res.redirect("/users/home");
-  });
+router.post("/login", passport.authenticate("local"),//second parameter is an object and options from documentation
+	
+	function(req, res) {
+		const authToken = createAuthToken(req.user.apiRepr());
+		console.log(authToken);
+		//res.json({authToken}); this will render the authtoken on the page
+		res.redirect("/users/home");
+		
+	}
+);
+
+router.post(
+	"/refresh",
+	// The user exchanges an existing valid JWT for a new one with a later
+	// expiration
+	passport.authenticate("jwt", {session: false}),
+	(req, res) => {
+		const authToken = createAuthToken(req.user);
+		res.json({authToken});
+	}
+);
 
 router.get("/logout", function(req, res){
 	req.logout();
@@ -157,6 +189,7 @@ router.get("/logout", function(req, res){
 });
 
 module.exports = router;
+//module.exports = {jwtStrategy};
 
 
 

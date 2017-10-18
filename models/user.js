@@ -9,6 +9,14 @@ var UserSchema = mongoose.Schema({
 	name: {type: String},
 });
 
+UserSchema.methods.apiRepr = function() { //this is basically filtering what you send back when making response
+	return {
+		_id: this._id,
+		username: this.username,
+		email: this.email,
+		name: this.name,
+	}; 
+};
 
 //The following are model functions (mongoose methods) used in 
 
