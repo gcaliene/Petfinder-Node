@@ -10,7 +10,7 @@ const {Stategy: JwtStrategy, ExtractJwt} = require("passport-jwt");
 //const passportJWT = require("passport-jwt");
 //const ExtractJwt = passportJWT.ExtractJwt;
 //vr JwtStrategy = passportJWT.Strategy;
-const jwt = require('jsonwebtoken');//this was m
+const jwt = require('jsonwebtoken');//this was missing before
 
 
 const config =require("../config");
@@ -158,8 +158,7 @@ const createAuthToken = user => {
 };
 
 
-router.post("/login", passport.authenticate("local"),//second parameter is an object and options from documentation
-	
+router.post("/login", passport.authenticate("local"),//second parameter is an object and options from documentation	
 	function(req, res) {
 		const authToken = createAuthToken(req.user.apiRepr());
 		console.log(authToken);

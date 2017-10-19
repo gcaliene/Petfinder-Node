@@ -20,6 +20,18 @@ $(function(){
 		}
 	});
 
+	$.ajax({
+		type:"GET",
+		url:"/currentUser",
+		success: function(user){
+			console.log(user.username);
+			const ajaxUser = user.username;
+			console.log('====================================');
+			console.log(ajaxUser);
+			console.log('====================================');
+		}
+	})
+
 	$("#submit").on("click", function(){
 		event.preventDefault();
 		//what happens when submit is selected
@@ -27,7 +39,7 @@ $(function(){
 		console.log("you just clicked submit");
 		var post = {
 			text: $text.val(),
-			userName: $name.val(),
+			//userName: $name.val(),
 			created: new Date(),
 		};
 		$.ajax({
@@ -46,6 +58,7 @@ $(function(){
 
 	
 	$posts.delegate("#deleteButton","click", function(){ //have to use delegate instead of on click to work
+		//if (
 		console.log("Sending request to Ajax to delete post"); 
 		$.ajax({
 			type:"DELETE",

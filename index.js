@@ -110,7 +110,7 @@ app.use(bodyParser.json());
 app.post('/posts', (req, res) => {
 //Validating the field bodies
 	req.checkBody("text", "Please provide a brief description").notEmpty();
-	req.checkBody("userName", "Pleae provide a name").notEmpty();
+//req.checkBody("userName", "Pleae provide a name").notEmpty();
 //Run the validators
 	var errors = req.validationErrors();
 
@@ -118,7 +118,7 @@ app.post('/posts', (req, res) => {
 	var post = new PetPost();
 
 	post.text = req.body.text,
-	post.userName = req.body.userName,
+	post.userName = req.user.userName, //passport object
 	post.created = new Date();
 
 //Now if there are errors
@@ -152,6 +152,10 @@ app.get('/posts', (req, res) => {
 			res.status(500).json({error: 'something went wrong'});
 		});
 });
+
+app.get('/currentUser', (req,res) => {
+	res.json(req.user.apiRepr()) //just sends back user
+})
 
 
 //DELETE
