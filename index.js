@@ -106,7 +106,7 @@ app.use('/users', users);
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-//POST
+///////////// POST ///////////////////////////
 app.post('/posts', (req, res) => {
 //Validating the field bodies
 	req.checkBody("text", "Please provide a brief description").notEmpty();
@@ -116,9 +116,8 @@ app.post('/posts', (req, res) => {
 
 //create the post with schema found in the models
 	var post = new PetPost();
-
 	post.text = req.body.text,
-	post.userName = req.user.userName, //passport object
+	post.userName = req.user.username, //passport object
 	post.created = new Date();
 
 //Now if there are errors
@@ -140,7 +139,7 @@ app.post('/posts', (req, res) => {
 });
 
 
-//GET
+/////////vvv GET Requests vvv////////////////vvGETvv///////////// 
 app.get('/posts', (req, res) => {
 	PetPost
 		.find()
@@ -153,12 +152,13 @@ app.get('/posts', (req, res) => {
 		});
 });
 
+//for currentUser from user models
 app.get('/currentUser', (req,res) => {
 	res.json(req.user.apiRepr()) //just sends back user
 })
 
 
-//DELETE
+///////DELETE
 app.delete('/posts/:id', (req, res) => {
 	console.log(req.params.id);
 	PetPost.findByIdAndRemove(req.params.id, (error) => {
