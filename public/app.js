@@ -62,7 +62,7 @@ $(function(){
 			success: function(newPost) {
 				console.log(newPost);
 				$text.val('');  				
-				$posts.append("<li> <button data-UUID=\""+ newPost._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x' aria-hidden='true'></i></button>" + 
+				$posts.append("<li> <button data-UUID=\""+ newPost._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x' aria-hidden='true'></i></button> " + 
 				"<b>text:</b> <span class=\"noEdit text\">" + newPost.text + " </span> <input class='edit text'/>" + 
 				"<br> <b>Posted by:</b> <span class='name'>" + newPost.userName + "</span>" + 
 				"<b> at</b> " + newPost.created + 
@@ -96,7 +96,7 @@ $(function(){
 					console.log(posts);
 					$posts.html(""); //this clears page
 					$.each(posts, function(index, post){
-						$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x' aria-hidden='true'></i></button>" + 
+						$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x' aria-hidden='true'></i></button> " + 
 						"<b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/>" + 
 						"<br> <b>Posted by: </b> <span class='name'>" + post.name + "</span>" + 
 						"<b> at</b> " + post.created + 
