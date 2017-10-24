@@ -24,17 +24,18 @@
 
 <div class="center">
 	<div class="dashboard-title">
-		<h1>PetFinder</h1>
+		<h1 class="petfinder-title">PetFinder</h1>
 		<p>Use this app to find any local animals that may be missing</p>
+        		<span class="input-description"> Description of when last seen pet </span> 
+
 	</div>
 
-	<form id="form-js" class="form errorMessages">
-		Description of when last seen pet <br> 
-  		<input type="text" id="text" placeholder="Description" required><br>
+	<form id="form-js" class=" errorMessages">
+  		<input class='form-input' type="text" id="text" placeholder="Description" required><br>
   		<!-- Provide your name, please<br>
  		 <input type="text" id="name" placeholder="Your name here" required><br><br>
           -->
-  		<input type="submit" value="Submit" id="submit">
+  		<input class="form-submit" type="submit" value="Submit" id="submit">
 			<!-- give form id, form submit listener, use prevent default, give input class, .val(), send data to server via ajax (how to comm to backend) -->
 	</form>
 </div>
@@ -53,8 +54,10 @@
     </script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
 	<script type="text/javascript" src="../app.js"></script>
-	<script>
+    <script>
     var createAllErrors = function() {
         var form = $( this ),
             errorList = $( "ul.errorMessages", form );

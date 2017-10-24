@@ -65,7 +65,7 @@ input[type=text], input[type=password], input[type=email]{
 
 .btn-red, .btn-green {
 	float:left;
-	width:50%;
+	width:100%;
 }
 .clearfix{
 	max-width: 500px;
