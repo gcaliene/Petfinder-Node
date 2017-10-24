@@ -17,7 +17,7 @@ $(function(){
 				$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x ' aria-hidden='true'></i></button> " + 
 				"<b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/>" +  
 				"<br>  <b>  Posted by:</b> <span class='name'>" + post.name + "</span>" + 
-				"<b> at</b> " + moment(post.created).startOf('hour').fromNow() + 
+				"<b> at</b> " + moment(post.created).startOf('minutes').fromNow() + 
 				" <button type=\"button\"  class=\"editPost noEdit\">Edit</button>" + 
 					"<button data-UUID=\""+ post._id +"\" type=\"button\" class=\"saveEdit edit\">Save</button>" + 
 					"<button class=\"cancelEdit edit\">Cancel</button></li>");
@@ -65,7 +65,7 @@ $(function(){
 				$posts.append("<li> <button data-UUID=\""+ newPost._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x' aria-hidden='true'></i></button> " + 
 				"<b>text:</b> <span class=\"noEdit text\">" + newPost.text + " </span> <input class='edit text'/>" + 
 				"<br> <b>Posted by:</b> <span class='name'>" + newPost.userName + "</span>" + 
-				"<b> at</b> " + moment(newPost.created).startOf('hour').fromNow() + 
+				"<b> at</b> " + moment(newPost.created).startOf('minutes').fromNow() + 
 				" <button type=\"button\"  class=\"editPost noEdit\">Edit</button>" + 
 					"<button data-UUID=\""+ newPost._id +" \"type=\"button\" class=\"saveEdit edit\">Save</button>" + 
 					"<button class=\"cancelEdit edit\">Cancel</button></li>");
@@ -99,7 +99,7 @@ $(function(){
 						$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x' aria-hidden='true'></i></button> " + 
 						"<b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/>" + 
 						"<br> <b>Posted by: </b> <span class='name'>" + post.name + "</span>" + 
-						"<b> at</b> " + moment(post.created).startOf('hour').fromNow() + 
+						"<b> at</b> " + moment(post.created).startOf('minutes').fromNow() + 
 						" <button type=\"button\"  class=\"editPost noEdit\">Edit</button>" + 
 							"<button data-UUID=\""+ post._id +" \"type=\"button\" class=\"saveEdit edit\">Save</button>" + 
 							"<button class=\"cancelEdit edit\">Cancel</button></li>");
@@ -152,7 +152,7 @@ $(function(){
 					$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x ' aria-hidden='true'></i></button> " + 
 					"<b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/>" +  
 					"<br>  <b>  Posted by:</b> <span class='name'>" + post.name + "</span>" + 
-					"<b> at</b> " + moment(post.created).startOf('hour').fromNow() + 
+					"<b> at</b> " + moment(post.created).startOf('minutes').fromNow() + 
 					" <button type=\"button\"  class=\"editPost noEdit\">Edit</button>" + 
 						"<button data-UUID=\""+ post._id +"\" type=\"button\" class=\"saveEdit edit\">Save</button>" + 
 						"<button class=\"cancelEdit edit\">Cancel</button></li>");
