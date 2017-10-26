@@ -87,35 +87,70 @@ router.post("/register", function(req, res){
 
 	var errors = req.validationErrors();
 
-	/*if (errors){
-		console.log('yes');
-	} else{
-		console.log('no');
-	}*/
+	return User
+		.find({username})
+		.count()
+		.then(count => {
+			if (count > 0) {
+				// There is an existing user with the same username
+				return Promise.reject({
+					code: 422,
+					reason: 'ValidationError',
+					message: 'Username already taken',
+					location: 'username'
+				});
+			} else {
+				var newUser = new User({
+					name: name,
+					email:email,
+				 	username: username,
+					password: password
+				});
+				 	//going to use that createuser model 
+				User.createUser(newUser, function(err, user){
+					 if(err) throw err;
+					console.log(user);
+	 			});
+			req.flash("success_msg", "You are registered and can now login");
+			res.redirect("/users/login");
+			}
+	  
+	   })
+	   .catch(err => {
+			// Forward validation errors on to the client, otherwise give a 500
+			// error because something unexpected has happened
+			if (err.reason === 'ValidationError') {
+				return res.status(err.code).json(err);
+			}
+			res.status(500).json({code: 500, message: 'Internal server error'});
+	   });
+		 
+	   
+	   
 
-	if(errors){
-		res.render("register",{
-			errors:errors
-		});
-	} else {
-		var newUser = new User({
-			name: name,
-			email:email,
-			username: username,
-			password: password
-		});
-		//going to use that createuser model 
-		User.createUser(newUser, function(err, user){
-			if(err) throw err;
-			console.log(user);
-		});
+// 	if(errors){
+// 		res.render("register",{
+// 			errors:errors
+// 		});
+// 	} else {
+// 		var newUser = new User({
+// 			name: name,
+// 			email:email,
+// 			username: username,
+// 			password: password
+// 		});
+// 		//going to use that createuser model 
+// 		User.createUser(newUser, function(err, user){
+// 			if(err) throw err;
+// 			console.log(user);
+// 		});
 
-		req.flash("success_msg", "You are registered and can now login");
+// 		req.flash("success_msg", "You are registered and can now login");
 
-		res.redirect("/users/login");
-	}
+// 		res.redirect("/users/login");
+// 	}
 
-});
+ });
 
 
 //passportImplementation - getUserByUsername. this is the thinkful strategy
