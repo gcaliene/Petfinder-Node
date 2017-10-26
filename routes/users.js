@@ -135,7 +135,7 @@ router.post("/register", function(req, res){
 
 
 	var name = req.body.name;
-	console.log(req.body);
+	// console.log(req.body);
 	var email = req.body.email;
 	var username = req.body.username;
 	var password = req.body.password;
@@ -172,7 +172,7 @@ router.post("/register", function(req, res){
 				 	//going to use that createuser model 
 				User.createUser(newUser, function(err, user){
 					 if(err) throw err;
-					console.log(user);
+					// console.log(user);
 	 			});
 			req.flash("success_msg", "You are registered and can now login");
 			res.redirect("/users/login");

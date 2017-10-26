@@ -13,7 +13,7 @@ $(function(){
 		url: "/posts",
 		success: function(posts){
 			$.each(posts, function(index, post){
-				console.log(post);
+				// console.log(post);
 				$posts.append("<li> <button data-UUID=\""+ post._id +"\" type=\"button\" id=\"deleteButton\"><i class='fa fa-trash fa-2x ' aria-hidden='true'></i></button> " + 
 				"<b>text:</b> <span class=\"noEdit text\">" + post.text + " </span> <input class='edit text'/>" +  
 				"<br>  <b>  Posted by:</b> <span class='name'>" + post.name + "</span>" + 
