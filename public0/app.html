@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Petfinder</title>
+    <link rel="stylesheet" type="text/css" href="../apistyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav nav-pills ">
+          <li role="presentation" class="nav-list pull-right logout"><a href="/users/logout">Logout</a></li>
+          <li role="presentation" class="nav-list pull-right dashboard"><a href="/users/home">My Dashboard</a></li> <!--Home-Personal User page-->
+          <li role="presentation" class="nav-list pull-left"><a href="/">Pet Finder</a></li>
+          <!-- will use links within video background
+          <li role="presentation" class="nav-list"><a href="/">Home</a></li> <!-Home intro page-
+          <li role="presentation" class="nav-list"><a href="/users/login">Login</a></li>
+          <li role="presentation" class="nav-list"><a href="/users/register">Register</a></li>
+         -->
+        </ul>
+      </nav>
+    </header>
+
+    <div class="center">
+    	<div class="dashboard-title">
+    		<h1 class="petfinder-title">PetFinder</h1>
+    		<p>Below, you will find a list of currently lost animals and sightings.</p>
+            		<span class="input-description">Please provide a thorough description of either your lost pet or any animal sightings. </span>
+
+    	</div>
+
+    	<form id="form-js" class=" errorMessages">
+      		<input class='form-input' type="text" id="text" placeholder="Description" required><br>
+      		<!-- Provide your name, please<br>
+     		 <input type="text" id="name" placeholder="Your name here" required><br><br>
+              -->
+      		<input class="form-submit" type="submit" value="Submit" id="submit">
+    			<!-- give form id, form submit listener, use prevent default, give input class, .val(), send data to server via ajax (how to comm to backend) -->
+    	</form>
+    </div>
+
+    <div class="">
+    	<h3>Currently lost animals</h3>
+
+    	<ul id="posts">
+
+    	</ul>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
