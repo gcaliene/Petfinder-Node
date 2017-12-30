@@ -20,7 +20,17 @@ router.use(bodyParser.json());
 // The user provides a username and password to login
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user.serialize());
+  // res.setHeader('Authorization', authToken);
+  // console.log(req);
+  // console.log(res.setHeader);
+  // // res.set('Authorization', authToken);
+  console.log('=============');
+  console.log(res.req);
+  console.log('-----------------------hhh-----');
+
   res.json({ authToken });
+  //res.redirect('/app.html');
+  //console.log(authToken); //delete this line
 });
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
@@ -31,5 +41,10 @@ router.post('/refresh', jwtAuth, (req, res) => {
   res.json({ authToken });
 });
 
-module.exports = { router };
+router.get('/logout', function(req, res) {
+  req.logout();
 
+  res.redirect('/index.html');
+});
+
+module.exports = { router };

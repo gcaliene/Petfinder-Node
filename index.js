@@ -11,10 +11,10 @@ const { PetPost } = require('./models');
 const jsonParser = bodyParser.json();
 
 const path = require('path');
-const cookieParser = require('cookie-parser');
-const exphbs = require('express-handlebars');
-const expressValidator = require('express-validator'); // doc says to move after body parsers
-const flash = require('connect-flash');
+// const cookieParser = require('cookie-parser');
+// const exphbs = require('express-handlebars');
+// const expressValidator = require('express-validator'); // doc says to move after body parsers
+// const flash = require('connect-flash');
 const session = require('express-session');
 
 const { router: usersRouter } = require('./users');
@@ -30,6 +30,20 @@ const { Users } = require('./users/');
 // app.use(passport.initialize());
 // app.use(passport.session());
 
+// Logging
+app.use(morgan('common'));
+
+// CORS
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
+
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
@@ -38,54 +52,42 @@ app.use('/api/auth/', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
+app.get('/api/protected', jwtAuth, (req, res) => {
+  return res.json({
+    data: 'rosebud'
+  });
+});
+
 app.get(
-  '/api/protected',
+  '/app.html',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    return res.json({
-      data: 'rosebud'
-    });
+    console.log(jwtAuth.authenticate);
+    console.log(req.user);
+    console.log('=======================');
+    const token = req.headers.authorization;
+    console.log(token);
+    res.sendFile(path.join(__dirname + '/public0/app.html'));
   }
 );
 
 app.use(express.static('public0'));
 
-//app.set('views', path.join(__dirname, 'views'));
-//app.engine('handlebars', exphbs({ defaultLayout: 'layout' }));
-//app.set('view engine', 'handlebars');
-app.use(cookieParser());
-
 //Set static folder
 //app.use(express.static(path.join(__dirname, 'public')));
 
 //Express session
-app.use(
-  session({
-    secret: JWT_SECRET,
-    saveUninitialized: true,
-    resave: true
-  })
-);
-
-// // Express Validator
 // app.use(
-//   expressValidator({
-//     errorFormatter: function(param, msg, value) {
-//       var namespace = param.split('.'),
-//         root = namespace.shift(),
-//         formParam = root;
-//
-//       while (namespace.length) {
-//         formParam += '[' + namespace.shift() + ']';
-//       }
-//       return {
-//         param: formParam,
-//         msg: msg,
-//         value: value
-//       };
-//     }
+//   session({
+//     secret: JWT_SECRET,
+//     saveUninitialized: true,
+//     resave: true
 //   })
 // );
+
+app.get('currentUser', (req, res) => {
+  res.json(req.user.apiRepr()); //just sends back user
+});
 
 app.use(bodyParser.urlencoded({ extended: false })); //make extended false. find out why.
 app.use(bodyParser.json()); //initializes body parser
@@ -109,12 +111,7 @@ app.post('/posts', (req, res) => {
 
   //Now if there are errors
   if (errors) {
-    //insert how to render errors
     console.log('there are missing fields');
-    //return $("$text").html("<span class='red'>Hello <b>Again</b></span>");
-    //req.flash("error_msg", "you need to enter")
-    //return done(null, false, {message: "User Not Registered"});
-    //$("$text").html("<span class='red'>Hello <b>Again</b></span>");
   } else {
     post.save((err, record) => {
       if (err) {

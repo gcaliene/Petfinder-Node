@@ -13,10 +13,10 @@ $(document).ready(function() {
       url: '/api/users',
       contentType: 'application/json',
       data: json,
-      success: function(req, res) {
-        //console.log(req);
-        window.location = 'app.html';
-        alert(`You are registered with ${req.username}, please login.`);
+      success: function(data) {
+        console.log(data);
+        window.location = 'index.html';
+        alert(`You are registered with ${data.username}, please login.`);
       },
       error: function(error) {
         //console.log({ error });
@@ -39,16 +39,22 @@ $(document).ready(function() {
     $.ajax({
       type: 'POST',
       url: '/api/auth/login',
+      // headers: {
+      //   Authorization: `Bearer ${data.authToken}`
+      // },
       contentType: 'application/json',
       data: json,
-      success: function(req, res) {
-        console.log(req.authToken);
-        console.log(res);
-        // window.location = 'index.html';
+      success: function(data, textStatus, request) {
+        // request.setRequestHeader('Authorization', `Bearer ${data.authToken}`);
+        console.log(data);
+
+        localStorage.setItem('token', data.authToken);
+        // response.setHeader('Authorization', data.authToken);
+
+        window.location = '/app.html';
       },
       error: function(error) {
         console.log({ error });
-
         alert(
           `${error.status} error: ${
             error.responseText
