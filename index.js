@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { PetPost } = require('./models');
 const jsonParser = bodyParser.json();
+const moment = require('moment')
 
 const path = require('path');
 // const cookieParser = require('cookie-parser');
@@ -52,42 +53,13 @@ app.use('/api/auth/', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-app.get('/api/protected', jwtAuth, (req, res) => {
-  return res.json({
-    data: 'rosebud'
-  });
-});
-
-app.get(
-  '/app.html',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    console.log(jwtAuth.authenticate);
-    console.log(req.user);
-    console.log('=======================');
-    const token = req.headers.authorization;
-    console.log(token);
-    res.sendFile(path.join(__dirname + '/public0/app.html'));
-  }
-);
 
 app.use(express.static('public0'));
 
-//Set static folder
-//app.use(express.static(path.join(__dirname, 'public')));
-
-//Express session
-// app.use(
-//   session({
-//     secret: JWT_SECRET,
-//     saveUninitialized: true,
-//     resave: true
-//   })
-// );
-
-app.get('currentUser', (req, res) => {
-  res.json(req.user.apiRepr()); //just sends back user
-});
+// app.get('/currentUser', (req, res) => {
+//   // res.json(req.user.apiRepr()); //just sends back user
+//   res.send(req.user)
+// });
 
 app.use(bodyParser.urlencoded({ extended: false })); //make extended false. find out why.
 app.use(bodyParser.json()); //initializes body parser
@@ -96,30 +68,19 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 ///////////// POST ///////////////////////////
-app.post('/posts', (req, res) => {
-  //Validating the field bodies
-  req.checkBody('text', 'Please provide a brief description').notEmpty();
-  //req.checkBody("userName", "Pleae provide a name").notEmpty();
-  //Run the validators
-  var errors = req.validationErrors();
-
-  //create the post with schema found in the models
-  var post = new PetPost();
-  (post.text = req.body.text),
-    (post.userName = req.user.username), //passport object
-    (post.created = new Date());
-
-  //Now if there are errors
-  if (errors) {
-    console.log('there are missing fields');
-  } else {
-    post.save((err, record) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json(record);
-    });
-  }
+app.post('/posts', (req, res,next) => {
+  console.log("hello from backend");
+  console.log(req.body);
+  const post = new PetPost({
+    text:req.body.text,
+    userName:req.body.userName,
+    created:req.body.created
+  })
+  post.save(function (err, post) {
+    if (err) { return next(err) }
+    res.json(201, post)
+  })
+  console.log(post);
 });
 
 /////////vvv GET Requests vvv////////////////vvGETvv/////////////
@@ -135,9 +96,14 @@ app.get('/posts', (req, res) => {
 });
 
 //for currentUser from user models
-// app.get('/currentUser', (req, res) => {
-//   res.json(req.user.apiRepr()); //just sends back user
-// });
+app.get('/currentUser', jwtAuth, (req, res) => {
+  console.log(req.user.username);
+  res.send(req.user.username); //just sends back user
+});
+
+app.get('user', (req,res)=> {
+  console.log("OIADOASD");
+})
 
 ///////DELETE
 app.delete('/posts/:id', (req, res) => {
@@ -190,9 +156,9 @@ app.put(`/posts/:id`, jsonParser, (req, res) => {
 });
 
 // catch-all endpoint if client makes request to non-existent endpoint
-app.use('*', function(req, res) {
-  res.status(404).json({ message: 'Not Found' });
-});
+// app.use('*', function(req, res) {
+//   res.status(404).json({ message: 'Not Found' });
+// });
 
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here

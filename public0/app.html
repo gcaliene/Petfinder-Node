@@ -3,22 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>Petfinder</title>
-    <link rel="stylesheet" type="text/css" href="../apistyle.css">
+    <link rel="stylesheet" href="app.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../apistyle.css"> -->
+    <!-- 3rd-party Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+    <!-- End of 3rd-party Libraries -->
 
   </head>
   <body>
     <header>
+      <a href="#" id="logo"></a>
       <nav>
+        <a href="#" id="menu-icon"></a>
+
         <ul class="nav nav-pills ">
-          <li role="presentation" class="nav-list pull-right logout"><a href="" id="logout">Logout</a></li>
-          <li role="presentation" class="nav-list pull-right dashboard"><a href="/users/home">My Dashboard</a></li> <!--Home-Personal User page-->
-          <li role="presentation" class="nav-list pull-left"><a href="/">Pet Finder</a></li>
-          <!-- will use links within video background
-          <li role="presentation" class="nav-list"><a href="/">Home</a></li> <!-Home intro page-
-          <li role="presentation" class="nav-list"><a href="/users/login">Login</a></li>
-          <li role="presentation" class="nav-list"><a href="/users/register">Register</a></li>
-         -->
+          <!-- <li role="presentation" class="nav-list pull-right logout"><a href="" id="logout">Logout</a></li>
+          <li role="presentation" class="nav-list pull-right dashboard"><a href="/users/home">My Dashboard</a></li>
+          <li role="presentation" class="nav-list pull-left"><a href="/">Pet Finder</a></li> -->
+          <li><a href="#" class="current">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Work</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
         </ul>
       </nav>
     </header>
@@ -26,6 +34,7 @@
     <div class="center">
     	<div class="dashboard-title">
     		<h1 class="petfinder-title">PetFinder</h1>
+        <h2 class="hidden">Please login in order to post a pet sighting</h2>
     		<p>Below, you will find a list of currently lost animals and sightings.</p>
             		<span class="input-description">Please provide a thorough description of either your lost pet or any animal sightings. </span>
 
@@ -51,7 +60,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+    <!-- <script type="text/javascript" src="index.js"></script> -->
 
     <script type="text/javascript" src="app.js"></script>
   </body>

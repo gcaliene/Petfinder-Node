@@ -1,32 +1,51 @@
 //this is where the front end javascript code goes
 /////
-window.onload = function(req, res) {
-  console.log(req.currentTarget.localStorage.token);
-  const token = req.currentTarget.localStorage.token;
-  $.ajax({
-    type: 'GET',
-    headers: {
-      Authorization: `${req.currentTarget.localStorage.token}`
-    },
-    url: '/app.html'
-  }).done(function(response) {
-    res.render(response);
-  });
-};
-/////
-
-$(function() {
+window.onload = function() {
+  const token = localStorage.getItem('token');
+  console.log("window loaded");
+  // $.ajax({
+  //   type: 'GET',
+  //   headers: {
+  //     Authorization: `${token}`
+  //   },
+  //   url: '/posts',
+  //   success:function(token){
+  //     console.log(token)
+  //   }
+  // })
   var $posts = $('#posts');
-  var $text = $('#text');
-  var $name = $('#name');
+  if (token===null){
+    // $('h1').addClass('hidden')
+    $('form').addClass('hidden')
+    $('span').addClass('hidden')
+    $('h2').removeClass('hidden')
+  }
 
-  ///////////////////GET///////////////////////////
+  const user =
+    $.ajax({
+      type:'GET',
+      url:'/currentUser',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      success:function(user){
+        console.log(typeof user);
+        return user;
+      }
+    })
+
+
   $.ajax({
     type: 'GET',
+
     url: '/posts',
     success: function(posts) {
+      console.log(user.responseText);
       $.each(posts, function(index, post) {
         // console.log(post);
+        // if (token===null){
+        //   $('button').addClass('hidden')
+        // }
         $posts.append(
           '<li> <button data-UUID="' +
             post._id +
@@ -47,35 +66,49 @@ $(function() {
             '" type="button" class="saveEdit edit">Save</button>' +
             '<button class="cancelEdit edit">Cancel</button></li>'
         );
+        if (token===null){
+          $('button').addClass('hidden')
+          $('input').addClass('hidden')
+        }
       });
     },
     error: function() {
       alert("Couldn't load previous posts!");
     }
-  });
+    // $('button').addClass('hidden')
 
-  $.ajax({
-    type: 'GET',
-    url: 'currentUser',
-    //async: "false",
-    success: function(user) {
-      console.log(user.username);
-      ajaxUser = user.username;
-      console.log('====================================');
-      console.log(ajaxUser);
-      console.log('====================================');
-    }
   });
+};
+
+
+$(function() {
+  const user =
+    $.ajax({
+      type:'GET',
+      url:'/currentUser',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      success:function(user){
+        console.log(typeof user);
+        return user;
+      }
+    })
+    
+  var $posts = $('#posts');
+  var $text = $('#text');
+  var $name = user.responseText;
+
+
   /////////////////////////POST///////////////////////////
   $('#submit').on('click', function() {
     event.preventDefault();
-    console.log(ajaxUser + 'after clicking submit');
     //what happens when submit is selected
     //$("#form-js").validate();
     console.log('you just clicked submit');
     var post = {
       text: $text.val(),
-      userName: ajaxUser,
+      userName: "ajaxUser",
       //userName: $name.val(),
       created: new Date()
     };
@@ -249,6 +282,7 @@ $(function() {
   });
 });
 
+const $posts = $('#posts');
 $posts.delegate('.cancelEdit', 'click', function() {
   $(this)
     .closest('li')
