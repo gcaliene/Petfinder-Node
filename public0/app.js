@@ -169,7 +169,7 @@ window.onload = function() {
   $posts.delegate('.editPost', 'click', function() {
     //have to use delegate instead of on click to work, i forgot why.
     var $li = $(this).closest('li');
-    if (ajaxUser === $li.find('span.name').text()) {
+    if ($name.responseText === $li.find('span.name').text()) {
       $li.find('input.text').val($li.find('span.text').html());
       //$li.find("input.name").val($li.find("span.name").html() );
       $li.addClass('edit');
