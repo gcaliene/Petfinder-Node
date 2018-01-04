@@ -56,10 +56,13 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 app.use(express.static('public0'));
 
-// app.get('/currentUser', (req, res) => {
-//   // res.json(req.user.apiRepr()); //just sends back user
-//   res.send(req.user)
-// });
+// A protected endpoint for testing
+app.get('/api/protected', jwtAuth, (req, res) => {
+  return res.json({
+    data: 'rosebud'
+  });
+});
+
 
 app.use(bodyParser.urlencoded({ extended: false })); //make extended false. find out why.
 app.use(bodyParser.json()); //initializes body parser

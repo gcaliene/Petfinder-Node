@@ -1,6 +1,12 @@
 $(document).ready(function() {
-  // console.log(username);
-  // console.log(password);
+
+  const token = localStorage.getItem('token');
+
+if(token !== null) {
+  
+}
+
+
 
   $('#register').on('click', function(event, username, password) {
     var username = $('#username').val();

@@ -6,7 +6,10 @@ window.onload = function() {
     $('form').addClass('hidden')
     $('span').addClass('hidden')
     $('h2').removeClass('hidden')
+    $('#logout').addClass('hidden')
   }
+  //If token is present
+  $('#RegisterLogin').addClass('hidden')  
 
   const $posts = $('#posts');
   const $text = $('#text');
@@ -21,7 +24,6 @@ window.onload = function() {
         return user;
       }
     })
-
 
   $.ajax({
     type: 'GET',
