@@ -7,12 +7,12 @@ body {
   line-height: 1.25em;
   font-family: Helvetica Neue, Helvetica, Arial;
   background: #f9f9f9;
+  /* background: black; */
   color: #555;
 }
 
 a {
   color: #4c9cf1;
-
   text-decoration: none;
   font-weight: bold;
 }
@@ -76,13 +76,35 @@ a:hover#menu-icon {
 
 ul {
   list-style: none;
+  /* background-color: red; */
 }
 
-li {
+#homeButton {
   display: inline-block;
   float: left;
   padding: 10px;
 }
+
+#RegisterLogin {
+  float: left;
+  padding: 10px;
+}
+
+#logout {
+  float: left;
+  padding: 10px;
+}
+#deleteButton {
+  border: none;
+  background: none;
+  color: red;
+}
+
+li {
+  display: block;
+  padding: 10px;
+}
+
 section {
   margin: 80px auto 40px;
   max-width: 980px;
@@ -110,14 +132,35 @@ p {
   text-align: center;
 }
 
-li.list-item {
-  display: block;
-  float: 0;
+/* #posts {
+  width: 100%;
+  border: 2px solid black;
+} */
+
+.list-item {
+  /* box-sizing: border-box; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  min-width: 320px;
+  border: 5px solid red;
+  /* float: left; */
 }
 
-#posts li {
-  display: block;
+/* List posts CSS from backend */
+
+.edit {
+  display: none;
 }
+
+/* ul li.edit .edit {
+  display: initial;
+} */
+
+/* This get rid of the edit button and will reappear with cancel button */
+/* ul li.edit .noEdit {
+  display: none;
+} */
 
 /*MEDIA QUERY*/
 @media only screen and (max-width: 800px) {

@@ -27,8 +27,8 @@
   			<a href="#" id="mobile-menu-icon"><i class="fa fa-bars fa-2x" aria-hidden="true"></i>
         </a>
   			<ul>
-          <li class="header-links"><a href="/">Home</a></li>
-          <li id="logout" class="header-links header-links-logout"><a href='/'>Logout</a></li>
+          <li id="homeButton" class="header-links"><a href="/">Home</a></li>
+          <li id="logout" class="header-links header-links-logout"><a href="">Logout</a></li>
           <li id="RegisterLogin" class="hidden header-links header-links-register-login"><a href="/#register">Register/Login</a></li>
   			</ul>
   		</nav>
@@ -37,8 +37,8 @@
     <div class="container2">
     	<div class="dashboard-title">
     		<h1 class="petfinder-title">PetFinder</h1>
-        <h2 class="hidden">Please login in order to post a pet sighting</h2>
-    		<p>Below, you will find a list of currently lost animals and sightings.</p>
+        <h2 class="hidden">Please login in order to post.</h2>
+    		<!-- <p>Below, you will find a list of currently lost animals and sightings.</p> -->
             		<span class="input-description">Please provide a thorough description of either your lost pet or any animal sightings. </span>
     	</div>
 
@@ -50,9 +50,12 @@
 
     <div class="container2">
     	<h3>Currently lost animals</h3>
-    	<ul id="posts">
-    	</ul>
+      <div class="posts-container">
+        <ul id="posts">
+      	</ul>
+      </div>
     </div>
+
     </body>
 
 

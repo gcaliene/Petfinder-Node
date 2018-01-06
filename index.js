@@ -100,8 +100,9 @@ app.get('/posts', (req, res) => {
 
 //for currentUser from user models
 app.get('/currentUser', jwtAuth, (req, res) => {
+
   console.log(req.user.username);
-  res.send(req.user.username); //just sends back user
+  res.send(req.user.username) //just sends back user
 });
 
 ///////DELETE

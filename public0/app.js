@@ -30,6 +30,9 @@ window.onload = function() {
       },
       success:function(user){
         return user;
+      },
+      error: function(){
+        console.log("User Not Logged In");
       }
     })
   $.ajax({
@@ -38,22 +41,19 @@ window.onload = function() {
     success: function(posts) {
       $.each(posts, function(index, post) {
         $posts.append(
-          // `<li class=${post.name}> <button data-UUID=` +
           "<li class=\"" + `${post.name}` +" list-item\">" + "<button data-UUID=" +
-
           post._id +
           ' type="button" class="deleteButton"><i class=\'fa fa-trash fa-2x \' aria-hidden=\'true\'></i></button> ' +
-          '<b>text:</b> <span class="noEdit text">' +
+          '<b>text:</b> <span  class="text">' +
           post.text +
-          " </span> <input class='edit text edit-text-input' '/>" +
+          " </span> <input id=\"post-edit-span\" class='edit text edit-text-input' '/>" +
           "<br>  <b>  Posted by:</b> <span class='name'>" +
           post.name +
-          '</span>' +
-          '<b> at</b> ' +
+          '</span><br> <i class="list-item-time">' +
           moment(post.created)
             .startOf('minutes')
             .fromNow() +
-          ' <button type="button" id="editButton"  class="editPost noEdit editButton">Edit</button>' +
+          '</i> <button type="button" id="editButton"  class="editPost noEdit editButton">Edit</button>' +
           '<button data-UUID=' +
           post._id +
           ' type="button" class="saveEdit edit saveButton" id="saveButton">Save</button>' +
@@ -86,7 +86,7 @@ window.onload = function() {
   /////////////////////////POST///////////////////////////
   $('#submit').on('click', function() {
     event.preventDefault();
-    var post = {
+    const post = {
       text: $text.val(),
       userName: $name.responseText,
       created: new Date()
@@ -98,28 +98,24 @@ window.onload = function() {
       success: function(newPost) {
         $text.val('');
         $posts.append(
-          "<li class=\"" + `${post.name}` +" list-item\">" + "<button data-UUID=" +
+          "<li class=\"" + `${post.userName}` +" list-item\">" + "<button data-UUID=" +
             newPost._id +
-            ' type="button" id="deleteButton"><i class=\'fa fa-trash fa-2x\' aria-hidden=\'true\'></i></button> ' +
-            '<b>text:</b> <span class="noEdit text">' +
+            ' type="button" class="deleteButton"><i class=\'fa fa-trash fa-2x \' aria-hidden=\'true\'></i></button> ' +
+            '<b>text:</b> <span  class="text">' +
             newPost.text +
-            " </span> <input class='edit text'/>" +
-            "<br> <b>Posted by:</b> <span class='name'>" +
+            " </span> <input id=\"post-edit-span\" class='edit text edit-text-input' '/>" +
+            "<br>  <b>  Posted by:</b> <span class='name'>" +
             newPost.userName +
-            '</span>' +
-            '<b> at</b> ' +
+            '</span><br> <i class="list-item-time">' +
             moment(newPost.created)
               .startOf('minutes')
               .fromNow() +
-            ' <button type="button"  class="editPost noEdit">Edit</button>' +
-            '<button data-UUID="' +
+              '</i> <button type="button" id="editButton"  class="editPost noEdit editButton">Edit</button>' +
+              '<button data-UUID=' +
             newPost._id +
-            ' "type="button" class="saveEdit edit">Save</button>' +
-            '<button class="cancelEdit edit">Cancel</button></li>'
+            ' type="button" class="saveEdit edit saveButton" id="saveButton">Save</button>' +
+            '<button class="cancelEdit edit cancelButton" id="cancelButton">Cancel</button></li>'
         );
-      },
-      complete: function(){
-        location.reload();
       },
       error: function() {
         alert("Couldn't load previous posts!");
@@ -155,26 +151,34 @@ window.onload = function() {
 
   ////////////////////////////PUT//////////////////////////
   $posts.delegate('.editPost', 'click', function() {
+    console.log("clicked edit");
     //have to use delegate instead of on click to work, i forgot why.
-    var $li = $(this).closest('li');
+    const $li = $(this).closest('li');
     if ($name.responseText === $li.find('span.name').text()) {
+      console.log($li.find('input.text').val($li.find('span.text').html()));
       $li.find('input.text').val($li.find('span.text').html());
-      $li.addClass('edit');
+      $li.find("input#post-edit-span").removeClass('edit');
+      $li.find("button#editButton").addClass('edit');
+      $li.find("button#saveButton").removeClass('edit');
+      $li.find("button#cancelButton").removeClass('edit');
     } else {
       alert('Only original poster can edit!');
     }
   });
 
-  $posts.delegate('.cancelEdit', 'click', function() {
-    $(this)
-      .closest('li')
-      .removeClass('edit');
+  $posts.delegate('#cancelButton', 'click', function() {
+    const $li = $(this).closest('li');
+    console.log("cancel button clicked");
+    $li.find("input#post-edit-span").addClass('edit');
+    $li.find("button#editButton").removeClass('edit');
+    $li.find("button#saveButton").addClass('edit');
+    $li.find("button#cancelButton").addClass('edit');
   });
 
   // Actually beginning to save edited post
   $posts.delegate('.saveEdit', 'click', function() {
-    var $li = $(this).closest('li');
-    var post = {
+    const $li = $(this).closest('li');
+    const post = {
       text: $li.find('input.text').val(),
       userName: $li.find('span.name').text(),
       created: new Date()
@@ -185,10 +189,35 @@ window.onload = function() {
       data: post,
       success: function(posts) {
         $posts.html('');
+        $.each(posts, function(index, post) {
+					$posts.append(
+            "<li>
+              <button data-UUID=\"" +
+              post._id +
+              "\" type=\"button\" id=\"deleteButton\">
+              <i class='fa fa-trash fa-2x ' aria-hidden='true'></i></button> " +
+    					"<b>text:</b> <span class=\"noEdit text\">" +
+              post.text +
+              " </span> <input class='edit text'/>" +
+    					"<br>  <b>  Posted by:</b> <span class='name'>" +
+              post.name +
+              "</span>" +
+    					"<b> at</b> " +
+              moment(post.created).startOf('minutes').fromNow() +
+    					" <button type=\"button\"  class=\"editPost noEdit\">Edit</button>" +
+  						"<button data-UUID=\"" +
+              post._id +
+              "\" type=\"button\" class=\"saveEdit edit\">Save</button>" +
+  						"<button class=\"cancelEdit edit\">Cancel</button>
+            </li>");
+				});
+				$li.find("span.text").html(posts.text);
+				//$li.find("span.name").html(posts.name);
+				$li.removeClass("edit");
       },
-      complete: function(){
-        location.reload()
-      },
+      // complete: function(){
+      //   location.reload()
+      // },
       error: function() {
         alert("Couldn't load previous posts!");
       }
