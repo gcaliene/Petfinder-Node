@@ -76,6 +76,7 @@ a:hover#menu-icon {
 
 ul {
   list-style: none;
+  padding: 0;
   /* background-color: red; */
 }
 
@@ -94,7 +95,7 @@ ul {
   float: left;
   padding: 10px;
 }
-#deleteButton {
+.deleteButton {
   border: none;
   background: none;
   color: red;
@@ -141,9 +142,10 @@ p {
   /* box-sizing: border-box; */
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 5px;
   width: 75%;
-  min-width: 320px;
-  border: 5px solid red;
+  min-width: 300px;
+  border: 1px solid #2262ad;
   /* float: left; */
 }
 
