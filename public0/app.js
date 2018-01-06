@@ -4,10 +4,12 @@ window.onload = function() {
   console.log("windowloaded");
   const token = localStorage.getItem('token');
   if (token===null){
+    $('#RegisterLogin').removeClass('hidden')
     $('form').addClass('hidden')
     $('span').addClass('hidden')
     $('h2').removeClass('hidden')
     $('#logout').addClass('hidden')
+
   } else if (token!== null) {   //If token is present i.e. user is logged in, then there is a swap of options
     $('#RegisterLogin').addClass('hidden')
     $('#logout').removeClass('hidden')
@@ -36,7 +38,9 @@ window.onload = function() {
     success: function(posts) {
       $.each(posts, function(index, post) {
         $posts.append(
-          `<li class=${post.name}> <button data-UUID=` +
+          // `<li class=${post.name}> <button data-UUID=` +
+          "<li class=\"" + `${post.name}` +" list-item\">" + "<button data-UUID=" +
+
           post._id +
           ' type="button" class="deleteButton"><i class=\'fa fa-trash fa-2x \' aria-hidden=\'true\'></i></button> ' +
           '<b>text:</b> <span class="noEdit text">' +
@@ -94,7 +98,7 @@ window.onload = function() {
       success: function(newPost) {
         $text.val('');
         $posts.append(
-          `<li class=${post.name}> <button data-UUID=` +
+          "<li class=\"" + `${post.name}` +" list-item\">" + "<button data-UUID=" +
             newPost._id +
             ' type="button" id="deleteButton"><i class=\'fa fa-trash fa-2x\' aria-hidden=\'true\'></i></button> ' +
             '<b>text:</b> <span class="noEdit text">' +

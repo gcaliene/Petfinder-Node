@@ -11,23 +11,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- End of 3rd-party Libraries -->
-
+    <!-- 3rd-party JS Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+    <!-- End of 3rd-party JS Libraries -->
+    <!-- Custom JS Starts-->
+        <script type="text/javascript" src="app.js"></script>
+    <!-- Custom JS Ends -->
   </head>
+
   <body>
     <header>
-      <a href="#" id="logo"></a>
+      <a href="/" id="logo">Petfinder</a>
       <nav>
-        <a href="#" id="menu-icon"></a>
-
-        <ul class="nav nav-pills ">
-          <li><a href="/">Petfinder</a></li>
-          <li id="logout"><a href='/'>Logout</a></li>
-          <li id="RegisterLogin"><a href="/#register">Register/Login</a></li>
-        </ul>
-      </nav>
+  			<a href="#" id="mobile-menu-icon"><i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </a>
+  			<ul>
+          <li class="header-links"><a href="/">Home</a></li>
+          <li id="logout" class="header-links header-links-logout"><a href='/'>Logout</a></li>
+          <li id="RegisterLogin" class="hidden header-links header-links-register-login"><a href="/#register">Register/Login</a></li>
+  			</ul>
+  		</nav>
     </header>
 
-    <div class="center">
+    <div class="container2">
     	<div class="dashboard-title">
     		<h1 class="petfinder-title">PetFinder</h1>
         <h2 class="hidden">Please login in order to post a pet sighting</h2>
@@ -41,15 +48,15 @@
     	</form>
     </div>
 
-    <div class="">
+    <div class="container2">
     	<h3>Currently lost animals</h3>
     	<ul id="posts">
     	</ul>
     </div>
-<!-- 3rd-party JS Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
-<!-- End of 3rd-party JS Libraries -->
-    <script type="text/javascript" src="app.js"></script>
-  </body>
+    </body>
+
+
+
+
+
 </html>

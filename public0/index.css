@@ -39,6 +39,8 @@ header {
 
 #logo {
   margin: 20px;
+  margin-left: -10px;
+
   float: left;
   width: 200px;
   height: 40px;
