@@ -254,6 +254,19 @@ footer p {
   .section-a,
   .section-b,
   .section-c {
+    width: 250px;
+  }
+
+  .section-b,
+  .section-a {
+    border-bottom: solid 1px #b6b9bd;
+    padding-bottom: 30px;
+    margin-top: 15px;
+  }
+
+  .section-b,
+  .section-c {
+    margin-top: 15px;
   }
   .about-container {
     display: block;

@@ -35,29 +35,31 @@ window.onload = function() {
         console.log("User Not Logged In");
       }
     })
+
+
   $.ajax({
     type: 'GET',
     url: '/posts',
     success: function(posts) {
-      $.each(posts, function(index, post) {
+      $.each(posts, function(index, item) {
         $posts.append(
-          "<li class=\"" + post.name +" list-item\">" +
+          "<li class=\"" + item.name +" list-item\">" +
           '<b> <span  class="text">' +
-          post.text +
-          " </span> </b> <input id=\"post-edit-span\" class='edit text edit-text-input' '/>" +
+          item.text +
+          " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
           "<br>  <u><span class='name'>" +
-          post.name +
+          item.name +
           '</span></u><br> <i class="list-item-time">' +
-          moment(post.created)
+          moment(item.created)
             .startOf('minutes')
             .fromNow() +
           '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
           '<button data-UUID=' +
-          post._id +
+          item._id +
           ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
           '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
           "<button data-UUID=" +
-          post._id +
+          item._id +
           ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
         );
         if (token===null) {
@@ -99,23 +101,24 @@ window.onload = function() {
       success: function(newPost) {
         $text.val('');
         $posts.append(
-          "<li class=\"" + newPost.userName +" list-item\">" + "<button data-UUID=" +
-            newPost._id +
-            ' type="button" class="deleteButton"><i class=\'fa fa-trash fa-2x \' aria-hidden=\'true\'></i></button> ' +
-            '<b>text:</b> <span  class="text">' +
+          "<li class=\"" + newPost.userName +" list-item\">" +
+          '<b> <span  class="text">' +
             newPost.text +
-            " </span> <input id=\"post-edit-span\" class='edit text edit-text-input' '/>" +
-            "<br>  <b>  Posted by:</b> <span class='name'>" +
+            " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+            "<br>  <u><span class='name'>" +
             newPost.userName +
-            '</span><br> <i class="list-item-time">' +
+            '</span></u><br> <i class="list-item-time">' +
             moment(newPost.created)
               .startOf('minutes')
               .fromNow() +
-              '</i> <button type="button" id="editButton"  class="editPost noEdit editButton">Edit</button>' +
-              '<button data-UUID=' +
+            '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
+            '<button data-UUID=' +
             newPost._id +
-            ' type="button" class="saveEdit edit saveButton" id="saveButton">Save</button>' +
-            '<button class="cancelEdit edit cancelButton" id="cancelButton">Cancel</button></li>'
+            ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
+            '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
+            "<button data-UUID=" +
+            newPost._id +
+            ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
         );
       },
       error: function() {
@@ -135,22 +138,26 @@ window.onload = function() {
         success: function(posts) {
           $posts.html('');
           $.each(posts, function(index, item) {
-  					$posts.append(
-              "<li class=\"" + item.name +" list-item\">" + "<button data-UUID=" +
-                item._id +
-                ' type="button" class="deleteButton"><i class=\'fa fa-trash fa-2x \' aria-hidden=\'true\'></i></button> ' +
-                '<b>text:</b> <span  class="text">' +
-                item.text +
-                " </span> <input id=\"post-edit-span\" class='edit text edit-text-input' '/>" +
-                "<br>  <b>  Posted by:</b> <span class='name'>" +
-                item.name +
-                '</span><br> <i class="list-item-time">' +
-                moment(item.created).startOf('minutes').fromNow() +
-                '</i> <button type="button" id="editButton"  class="editPost noEdit editButton">Edit</button>' +
-                '<button data-UUID=' +
-                item._id +
-                ' type="button" class="saveEdit edit saveButton" id="saveButton">Save</button>' +
-                '<button class="cancelEdit edit cancelButton" id="cancelButton">Cancel</button></li>');
+            $posts.append(
+              "<li class=\"" + item.name +" list-item\">" +
+              '<b> <span  class="text">' +
+              item.text +
+              " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+              "<br>  <u><span class='name'>" +
+              item.name +
+              '</span></u><br> <i class="list-item-time">' +
+              moment(item.created)
+                .startOf('minutes')
+                .fromNow() +
+              '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
+              '<button data-UUID=' +
+              item._id +
+              ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
+              '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
+              "<button data-UUID=" +
+              item._id +
+              ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
+            );
   				});
         },
         complete: function(post){
@@ -183,9 +190,9 @@ window.onload = function() {
     const $li = $(this).closest('li');
     if ($name.responseText === $li.find('span.name').text()) {
       console.log($li.find('input.text').val($li.find('span.text').html()));
-      $li.find('input.text').val($li.find('span.text').html());
+      $li.find('textarea.text').val($li.find('span.text').html());
       $li.find("span.text").addClass('hidden');
-      $li.find("input#post-edit-span").removeClass('edit');
+      $li.find("textarea#post-edit-span").removeClass('edit');
       $li.find("button#editButton").addClass('edit');
       $li.find("button#saveButton").removeClass('edit');
       $li.find("button#cancelButton").removeClass('edit');
@@ -200,7 +207,7 @@ window.onload = function() {
     const $li = $(this).closest('li');
     console.log("cancel button clicked");
     $li.find("span.text").removeClass('hidden');
-    $li.find("input#post-edit-span").addClass('edit');
+    $li.find("textarea#post-edit-span").addClass('edit');
     $li.find("button#editButton").removeClass('edit');
     $li.find("button#saveButton").addClass('edit');
     $li.find("button#cancelButton").addClass('edit');
@@ -212,7 +219,7 @@ window.onload = function() {
   $posts.delegate('.saveEdit', 'click', function() {
     const $li = $(this).closest('li');
     const post = {
-      text: $li.find('input.text').val(),
+      text: $li.find('textarea.text').val(),
       userName: $li.find('span.name').text(),
       created:  Date.now()
     };
@@ -224,22 +231,26 @@ window.onload = function() {
         console.log(posts);
         $posts.html('');
         $.each(posts, function(index, item) {
-					$posts.append(
-            "<li class=\"" + item.name +" list-item\">" + "<button data-UUID=" +
-              item._id +
-              ' type="button" class="deleteButton"><i class=\'fa fa-trash fa-2x \' aria-hidden=\'true\'></i></button> ' +
-              '<b>text:</b> <span  class="text">' +
-              item.text +
-              " </span> <input id=\"post-edit-span\" class='edit text edit-text-input' '/>" +
-              "<br>  <b>  Posted by:</b> <span class='name'>" +
-              item.name +
-              '</span><br> <i class="list-item-time">' +
-              moment(item.created).startOf('minutes').fromNow() +
-              '</i> <button type="button" id="editButton"  class="editPost noEdit editButton">Edit</button>' +
-              '<button data-UUID=' +
-              item._id +
-              ' type="button" class="saveEdit edit saveButton" id="saveButton">Save</button>' +
-              '<button class="cancelEdit edit cancelButton" id="cancelButton">Cancel</button></li>');
+          $posts.append(
+            "<li class=\"" + item.name +" list-item\">" +
+            '<b> <span  class="text">' +
+            item.text +
+            " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+            "<br>  <u><span class='name'>" +
+            item.name +
+            '</span></u><br> <i class="list-item-time">' +
+            moment(item.created)
+              .startOf('minutes')
+              .fromNow() +
+            '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
+            '<button data-UUID=' +
+            item._id +
+            ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
+            '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
+            "<button data-UUID=" +
+            item._id +
+            ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
+          );
 				});
 				$li.find("span.text").html(posts.text);
 				//$li.find("span.name").html(posts.name);
