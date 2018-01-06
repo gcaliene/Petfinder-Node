@@ -51,14 +51,14 @@ window.onload = function() {
           moment(post.created)
             .startOf('minutes')
             .fromNow() +
-          '</i> <button type="button" id="editButton"  class="editPost noEdit editButton">Edit</button>' +
+          '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
           '<button data-UUID=' +
           post._id +
-          ' type="button" class="saveEdit edit saveButton" id="saveButton">Save</button>' +
-          '<button class="cancelEdit edit cancelButton" id="cancelButton">Cancel</button>' +
-          "</br> <button data-UUID=" +
+          ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
+          '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
+          "<button data-UUID=" +
           post._id +
-          ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash fa-2x  \' aria-hidden=\'true\'></i></button></li>'
+          ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
         );
         if (token===null) {
           $('button').addClass('hidden')
@@ -184,6 +184,7 @@ window.onload = function() {
     if ($name.responseText === $li.find('span.name').text()) {
       console.log($li.find('input.text').val($li.find('span.text').html()));
       $li.find('input.text').val($li.find('span.text').html());
+      $li.find("span.text").addClass('hidden');
       $li.find("input#post-edit-span").removeClass('edit');
       $li.find("button#editButton").addClass('edit');
       $li.find("button#saveButton").removeClass('edit');
@@ -198,6 +199,7 @@ window.onload = function() {
   $posts.delegate('#cancelButton', 'click', function() {
     const $li = $(this).closest('li');
     console.log("cancel button clicked");
+    $li.find("span.text").removeClass('hidden');
     $li.find("input#post-edit-span").addClass('edit');
     $li.find("button#editButton").removeClass('edit');
     $li.find("button#saveButton").addClass('edit');

@@ -8,7 +8,8 @@ body {
   font-family: Helvetica Neue, Helvetica, Arial;
   background: #f9f9f9;
   /* background: black; */
-  color: #555;
+  /* color: #555; */
+  /* color: #2262ad; */
 }
 
 a {
@@ -101,6 +102,23 @@ ul {
   color: red;
 }
 
+.editButton {
+  border: none;
+  background: none;
+  color: blue;
+}
+
+.saveButton {
+  border: none;
+  background: none;
+  color: green;
+}
+.cancelButton {
+  border: none;
+  background: none;
+  color: darkorange;
+}
+
 li {
   display: block;
   padding: 10px;
@@ -184,12 +202,15 @@ p {
   nav:active ul {
     display: none;
     position: absolute;
+    margin: auto;
     padding: 20px;
     background: #fff;
-    border: 5px solid #444;
-    right: 20px;
+    border-top: 3px solid #2262ad;
+    border-bottom: 3px solid #2262ad;
+
+    right: 00px;
     top: 60px;
-    width: 50%;
+    width: 100%;
     border-radius: 4px 0 4px 4px;
   }
 
@@ -202,5 +223,8 @@ p {
 
   nav:hover ul {
     display: block;
+  }
+  textarea {
+    max-width: 300px;
   }
 }

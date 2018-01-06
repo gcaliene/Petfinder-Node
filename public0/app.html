@@ -39,11 +39,26 @@
     		<h1 class="petfinder-title">PetFinder</h1>
         <h2 class="hidden">Please login in order to post.</h2>
     		<!-- <p>Below, you will find a list of currently lost animals and sightings.</p> -->
-            		<span class="input-description">Please provide a thorough description of either your lost pet or any animal sightings. </span>
+            		<!-- <span class="input-description">Please provide a thorough description of either your lost pet or any animal sightings. </span> -->
     	</div>
 
+    </br>
+
     	<form id="form-js" class=" errorMessages">
-      		<input class='form-input' type="text" id="text" placeholder="Description" required><br>
+      		<!-- <input class='form-input' type="text" id="text" placeholder="Description" required><br> -->
+          <textarea
+            id="text"
+            class='form-input'
+            placeholder="Please provide a description of either your lost pet or any animal sightings.      Max 200 Characters. "
+            name="name"
+            rows="4"
+            cols="60"
+            autofocus
+            required
+            maxlength="200"
+            wrap="soft"
+          ></textarea>
+        </br>
       		<input class="form-submit" type="submit" value="Submit" id="submit">
     	</form>
     </div>
