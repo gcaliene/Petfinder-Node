@@ -104,10 +104,6 @@ app.get('/currentUser', jwtAuth, (req, res) => {
   res.send(req.user.username); //just sends back user
 });
 
-app.get('user', (req,res)=> {
-  console.log("OIADOASD");
-})
-
 ///////DELETE
 app.delete('/posts/:id', (req, res) => {
   console.log(req.params.id);

@@ -4,11 +4,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Pet Finder App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<!-- <link rel="stylesheet" type="text/css" href="/styles/style.css"> -->
 	<link rel="stylesheet" href="index.css">
-  <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
   <!-- <link rel="stylesheet" href="/styles/alert.css"> -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css">
+	<!-- 3rd-party Libraries -->
+	<link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="index.js"></script>
 
@@ -17,18 +21,16 @@
 </head>
 <body>
   <header class="">
-		<a href="#" id="logo"><span class="logo-text">Petfinder</span></a>
+		<a href="/app.html" id="logo"><span class="logo-text">Petfinder</span></a>
 
 		<nav>
-			<a href="#" id="menu-icon"></a>
+			<a href="#" id="mobile-menu-icon"><i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+</a>
 			<ul>
 				<li><a href="#" class="current">Home</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="#about-link">About</a></li>
 				<li id="nav-registerlogin"><a href="#register">Register/Login</a></li>
 				<li id="nav-logout"><a href="/">Logout</a></li>
-
-				<!-- <li><a href="#">Blog</a></li> -->
-				<!-- <li><a href="#">Contact</a></li> -->
 			</ul>
 		</nav>
   </header>
@@ -42,91 +44,45 @@
 		<div class="header-overlay"></div>
 
 		<div class="header-content">
-				<h1>Pet 1 Finder</h1>
+				<h1 class="header-content-title">Petfinder</h1>
 				<p class="lead">If you have lost your loved one, simply post and see whether anyone has seen your pet. The days of posting signs on lampposts are long gone!</p>
-				<p><a class="btn btn-lg btn-success" href="#register" role="button">Sign up today</a></p>
-				<p><a class="btn btn-lg btn-success" href="#login" role="button">Login</a></p>
+				<p><a class="btn btn-lg btn-success" id="header-register-button" href="#register" role="button">Sign up today</a></p>
+				<p><a class="btn btn-lg btn-success" id="header-login-button" href="#login" role="button">Login</a></p>
 		</div>
 	</div>
 
-  <section class="section section-a ">
-    <div class="container2">
-      <h4>Pets Sited</h4>
-      <p>View a comprehensive list of all lost animals in your area!</p> <!-- include radius and such-->
-    </div>
-  </section>
+	<div class="about-container container2" id="about-link">
+		<section class="section section-a ">
+			<a style="display:block" href="/app.html">
+				<div class="container2">
+					<i class="fa fa-paw fa-3x" aria-hidden="true"></i>
+					<h4>Pets Sited</h4>
+					<p>View a comprehensive list of all lost animals in your area!</p> <!-- include radius and such-->
+				</div>
+			</a>
+		</section>
 
-  <section class="section section-b ">
-    <div class="container2">
-      <h4>Sightings Map</h4>
-      <p>Select an area and view how many animals are being sited.</p> <!-- include radius and such-->
-    </div>
-  </section>
+		<section class="section section-b">
+			<a style="display:block" href="">
+				<div class="container2">
+					<i class="fa fa-globe fa-3x" aria-hidden="true"></i>
+					<h4>Sightings Map</h4>
+					<p>Select an area and view how many animals are being sited.</p> <!-- include radius and such-->
+					<p>Coming Soon!</p>
+				</div>
+			</a>
+		</section>
 
-  <section class="section section-c ">
-    <div class="container2">
-      <h4>Pet Shelters</h4>
-      <p>Partner with us and help find forever homes for your furry friends.</p> <!-- include radius and such-->
-    </div>
-  </section>
-
-
-
-        <div class="registration-body" >
-            <form >
-               <h2>Register</h2>
-               <!-- <div class="form-group">
-                <label>Name</label>
-                <br>
-                <input type="text" class="form-control" placeholder="Name" name="name"  required>
-              </div> -->
-
-              <div class="form-group">
-                <label>Username</label>
-
-                <input type="text" class="form-control" placeholder="Username" name="username" id="username" required>
-              </div>
-
-               <!-- <div class="form-group">
-                <label>Email</label>
-
-                <input type="email" class="form-control" placeholder="Email" name="email" required>
-              </div> -->
-
-              <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" placeholder="Password" name="password" id='password' required>
-              </div>
-
-               <!-- <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" class="form-control" placeholder="Password" name="password2" required>
-              </div> -->
-
-              <div class="clearfix">
-                <button id="register" class="btn btn-green btn-default">Submit</button>
-              </div>
-            </form>
-        </div>
-
-
-
-        <div class="parent-login" >
-        	<form >
-        		<h1>Account Login</h1>
-        	  <div class="form-group">
-        	    <label class="label" for="name">Username</label>
-        	    <input id="username-login" type="text" class="form-control" name="username" placeholder="Username" required>
-        	  </div>
-        	  <div class="form-group">
-        	    <label class="label" for="password">Password</label>
-        	    <input type="password" id="password-login" class="form-control" name="password" placeholder="Password" required>
-        	  </div>
-        	  <div class="clearfix">
-        		  <button type="submit" id="login" class="btn btn-default btn-login">Log In</button>
-        	  </div>
-        	</form>
-        </div>
+		<section class="section section-c ">
+			<a style="display:block" href="https://www.petfinder.com/animal-shelters-and-rescues/">
+				<div class="container2">
+					<i class="fa fa-home fa-3x" aria-hidden="true"></i>
+					<h4>Pet Shelters</h4>
+					<p>Partner with us and help find forever homes for your furry friends.</p> <!-- include radius and such-->
+				</div>
+			</a>
+		</section>
+	</div>
 
 
 
@@ -134,6 +90,45 @@
 
 
 
+	<div id="registration-login" class=''>
+		<section class="container2 section section-d">
+			<div class="registration-body" >
+        <form >
+          <h1>Register</h1>
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" placeholder="Username" name="username" id="username" autocomplete="username" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" placeholder="Password" name="password" id='password' autocomplete="current-password" required>
+          </div>
+          <div class="clearfix">
+            <button id="register" class="btn btn-green btn-default">Submit</button>
+          </div>
+        </form>
+      </div>
+		</section>
+
+		<section class="container2 section section-e">
+      <div class="parent-login" >
+      	<form >
+      		<h1>Account Login</h1>
+      	  <div class="form-group">
+      	    <label class="label" for="name">Username</label>
+      	    <input id="username-login" type="text" class="form-control" name="username" placeholder="Username" autocomplete="username" required>
+      	  </div>
+      	  <div class="form-group">
+      	    <label class="label" for="password">Password</label>
+      	    <input type="password" id="password-login" class="form-control" name="password" placeholder="Password" autocomplete="current-password" required>
+      	  </div>
+      	  <div class="clearfix">
+      		  <button type="submit" id="login" class="btn btn-default btn-login">Log In</button>
+      	  </div>
+      	</form>
+      </div>
+		</section>
+	</div>
 
      <footer class="footer">
         <p>&copy; 2017 PetFinder, Inc.</p>

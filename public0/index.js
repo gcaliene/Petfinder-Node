@@ -1,11 +1,20 @@
 $(document).ready(function() {
-
   const token = localStorage.getItem('token');
+  if(token !== null) {
+    // window.location.replace("/app.html");
+    $('#nav-registerlogin').addClass('hidden')
+    $('#registration-login').addClass('hidden')
+    $('#header-register-button').addClass('hidden')
+    $('#header-login-button').addClass('hidden')
+  } else {
+    $('#nav-logout').addClass('hidden')
+  }
 
-if(token !== null) {
-  
-}
 
+  $("#nav-logout").on("click" , function(){
+    localStorage.removeItem('token')
+    window.location = '/'
+  })
 
 
   $('#register').on('click', function(event, username, password) {

@@ -13,12 +13,13 @@ body {
 
 a {
   color: #4c9cf1;
+
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
-  color: #444;
+  color: #4371a1;
 }
 
 img {
@@ -41,7 +42,7 @@ header {
   float: left;
   width: 200px;
   height: 40px;
-  background: url(../img/logo.png) no-repeat center;
+  /* background: url(../img/logo.png) no-repeat center; */
   display: block;
   text-align: center;
   padding-top: 8px;
@@ -59,7 +60,13 @@ nav {
   display: hidden;
   width: 40px;
   height: 40px;
-  background: #4c8fec url(../img/menu-icon.png) center;
+  background: #4c8fec url(/images/mobile-menu.svg) center;
+}
+
+#mobile-menu-icon {
+  display: none;
+  width: 40px;
+  height: 40px;
 }
 
 a:hover#menu-icon {
@@ -142,6 +149,66 @@ p {
   z-index: 2;
 }
 
+.header-content-title {
+  color: #4371a1;
+}
+
+/* Registration and Login CSS */
+#registration-login {
+  max-width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  /* background-color: darkorange; */
+  margin-top: 10px;
+  margin-bottom: 40px;
+  border: solid 2px #b6b9bd;
+}
+
+.about-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* .section-b {
+  flex: 0 0 auto; /* Lets middle column shrink/grow to available width
+} */
+.section-a,
+.section-b,
+.section-c {
+  flex: 1 1 auto; /* Forces side columns to stay same width */
+  width: 300px; /* Sets the width of side columns */
+}
+
+.section-d {
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.section-e {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-bottom: 0;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background-color: darkorange;
+  margin: 0;
+  padding: 10px;
+  margin-top: 15px;
+
+  /* border-top: 4px solid #4c9cf1; */
+}
+
+footer p {
+  font-weight: 700;
+  color: #4371a1;
+  padding: 10px;
+  margin: 0;
+}
+
 /*MEDIA QUERY*/
 @media only screen and (max-width: 800px) {
   header {
@@ -149,6 +216,11 @@ p {
   }
 
   #menu-icon {
+    display: inline-block;
+    margin: 20px;
+  }
+
+  #mobile-menu-icon {
     display: inline-block;
     margin: 20px;
   }
@@ -175,5 +247,18 @@ p {
 
   nav:hover ul {
     display: block;
+  }
+
+  .section-a,
+  .section-b,
+  .section-c {
+  }
+  .about-container {
+    display: block;
+  }
+
+  /* Registration and Login Media QUERY */
+  #registration-login {
+    max-width: 320px;
   }
 }
