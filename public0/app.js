@@ -89,7 +89,7 @@ window.onload = function() {
     const post = {
       text: $text.val(),
       userName: $name.responseText,
-      created: new Date()
+      created: Date.now()
     };
     $.ajax({
       type: 'POST',
@@ -181,39 +181,49 @@ window.onload = function() {
     const post = {
       text: $li.find('input.text').val(),
       userName: $li.find('span.name').text(),
-      created: new Date()
+      created:  Date.now()
     };
     $.ajax({
       type: 'PUT',
       url: '/posts/' + $li.find('.saveEdit').attr('data-UUID'),
       data: post,
       success: function(posts) {
+        console.log(posts);
         $posts.html('');
-        $.each(posts, function(index, post) {
+        $.each(posts, function(index, item) {
 					$posts.append(
-            "<li>
-              <button data-UUID=\"" +
-              post._id +
-              "\" type=\"button\" id=\"deleteButton\">
-              <i class='fa fa-trash fa-2x ' aria-hidden='true'></i></button> " +
-    					"<b>text:</b> <span class=\"noEdit text\">" +
-              post.text +
-              " </span> <input class='edit text'/>" +
-    					"<br>  <b>  Posted by:</b> <span class='name'>" +
-              post.name +
-              "</span>" +
-    					"<b> at</b> " +
-              moment(post.created).startOf('minutes').fromNow() +
-    					" <button type=\"button\"  class=\"editPost noEdit\">Edit</button>" +
-  						"<button data-UUID=\"" +
-              post._id +
-              "\" type=\"button\" class=\"saveEdit edit\">Save</button>" +
-  						"<button class=\"cancelEdit edit\">Cancel</button>
-            </li>");
+            "<li class=\"" + item.name +" list-item\">" + "<button data-UUID=" +
+              item._id +
+              ' type="button" class="deleteButton"><i class=\'fa fa-trash fa-2x \' aria-hidden=\'true\'></i></button> ' +
+              '<b>text:</b> <span  class="text">' +
+              item.text +
+              " </span> <input id=\"post-edit-span\" class='edit text edit-text-input' '/>" +
+              "<br>  <b>  Posted by:</b> <span class='name'>" +
+              item.name +
+              '</span><br> <i class="list-item-time">' +
+              moment(item.created).startOf('minutes').fromNow() +
+              '</i> <button type="button" id="editButton"  class="editPost noEdit editButton">Edit</button>' +
+              '<button data-UUID=' +
+              item._id +
+              ' type="button" class="saveEdit edit saveButton" id="saveButton">Save</button>' +
+              '<button class="cancelEdit edit cancelButton" id="cancelButton">Cancel</button></li>');
 				});
 				$li.find("span.text").html(posts.text);
 				//$li.find("span.name").html(posts.name);
 				$li.removeClass("edit");
+      },
+      complete: function(post){
+        for (var i = 0 ; i<post.responseJSON.length; i++){
+          let postUser = post.responseJSON[i].name;
+          if (postUser !==  $name.responseText){
+            let differentUser = postUser;
+            $(`.${differentUser}  .editButton`).addClass('hidden')
+            $(`.${differentUser}  .saveButton`).addClass('hidden')
+            $(`.${differentUser}  .deleteButton`).addClass('hidden')
+            $(`.${differentUser}  .cancelButton`).addClass('hidden')
+            $(`.${differentUser}  .edit-text-input`).addClass('hidden')
+          }
+        };
       },
       // complete: function(){
       //   location.reload()
