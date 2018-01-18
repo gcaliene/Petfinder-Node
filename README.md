@@ -1,4 +1,4 @@
-# node-capstone
+# Petfinder
 
 This app is to provide pet owners, dog walkers, or those who spend alot of time outside an option to report and find lost animals. 
 
