@@ -2,7 +2,7 @@
 
 This app is to provide pet owners, dog walkers, or those who spend alot of time outside an option to report and find lost animals. 
 
-The site, which can be found on https://lit-beach-73059.herokuapp.com/, uses Node, Mongo/Mongoose, HTML/CSS and features a registration and login pathway that uses passport.js and JWT. Registration is not required to view the posts but will be if the user wants to post a lost animal themselves. 
+The site, which can be found on https://lit-beach-73059.herokuapp.com/, uses Node, Express, Mongo/Mongoose, HTML/CSS and features a registration and login pathway that uses passport.js and JWT. Registration is not required to view the posts but will be if the user wants to post a lost animal themselves. 
 
 For future updates:
   * I will insert a google map api where it can receive the lat and long of users and place it on a map.
