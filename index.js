@@ -9,13 +9,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { PetPost } = require('./models');
 const jsonParser = bodyParser.json();
-const moment = require('moment')
+const moment = require('moment');
 
 const path = require('path');
-// const cookieParser = require('cookie-parser');
-// const exphbs = require('express-handlebars');
-// const expressValidator = require('express-validator'); // doc says to move after body parsers
-// const flash = require('connect-flash');
 const session = require('express-session');
 
 const { router: usersRouter } = require('./users');
@@ -26,10 +22,6 @@ const db = mongoose.connection; //just added this might delete, but not affectin
 mongoose.Promise = global.Promise;
 
 const { Users } = require('./users/');
-
-//Passport initialization : not working had to put in routes folder, but will leave in here until otherwise noted
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 // Logging
 app.use(morgan('common'));
@@ -53,7 +45,6 @@ app.use('/api/auth/', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-
 app.use(express.static('public0'));
 
 // A protected endpoint for testing
@@ -63,7 +54,6 @@ app.get('/api/protected', jwtAuth, (req, res) => {
   });
 });
 
-
 app.use(bodyParser.urlencoded({ extended: false })); //make extended false. find out why.
 app.use(bodyParser.json()); //initializes body parser
 
@@ -71,18 +61,20 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 ///////////// POST ///////////////////////////
-app.post('/posts', (req, res,next) => {
-  console.log("hello from backend");
+app.post('/posts', (req, res, next) => {
+  console.log('hello from backend');
   console.log(req.body);
   const post = new PetPost({
-    text:req.body.text,
-    userName:req.body.userName,
-    created:req.body.created
-  })
-  post.save(function (err, post) {
-    if (err) { return next(err) }
-    res.json(201, post)
-  })
+    text: req.body.text,
+    userName: req.body.userName,
+    created: req.body.created
+  });
+  post.save(function(err, post) {
+    if (err) {
+      return next(err);
+    }
+    res.json(201, post);
+  });
   console.log(post);
 });
 
@@ -100,9 +92,8 @@ app.get('/posts', (req, res) => {
 
 //for currentUser from user models
 app.get('/currentUser', jwtAuth, (req, res) => {
-
   console.log(req.user.username);
-  res.send(req.user.username) //just sends back user
+  res.send(req.user.username); //just sends back user
 });
 
 ///////DELETE
