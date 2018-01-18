@@ -15,6 +15,7 @@ For future updates:
 
 
 ### Installing
+Be sure to set up a local mongo server prior to starting the app.
 ```
 npm install
 npm start
