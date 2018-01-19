@@ -20,7 +20,8 @@
 </head>
 <body>
   <header class="">
-		<a href="/app.html" id="logo"><span class="logo-text">Petfinder</span></a>
+		<a href="/app.html" id="logo"><span><i class="fa fa-search search-image" aria-hidden="true"></i>
+</span>  <span class="logo-text">Petfinder</span>  </a>
 
 		<nav>
 			<a href="#" id="mobile-menu-icon"><i class="fa fa-bars fa-2x" aria-hidden="true"></i>
@@ -92,18 +93,18 @@
 	<div id="registration-login" class=''>
 		<section class="container2 section section-d">
 			<div class="registration-body" >
-        <form >
+        <form class="registration_body_form">
           <h1>Register</h1>
           <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" placeholder="Username" name="username" id="username" autocomplete="username" required>
+            <!-- <label>Username</label> -->
+            <input type="text" class="form-control" placeholder="Username" size="25" name="username" id="username" autocomplete="username" required>
           </div>
           <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" placeholder="Password" name="password" id='password' autocomplete="current-password" required>
+            <!-- <label>Password</label> -->
+            <input type="password" class="form-control" placeholder="Password (min. 10 chars.)" size="25" name="password" id='password' autocomplete="current-password" required>
           </div>
           <div class="clearfix">
-            <button id="register" class="btn btn-green btn-default">Submit</button>
+            <button id="register" class="btn-form btn-green btn-default">Submit</button>
           </div>
         </form>
       </div>
@@ -111,18 +112,18 @@
 
 		<section class="container2 section section-e">
       <div class="parent-login" >
-      	<form >
-      		<h1>Account Login</h1>
+      	<form class="login_body_form">
+      		<h1>Login</h1>
       	  <div class="form-group">
-      	    <label class="label" for="name">Username</label>
-      	    <input id="username-login" type="text" class="form-control" name="username" placeholder="Username" autocomplete="username" required>
+      	    <!-- <label class="label" for="name">Username</label> -->
+      	    <input id="username-login" type="text" class="form-control" name="username"size="25"  placeholder="Username" autocomplete="username" required>
       	  </div>
       	  <div class="form-group">
-      	    <label class="label" for="password">Password</label>
-      	    <input type="password" id="password-login" class="form-control" name="password" placeholder="Password" autocomplete="current-password" required>
+      	    <!-- <label class="label" for="password">Password</label> -->
+      	    <input type="password" id="password-login" class="form-control" name="password" size="25" placeholder="Password" autocomplete="current-password" required>
       	  </div>
       	  <div class="clearfix">
-      		  <button type="submit" id="login" class="btn btn-default btn-login">Log In</button>
+      		  <button type="submit" id="login" class="btn-form btn-default btn-login">Log In</button>
       	  </div>
       	</form>
       </div>
@@ -130,7 +131,7 @@
 	</div>
 
      <footer class="footer">
-        <p>&copy; 2017 PetFinder, Inc.</p>
+        <p>&copy; 2018 PetFinder</p>
       </footer>
 
 

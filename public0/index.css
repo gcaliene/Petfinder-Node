@@ -154,6 +154,12 @@ p {
 .header-content-title {
   color: #4371a1;
 }
+/* 
+#logo i {
+  margin-top: -5px;
+  padding-top: 0px;
+  margin-bottom: 5px;
+} */
 
 /* Registration and Login CSS */
 #registration-login {
@@ -192,6 +198,32 @@ p {
   margin-bottom: 10px;
   padding-bottom: 0;
 }
+
+/* Registration and Login Start */
+
+input {
+  background-color: #37507f;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+}
+
+.form-control::placeholder {
+  color: #8bb3ff;
+}
+
+.btn-form {
+  background-color: #2262ad;
+  border: none;
+  color: #f9f9f9;
+  margin-top: 5px;
+  padding: 5px 20px;
+}
+
+.form-group {
+  padding: 5px;
+}
+/* Registration and Login End */
 
 /* Footer */
 footer {
