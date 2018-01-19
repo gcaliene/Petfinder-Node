@@ -154,7 +154,7 @@ p {
 .header-content-title {
   color: #4371a1;
 }
-/* 
+/*
 #logo i {
   margin-top: -5px;
   padding-top: 0px;
@@ -202,14 +202,17 @@ p {
 /* Registration and Login Start */
 
 input {
-  background-color: #37507f;
+  background-color: #2262ad;
   border: none;
   color: white;
   padding: 5px 5px;
 }
+/*    background-color: #37507f;
+color: #8bb3ff;
 
+*/
 .form-control::placeholder {
-  color: #8bb3ff;
+  color: #bfefff;
 }
 
 .btn-form {
