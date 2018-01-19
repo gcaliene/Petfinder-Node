@@ -38,7 +38,7 @@ header {
 }
 
 #logo {
-  margin: 20px;
+  margin: 5px;
   margin-left: -10px;
   float: left;
   width: 200px;
@@ -226,5 +226,9 @@ p {
   }
   textarea {
     max-width: 300px;
+  }
+  #logo {
+    margin: 7px;
+    margin-left: -50px;
   }
 }
