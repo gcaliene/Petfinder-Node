@@ -45,7 +45,7 @@ $(document).ready(function() {
 ----------------------------*/
       var modal = $(this),
         topMeasure = parseInt(modal.css('top')),
-        topOffset = modal.height() + topMeasure,
+        // topOffset = modal.height() + topMeasure,
         locked = false,
         modalBG = $('.reveal-modal-bg');
 
@@ -67,14 +67,14 @@ $(document).ready(function() {
           lockModal();
           if (options.animation == 'fadeAndPop') {
             modal.css({
-              top: $(document).scrollTop() - topOffset,
+              // top: $(document).scrollTop() - topOffset,
               opacity: 0,
               visibility: 'visible'
             });
             modalBG.fadeIn(options.animationspeed / 2);
             modal.delay(options.animationspeed / 2).animate(
               {
-                top: $(document).scrollTop() + topMeasure + 'px',
+                // top: $(document).scrollTop() + topMeasure + 'px',
                 opacity: 1
               },
               options.animationspeed,
@@ -84,8 +84,8 @@ $(document).ready(function() {
           if (options.animation == 'fade') {
             modal.css({
               opacity: 0,
-              visibility: 'visible',
-              top: $(document).scrollTop() + topMeasure
+              visibility: 'visible'
+              // top: $(document).scrollTop() + topMeasure
             });
             modalBG.fadeIn(options.animationspeed / 2);
             modal.delay(options.animationspeed / 2).animate(
@@ -98,8 +98,8 @@ $(document).ready(function() {
           }
           if (options.animation == 'none') {
             modal.css({
-              visibility: 'visible',
-              top: $(document).scrollTop() + topMeasure
+              visibility: 'visible'
+              // top: $(document).scrollTop() + topMeasure
             });
             modalBG.css({ display: 'block' });
             unlockModal();
@@ -118,13 +118,13 @@ $(document).ready(function() {
               .fadeOut(options.animationspeed);
             modal.animate(
               {
-                top: $(document).scrollTop() - topOffset + 'px',
+                // top: $(document).scrollTop() - topOffset + 'px',
                 opacity: 0
               },
               options.animationspeed / 2,
               function() {
                 modal.css({
-                  top: topMeasure,
+                  // top: topMeasure,
                   opacity: 1,
                   visibility: 'hidden'
                 });
@@ -144,15 +144,15 @@ $(document).ready(function() {
               function() {
                 modal.css({
                   opacity: 1,
-                  visibility: 'hidden',
-                  top: topMeasure
+                  visibility: 'hidden'
+                  // top: topMeasure
                 });
                 unlockModal();
               }
             );
           }
           if (options.animation == 'none') {
-            modal.css({ visibility: 'hidden', top: topMeasure });
+            // modal.css({ visibility: 'hidden', top: topMeasure });
             modalBG.css({ display: 'none' });
           }
         }
