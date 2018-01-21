@@ -14,16 +14,33 @@
   left: 0;
 }
 
+.modal-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .reveal-modal {
   visibility: hidden;
   top: 100px;
-  left: 50%;
-  margin-left: -300px;
-  width: 520px;
+  /* left: 50%;
+  margin-left: -300px; */
+  margin: 0 auto;
+
+  /* margin-top: -2vh; */
+  /* display: flex; /* or inline-flex */
+  /* justify-content: center;
+  align-items: center; */
+  /* width: 520px; */
   background: #eee;
-  position: absolute;
+  /* position: absolute; */
+  /* display: flex; */
+  overflow: hidden;
+  /* right: 42%; */
+  display: block;
+  position: fixed;
   z-index: 101;
-  padding: 30px 40px 34px;
+  padding: 0px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -32,7 +49,11 @@
   -box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
-.reveal-modal.small {
+body.reveal-modal {
+  overflow: hidden;
+}
+
+/* .reveal-modal.small {
   width: 200px;
   margin-left: -140px;
 }
@@ -47,18 +68,27 @@
 .reveal-modal.xlarge {
   width: 800px;
   margin-left: -440px;
-}
+} */
 
 .reveal-modal .close-reveal-modal {
-  font-size: 22px;
-  line-height: 0.5;
+  font-size: 26px;
+  line-height: 1;
   position: absolute;
-  top: 8px;
-  right: 11px;
+  top: 11px;
+  right: 14px;
   color: #aaa;
   text-shadow: 0 -1px 1px rbga(0, 0, 0, 0.6);
   font-weight: bold;
   cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (max-width: 800px) {
+  .reveal-modal {
+    /* min-width: 100vw;
+    right: 0%; */
+  }
 }
 /*
 

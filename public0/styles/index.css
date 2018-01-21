@@ -212,9 +212,9 @@ p {
   margin-right: auto;
   margin-left: auto;
   /* background-color: darkorange; */
-  margin-top: 10px;
+  /* margin-top: 10px; */
   margin-bottom: 40px;
-  border: solid 2px #b6b9bd;
+  /* border: solid 2px #b6b9bd; */
 }
 
 .about-container {
