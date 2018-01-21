@@ -86,10 +86,29 @@ body.reveal-modal {
   margin-right: auto;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 640px) {
   .reveal-modal {
-    /* min-width: 100vw;
-    right: 0%; */
+    min-width: 80vw;
+    min-height: 60vh;
+  }
+  .reveal-modal .close-reveal-modal {
+    font-size: 26px;
+    line-height: 1;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: #aaa;
+    /* text-shadow: 0 -1px 1px rbga(0, 0, 0, 0.6); */
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .reveal-modal {
+    position: absolute;
   }
 }
 /*
