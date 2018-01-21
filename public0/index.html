@@ -10,12 +10,14 @@
 	<link rel="stylesheet" href="./styles/index.css">
   <!-- <link rel="stylesheet" href="/styles/alert.css"> -->
 	<!-- 3rd-party Libraries -->
+	<link rel="stylesheet" href="./styles/reveal.css">
 	<link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/index.js"></script>
 	<script type="text/javascript" src='./js/modal.js'></script>
+	<script type="text/javascript" src="./js/jquery.reveal.js"></script>
 	<!-- <script type="text/javascript" src="app.js"></script> -->
 
 </head>
@@ -92,55 +94,49 @@
 
 	<!-- Trigger/Open The Modal -->
 	<!-- <button id="myBtn">Open Modal</button> -->
-
+	<a href="#" class="big-link" data-reveal-id="myModal" data-animation="fade">
+			Fade
+		</a>
 	<!-- The Modal -->
-	<div id="myModal" class="modal">
+	<div id="myModal" class="reveal-modal">
+		<div id="registration-login" class=''>
+			<section class="container2 section section-d">
+				<div class="registration-body" >
+					<form class="registration_body_form">
+						<h1>Register</h1>
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Username" size="25" name="username" id="username" autocomplete="username" required>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" placeholder="Password (min. 10 chars.)" size="25" name="password" id='password' autocomplete="current-password" required>
+						</div>
+						<div class="clearfix">
+							<button id="register" class="btn-form btn-green btn-default">Submit</button>
+						</div>
+					</form>
+				</div>
+			</section>
 
-	  <!-- Modal content -->
-	  <div class="modal-content">
-		<!-- <div class="md-modal md-effect-1" id="modal-1">
-			<div class="md-content"> -->
-	    <span class="close">&times;</span>
-
-
-			<div id="registration-login" class=''>
-				<section class="container2 section section-d">
-					<div class="registration-body" >
-						<form class="registration_body_form">
-							<h1>Register</h1>
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Username" size="25" name="username" id="username" autocomplete="username" required>
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Password (min. 10 chars.)" size="25" name="password" id='password' autocomplete="current-password" required>
-							</div>
-							<div class="clearfix">
-								<button id="register" class="btn-form btn-green btn-default">Submit</button>
-							</div>
-						</form>
-					</div>
-				</section>
-
-				<section class="container2 section section-e">
-					<div class="parent-login" >
-						<form class="login_body_form">
-							<h1>Login</h1>
-							<div class="form-group">
-								<input id="username-login" type="text" class="form-control" name="username"size="25"  placeholder="Username" autocomplete="username" required>
-							</div>
-							<div class="form-group">
-								<input type="password" id="password-login" class="form-control" name="password" size="25" placeholder="Password" autocomplete="current-password" required>
-							</div>
-							<div class="clearfix">
-								<button type="submit" id="login" class="btn-form btn-default btn-login">Log In</button>
-							</div>
-						</form>
-					</div>
-				</section>
-			</div>
-	  </div>
-
+			<section class="container2 section section-e">
+				<div class="parent-login" >
+					<form class="login_body_form">
+						<h1>Login</h1>
+						<div class="form-group">
+							<input id="username-login" type="text" class="form-control" name="username"size="25"  placeholder="Username" autocomplete="username" required>
+						</div>
+						<div class="form-group">
+							<input type="password" id="password-login" class="form-control" name="password" size="25" placeholder="Password" autocomplete="current-password" required>
+						</div>
+						<div class="clearfix">
+							<button type="submit" id="login" class="btn-form btn-default btn-login">Log In</button>
+						</div>
+					</form>
+				</div>
+			</section>
+		</div>
+		<a class="close-reveal-modal">&#215;</a>
 	</div>
+
 
 
 
@@ -152,13 +148,13 @@
 
 <script>
 // Script for Modal using JS, jquery was commented due to error of event.target.
-var modal = document.getElementById('myModal');
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = 'none';
-    console.log(window);
-  }
-};
+// var modal = document.getElementById('myModal');
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = 'none';
+//     console.log(window);
+//   }
+// };
 </script>
 </body>
 
