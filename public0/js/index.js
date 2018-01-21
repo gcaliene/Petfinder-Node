@@ -46,6 +46,8 @@ $(document).ready(function() {
       },
       error: function(error) {
         if (error.responseJSON.location === 'password') {
+          $('#success-username-login').addClass('hidden');
+
           $('#error-username-login').html('');
           $('#error-password-registration').html('');
           $('#error-username-registration').html('');
@@ -56,6 +58,8 @@ $(document).ready(function() {
             }`
           );
         } else {
+          $('#success-username-login').addClass('hidden');
+
           $('#error-username-login').html('');
           $('#error-password-registration').html('');
           $('#error-username-registration').html('');
@@ -94,6 +98,7 @@ $(document).ready(function() {
         window.location = '/app.html';
       },
       error: function(error) {
+        $('#success-username-login').addClass('hidden');
         $('#error-password-registration').html('');
         $('#error-username-registration').html('');
         $('#error-username-login').html('');
