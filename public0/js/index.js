@@ -2,8 +2,10 @@ $(document).ready(function() {
   const token = localStorage.getItem('token');
   if (token !== null) {
     // window.location.replace("/app.html");
+
     $('#nav-registerlogin').addClass('hidden');
     $('#registration-login').addClass('hidden');
+    $('#nav-login').addClass('hidden');
     $('#header-register-button').addClass('hidden');
     $('#header-login-button').addClass('hidden');
   } else {
@@ -97,12 +99,23 @@ $(document).ready(function() {
         window.location = '/app.html';
       },
       error: function(error) {
-        console.log({ error });
-        alert(
-          `${error.status} error: ${
-            error.responseText
-          }. Please check your Username and Password.`
+        $('#error-password-registration').html('');
+        $('#error-username-registration').html('');
+        $('#error-username-login').html('');
+        $('#error-username-login').removeClass('hidden');
+        $('#error-username-login').removeClass('class-success-username-login');
+        $('#error-username-login').addClass(
+          'class-error-username-registration'
         );
+        $('#error-username-login').append(
+          `Please Check Your Username and Password`
+        );
+        // console.log({ error });
+        // alert(
+        //   `${error.status} error: ${
+        //     error.responseText
+        //   }. Please check your Username and Password.`
+        // );
       }
     });
   });
