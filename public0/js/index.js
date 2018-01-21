@@ -67,11 +67,6 @@ $(document).ready(function() {
           );
         }
       }
-      // alert(
-      //   `${error.status} error at ${error.responseJSON.location}: "${
-      //     error.responseJSON.message
-      //   }".`
-      // );
     });
   });
 
@@ -110,12 +105,6 @@ $(document).ready(function() {
         $('#error-username-login').append(
           `Please Check Your Username and Password`
         );
-        // console.log({ error });
-        // alert(
-        //   `${error.status} error: ${
-        //     error.responseText
-        //   }. Please check your Username and Password.`
-        // );
       }
     });
   });
