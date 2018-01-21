@@ -2,6 +2,44 @@
   display: none;
 }
 
+p#error-username-registration {
+  line-height: 1;
+  margin: 0px;
+  color: red;
+  font-size: 12px;
+}
+p#error-password-registration {
+  line-height: 1;
+  margin: 0px;
+  color: red;
+  font-size: 12px;
+}
+p#error-username-login {
+  line-height: 1;
+  margin: 0px;
+  color: red;
+  font-size: 12px;
+}
+p#error-password-login {
+  line-height: 1;
+  margin: 0px;
+  color: red;
+  font-size: 12px;
+}
+
+p#success-username-login {
+  color: green;
+  font-size: 13px;
+  line-height: 1;
+  margin: 0px;
+}
+
+.login-title {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
 /* MODAL START */
 /* The Modal (background) */
 .modal {
