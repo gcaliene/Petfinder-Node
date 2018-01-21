@@ -23,6 +23,8 @@
 .reveal-modal {
   visibility: hidden;
   top: 100px;
+  max-width: 330px;
+  min-width: 315px;
   /* left: 50%;
   margin-left: -300px; */
   /* margin: 0 auto; */
@@ -41,12 +43,12 @@
   position: fixed;
   z-index: 101;
   padding: 0px;
-  -moz-border-radius: 5px;
+  /* -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  -box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  -box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); */
 }
 
 body.reveal-modal {

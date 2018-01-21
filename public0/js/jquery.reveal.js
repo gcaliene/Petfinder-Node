@@ -17,9 +17,6 @@ $(document).ready(function() {
 
   $('a[data-reveal-id]').on('click', function(e) {
     e.preventDefault();
-    console.log('====================================');
-    console.log('flick');
-    console.log('====================================');
     var modalLocation = $(this).attr('data-reveal-id');
     $(`#${modalLocation}`).reveal($(this).data());
   });
