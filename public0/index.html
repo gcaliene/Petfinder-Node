@@ -14,10 +14,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="./js/index.js"></script>
-	<script type="text/javascript" src='./js/modal.js'></script>
-	<script type="text/javascript" src="./js/jquery.reveal.js"></script>
+
 	<!-- <script type="text/javascript" src="app.js"></script> -->
 
 </head>
@@ -33,8 +30,8 @@
 			<ul>
 				<li><a href="#" class="current">Home</a></li>
 				<li><a href="#about-link">About</a></li>
-				<li id="nav-registerlogin"><a data-reveal-id="myModal" data-animation="fade">Register</a></li>
-				<li id="nav-login"><a data-reveal-id="myModal" data-animation="fade">Login</a></li>
+				<li id="nav-registerlogin"><a data-reveal-id="myModal" data-animation="fade">Register/Login</a></li>
+				<!-- <li id="nav-login"><a data-reveal-id="myModal" data-animation="fade">Login</a></li> -->
 				<li id="nav-logout"><a href="/">Logout</a></li>
 			</ul>
 		</nav>
@@ -51,8 +48,8 @@
 		<div class="header-content">
 				<h1 class="header-content-title"> <i class="fa fa-paw " aria-hidden="true">  </i> Petfinder</h1>
 				<p class="lead">If you have lost your loved one, simply post and see whether anyone has seen your pet. The days of posting signs on lampposts are long gone!</p>
-				<p><a class="btn btn-lg btn-success" id="header-register-button" role="button" data-reveal-id="myModal" data-animation="fade">Sign up today</a></p>
-				<p><a class="btn btn-lg btn-success" id="header-login-button" role="button" data-reveal-id="myModal" data-animation="fade">Login</a></p>
+				<p><a class="btn btn-lg btn-success" id="header-register-button" role="button" data-reveal-id="myModal" data-animation="fade">Sign up or login!</a></p>
+				<!-- <p><a class="btn btn-lg btn-success" id="header-login-button" role="button" data-reveal-id="myModal" data-animation="fade">Login</a></p> -->
 		</div>
 	</div>
 
@@ -117,7 +114,14 @@
 						</form>
 					</div>
 				</section>
-
+				<div id="js-demo-button-container" class="demo-user-button-container">
+					<button id="js-demo-button" class="demo-user-button">Use demo user!</button>
+				</div>
+				<div id="js-demo-user-container" class="demo-user-container hidden">
+					<h3 class="demo-user-title">Demo user</h3>
+					<p>Username: test123</p>
+					<p>Password: 1234567890</p>
+				</div>
 				<section class="container2 section section-e">
 					<div class="parent-login" >
 						<form class="login_body_form">
@@ -154,16 +158,13 @@
         <p>&copy; 2018 PetFinder</p>
       </footer>
 
-<script>
-// Script for Modal using JS, jquery was commented due to error of event.target.
-// var modal = document.getElementById('myModal');
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = 'none';
-//     console.log(window);
-//   }
-// };
-</script>
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+			<script type="text/javascript" src="./js/index.js"></script>
+			<script type="text/javascript" src='./js/modal.js'></script>
+			<script type="text/javascript" src="./js/jquery.reveal.js"></script>
+			<script type="text/javascript" src="./js/demo-button.js"></script>
+
 </body>
 
 </html>

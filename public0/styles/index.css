@@ -44,6 +44,29 @@ p#success-username-login {
   margin-bottom: 0px;
 }
 
+.demo-user-container {
+  text-align: center;
+  line-height: 1px;
+}
+
+.demo-user-container p {
+  margin: 0px;
+}
+.demo-user-container h3 {
+  margin: 8px;
+}
+
+.demo-user-button-container {
+  text-align: center;
+}
+
+.demo-user-button {
+  /* background-color: #ff8c00; */
+  border: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
 /* MODAL START */
 /* The Modal (background) */
 .modal {
