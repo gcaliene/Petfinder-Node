@@ -25,24 +25,17 @@
   top: 100px;
   max-width: 330px;
   min-width: 315px;
-  /* left: 50%;
-  margin-left: -300px; */
-  /* margin: 0 auto; */
-
-  /* margin-top: -2vh; */
-  /* display: flex; /* or inline-flex */
-  /* justify-content: center;
-  align-items: center; */
-  /* width: 520px; */
+  border: 2px solid grey;
+  border-radius: 25px;
   background: #eee;
-  /* position: absolute; */
-  /* display: flex; */
+
   overflow: hidden;
   /* right: 42%; */
   display: block;
   position: fixed;
   z-index: 101;
   padding: 0px;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.4);
   /* -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -73,12 +66,12 @@ body.reveal-modal {
 } */
 
 .reveal-modal .close-reveal-modal {
-  font-size: 26px;
+  font-size: 40px;
   line-height: 1;
   position: absolute;
-  top: 11px;
+  top: -15px;
   right: 14px;
-  color: #aaa;
+  color: #fe2712;
   text-shadow: 0 -1px 1px rbga(0, 0, 0, 0.6);
   font-weight: bold;
   cursor: pointer;
@@ -88,16 +81,17 @@ body.reveal-modal {
 
 @media only screen and (max-width: 640px) {
   .reveal-modal {
-    min-width: 80vw;
-    min-height: 60vh;
+    /* min-width: 80vw; */
+    /* min-height: 60vh; */
+    top: 75px;
   }
   .reveal-modal .close-reveal-modal {
-    font-size: 26px;
+    font-size: 40px;
     line-height: 1;
     position: absolute;
-    top: 0px;
-    right: 0px;
-    color: #aaa;
+    top: -16px;
+    right: 14px;
+    color: #fe2712;
     /* text-shadow: 0 -1px 1px rbga(0, 0, 0, 0.6); */
     font-weight: bold;
     cursor: pointer;
