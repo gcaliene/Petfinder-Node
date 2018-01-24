@@ -74,6 +74,7 @@ input {
   outline: none; /* Inputs werent centering with everyone else so it needed the autos for margins */
   margin-right: auto;
   margin-left: auto;
+  width: 94%;
   color: #fff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -93,6 +94,7 @@ label {
   display: block;
   position: static;
   margin: 0;
+
   padding: 0;
   color: #fff;
   font-family: 'Arvo';
