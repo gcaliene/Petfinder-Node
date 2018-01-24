@@ -81,7 +81,7 @@ body.reveal-modal {
 
 @media only screen and (max-width: 640px) {
   .reveal-modal {
-    min-width: 95%;
+    /* min-width: 90%; */
     /* min-height: 60vh; */
     top: 75px;
   }
