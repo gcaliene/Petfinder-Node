@@ -27,4 +27,5 @@ petPostSchema.methods.apiRepr = function() {
 //make sure everything is defined before exporting
 var PetPost = mongoose.model('PetPost', petPostSchema);
 module.exports = { PetPost };
+//
 //line 23-24 should not be merged, learned the hard way
