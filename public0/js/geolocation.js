@@ -1,4 +1,5 @@
 var x = document.getElementById('demo');
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -6,13 +7,52 @@ function getLocation() {
     x.innerHTML = 'Geolocation is not supported by this browser.';
   }
 }
+
 function showPosition(position) {
-  x.innerHTML =
-    'Latitude: ' +
-    position.coords.latitude +
-    '<br>Longitude: ' +
-    position.coords.longitude;
+  console.log(position);
+  var latlon = position.coords.latitude + ',' + position.coords.longitude;
+  var img_url =
+    'https://maps.googleapis.com/maps/api/staticmap?center=' +
+    latlon +
+    '&zoom=14&size=400x300&key=AIzaSyC-09EwnS5ttNn7X-JdM0c7OluJ4I89mpE';
+  document.getElementById('mapholder').innerHTML =
+    "<img src='" + img_url + "'>";
+  getReverseGeocode(latlon);
 }
+
+function getReverseGeocode(latlon) {
+  $.ajax({
+    url: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlon}&key=AIzaSyC-09EwnS5ttNn7X-JdM0c7OluJ4I89mpE`,
+    dataType: 'text',
+    success: function(jsonString) {
+      console.log('getReverseGeocode ran');
+      let jsonObject = $.parseJSON(jsonString);
+      console.log(jsonObject.results[0].address_components);
+      console.log(jsonObject.results[0].address_components[0]);
+      const googleArrayObject = jsonObject.results[0].address_components;
+      const googleArrayLength = jsonObject.results[0].address_components.length;
+      console.log(googleArrayLength);
+      for (let i = 0; i < googleArrayLength; i++) {
+        if (googleArrayObject[i].types[0] === 'locality') {
+          console.log(googleArrayObject[i].long_name);
+        }
+      }
+
+      // var location = jsonObject.results[1].formatted_address;
+      // console.log(location);
+      // console.log(location);
+      // $('#demo2').html(location);
+    }
+  });
+}
+
+// function showPosition(position) {
+//   x.innerHTML =
+//     'Latitude: ' +
+//     position.coords.latitude +
+//     '<br>Longitude: ' +
+//     position.coords.longitude;
+// }
 
 function showError(error) {
   switch (error.code) {
@@ -30,4 +70,3 @@ function showError(error) {
       break;
   }
 }
-

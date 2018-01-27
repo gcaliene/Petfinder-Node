@@ -1,7 +1,24 @@
 //this is where the front end javascript code goes
 /////
+
+function getCoordinatesOnLoad() {
+  console.log('loading');
+  $.ajax({
+    url: 'https://freegeoip.net/json/',
+    dataType: 'text',
+    success: function(jsonString) {
+      const jsonObject = $.parseJSON(jsonString); // this is needed to access the data. Remember we need an object not strings
+      console.log(jsonObject);
+      console.log(jsonObject.city);
+      $('#js-petfinder-city').html(
+        `Viewing lost pets in ${jsonObject.city}, ${jsonObject.region_code}.`
+      );
+    }
+  });
+}
+
 window.onload = function() {
-  console.log('windowloaded');
+  getCoordinatesOnLoad();
   const token = localStorage.getItem('token');
   if (token === null) {
     $('#RegisterLogin').removeClass('hidden');
