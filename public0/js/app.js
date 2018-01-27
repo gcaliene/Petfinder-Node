@@ -11,7 +11,9 @@ function getCoordinatesOnLoad() {
       console.log(jsonObject);
       console.log(jsonObject.city);
       $('#js-petfinder-city').html(
-        `Viewing lost pets in ${jsonObject.city}, ${jsonObject.region_code}.`
+        `Viewing lost pets in </br> ${jsonObject.city}, ${
+          jsonObject.region_code
+        }.`
       );
     }
   });
@@ -36,6 +38,7 @@ window.onload = function() {
     localStorage.removeItem('token');
   });
 
+  const $city = $('#js-post-city');
   const $posts = $('#posts');
   const $text = $('#text');
   const $name = $.ajax({

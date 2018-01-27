@@ -42,7 +42,11 @@
     	</div>
 
     </br>
+    <p id="demo">Click the button to get your position.</p>
 
+    <button onclick="getLocation()">Try It</button>
+
+    <div id="mapholder"></div>
 
     	<form id="form-js" class=" errorMessages">
 
@@ -58,8 +62,7 @@
             maxlength="200"
             wrap="soft"
           ></textarea>
-        </br>
-      		<input class="form-submit" type="submit" value="Submit" id="submit">
+        </br><textarea id="js-post-city"class="css-post-city" cols="30" rows="1" placeholder="Click button on right to get city."disabled></textarea></br><input class="form-submit" type="submit" value="Submit" id="submit">
     	</form>
     </div>
 

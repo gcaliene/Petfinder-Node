@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const petPostSchema = mongoose.Schema({
   text: { type: String, required: true },
   userName: { type: String, required: true },
-  created: { type: Date, default: Date.now }
+  created: { type: Date, default: Date.now },
+  city: { type: String, required: true }
 });
 
 petPostSchema.virtual('name').get(function() {
