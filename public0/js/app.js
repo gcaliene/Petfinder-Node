@@ -2,33 +2,34 @@
 /////
 window.onload = function() {
   const token = localStorage.getItem('token');
-  getCoordinatesOnLoad();
-
   if (token === null) {
     $('#RegisterLogin').removeClass('hidden');
     $('form').addClass('hidden');
-    $('span').addClass('hidden');
+    // $('span').addClass('hidden');
     $('h2').removeClass('hidden');
     $('#logout').addClass('hidden');
+    // getCoordinatesOnLoad();
   } else if (token !== null) {
     //If token is present i.e. user is logged in, then there is a swap of options
     $('#RegisterLogin').addClass('hidden');
     $('#logout').removeClass('hidden');
+    // getCoordinatesOnLoad();
   }
+  getCoordinatesOnLoad();
 
   $('#logout').on('click', function() {
     localStorage.removeItem('token');
   });
 
   function getCoordinatesOnLoad() {
-    console.log('loading');
+    // console.log('loading');
     $.ajax({
       url: 'https://freegeoip.net/json/',
       dataType: 'text',
       success: function(jsonString) {
         const jsonObject = $.parseJSON(jsonString); // this is needed to access the data. Remember we need an object not strings
         // console.log(jsonObject);
-        console.log(jsonObject.city);
+        // console.log(jsonObject.city);
         $('#js-petfinder-city').html(`${jsonObject.city}`);
         $('#js-petfinder-state').html(`${jsonObject.region_code}.`);
         $.ajax({
@@ -37,49 +38,40 @@ window.onload = function() {
           success: function(posts) {
             // console.log(posts);
             for (var i = 0; i < posts.length; i++) {
-              console.log(posts[i].city);
+              // console.log(posts[i].city);
               // console.log(jsonObject.city);
               if (jsonObject.city === posts[i].city) {
-                console.log(posts[i].city);
+                // console.log(posts[i]);
+                $posts.append(
+                  '<li class="' +
+                    posts[i].name +
+                    ' list-item">' +
+                    '<b> <div class="list-header"> <span class="list-header-date"> ' +
+                    moment(posts[i].created).format('MMMM Do YYYY, h:mm a') +
+                    '</span> </div> <span  class="text">' +
+                    posts[i].text +
+                    " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+                    "<br>  <u><span class='name'>" +
+                    posts[i].name +
+                    '</span></u><br> <i class="list-item-time">' +
+                    moment(posts[i].created)
+                      .startOf('minutes')
+                      .fromNow() +
+                    '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
+                    '<button data-UUID=' +
+                    posts[i]._id +
+                    ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
+                    '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
+                    '<button data-UUID=' +
+                    posts[i]._id +
+                    ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
+                );
+                if (token === null) {
+                  $('button').addClass('hidden');
+                  $('input').addClass('hidden');
+                }
               }
             }
-            // if ($('#js-petfinder-city').html() === item.city)
-            // console.log($('#js-petfinder-city'));
-            // console.log($('#js-petfinder-city').html());
-            $.each(posts, function(index, item) {
-              // console.log(item.city);
-              // console.log($('#js-petfinder-city').html());
-              // if ($('#js-petfinder-city').html() === item.city) {
-              $posts.append(
-                '<li class="' +
-                  item.name +
-                  ' list-item">' +
-                  '<b> <div class="list-header"> <span class="list-header-date"> ' +
-                  moment(item.created).format('MMMM Do YYYY, h:mm a') +
-                  '</span> </div> <span  class="text">' +
-                  item.text +
-                  " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
-                  "<br>  <u><span class='name'>" +
-                  item.name +
-                  '</span></u><br> <i class="list-item-time">' +
-                  moment(item.created)
-                    .startOf('minutes')
-                    .fromNow() +
-                  '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
-                  '<button data-UUID=' +
-                  item._id +
-                  ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
-                  '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
-                  '<button data-UUID=' +
-                  item._id +
-                  ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
-              );
-              // if (token === null) {
-              //   $('button').addClass('hidden');
-              //   $('input').addClass('hidden');
-              // }
-              // }
-            });
           },
           complete: function(post) {
             for (var i = 0; i < post.responseJSON.length; i++) {
@@ -101,25 +93,6 @@ window.onload = function() {
       }
     });
   }
-
-  // window.onload = function() {
-  //   getCoordinatesOnLoad();
-  //   const token = localStorage.getItem('token');
-  //   if (token === null) {
-  //     $('#RegisterLogin').removeClass('hidden');
-  //     $('form').addClass('hidden');
-  //     $('span').addClass('hidden');
-  //     $('h2').removeClass('hidden');
-  //     $('#logout').addClass('hidden');
-  //   } else if (token !== null) {
-  //     //If token is present i.e. user is logged in, then there is a swap of options
-  //     $('#RegisterLogin').addClass('hidden');
-  //     $('#logout').removeClass('hidden');
-  //   }
-  //
-  //   $('#logout').on('click', function() {
-  //     localStorage.removeItem('token');
-  //   });
 
   const $city = $('#js-post-city');
   const $posts = $('#posts');
@@ -155,6 +128,7 @@ window.onload = function() {
       url: '/posts',
       data: post,
       success: function(newPost) {
+        console.log($('#js-petfinder-city').html());
         $text.val('');
         $posts.append(
           '<li class="' +
