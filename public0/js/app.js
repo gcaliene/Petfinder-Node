@@ -41,6 +41,7 @@ window.onload = function() {
   const $city = $('#js-post-city');
   const $posts = $('#posts');
   const $text = $('#text');
+  const $googleMapUrl = $('#map_url');
   const $name = $.ajax({
     type: 'GET',
     url: '/currentUser',
@@ -112,7 +113,9 @@ window.onload = function() {
     const post = {
       text: $text.val(),
       userName: $name.responseText,
-      created: Date.now()
+      created: Date.now(),
+      city: $city.val(),
+      googleMapUrl: $googleMapUrl.val()
     };
     $.ajax({
       type: 'POST',
@@ -144,7 +147,9 @@ window.onload = function() {
         );
       },
       error: function() {
-        alert('Please provide a description before submitting.');
+        alert(
+          'Please get location and provide a description before submitting.'
+        );
       }
     });
   }); //End of Submit POST

@@ -67,7 +67,9 @@ app.post('/posts', (req, res, next) => {
   const post = new PetPost({
     text: req.body.text,
     userName: req.body.userName,
-    created: req.body.created
+    created: req.body.created,
+    city: req.body.city,
+    googleMapUrl: req.body.googleMapUrl
   });
   post.save(function(err, post) {
     if (err) {

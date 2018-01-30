@@ -11,18 +11,22 @@ function getLocation() {
 function showPosition(position) {
   // console.log(position);
   const latlon = position.coords.latitude + ',' + position.coords.longitude;
+  const googleMapsUrl = `https://www.google.com/maps/@${latlon}`;
+  const googleMapsUrlMongo = `<a href='${googleMapsUrl}'>Map</a>`;
+
   // const img_url =
   //   'https://maps.googleapis.com/maps/api/staticmap?center=' +
   //   latlon +
   //   '&zoom=14&size=400x300&key=AIzaSyC-09EwnS5ttNn7X-JdM0c7OluJ4I89mpE';
   // document.getElementById('mapholder').innerHTML =
   //   "<img src='" + img_url + "'>";
-  getReverseGeocode(latlon);
-  const googleMapsUrl = `https://www.google.com/maps/@${latlon}`;
-  window.open(googleMapsUrl, '_blank');
+  console.log(googleMapsUrlMongo);
+  getReverseGeocode(latlon, googleMapsUrlMongo);
+
+  //window.open(googleMapsUrl, '_blank');
 }
 
-function getReverseGeocode(latlon) {
+function getReverseGeocode(latlon, googleMapsUrlMongo) {
   $.ajax({
     url: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlon}&key=AIzaSyC-09EwnS5ttNn7X-JdM0c7OluJ4I89mpE`,
     dataType: 'text',
@@ -38,8 +42,9 @@ function getReverseGeocode(latlon) {
       for (let i = 0; i < googleArrayLength; i++) {
         if (googleArrayObject[i].types[0] === 'locality') {
           // console.log(googleArrayObject[i].long_name);
-          document.getElementById('js-post-city').innerHTML =
-            googleArrayObject[i].long_name;
+          $('#js-post-city').html(googleArrayObject[i].long_name);
+          $('#map_url').html(googleMapsUrlMongo);
+          console.log(googleMapsUrlMongo);
         }
       }
     }

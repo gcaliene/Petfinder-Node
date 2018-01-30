@@ -5,7 +5,8 @@ const petPostSchema = mongoose.Schema({
   text: { type: String, required: true },
   userName: { type: String, required: true },
   created: { type: Date, default: Date.now },
-  city: { type: String, required: true }
+  city: { type: String, required: true },
+  googleMapUrl: { type: String, required: true }
 });
 
 petPostSchema.virtual('name').get(function() {
@@ -21,7 +22,9 @@ petPostSchema.methods.apiRepr = function() {
     _id: this._id,
     text: this.text,
     name: this.userName, //name is the api representation (what shows in get) and userName is how it is stored as.
-    created: this.created
+    created: this.created,
+    city: this.city,
+    googleMapsUrl: this.googleMapUrl
   };
 };
 
