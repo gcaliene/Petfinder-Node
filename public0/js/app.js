@@ -167,59 +167,69 @@ window.onload = function() {
   $posts.delegate('.deleteButton', 'click', function() {
     //have to use delegate instead of on click to work, i forgot why.
     var $li = $(this).closest('li');
-    if ($name.responseText === $li.find('span.name').text()) {
-      $.ajax({
-        type: 'DELETE',
-        url: '/posts/' + $(this).attr('data-UUID'),
-        success: function(posts) {
-          $posts.html('');
-          $.each(posts, function(index, item) {
+    // if ($name.responseText === $li.find('span.name').text()) {
+    $.ajax({
+      type: 'DELETE',
+      url: '/posts/' + $(this).attr('data-UUID'),
+      success: function(posts) {
+        // console.log($('#js-petfinder-city').html());
+        $posts.html('');
+        for (var i = 0; i < posts.length; i++) {
+          // console.log(posts[i].city);
+          // console.log(jsonObject.city);
+          if ($('#js-petfinder-city').html() === posts[i].city) {
+            // console.log(posts[i]);
             $posts.append(
               '<li class="' +
-                item.name +
+                posts[i].name +
                 ' list-item">' +
                 '<b> <div class="list-header"> <span class="list-header-date"> ' +
-                moment(item.created).format('MMMM Do YYYY, h:mm a') +
+                moment(posts[i].created).format('MMMM Do YYYY, h:mm a') +
                 '</span> </div> <span  class="text">' +
-                item.text +
+                posts[i].text +
                 " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
                 "<br>  <u><span class='name'>" +
-                item.name +
+                posts[i].name +
                 '</span></u><br> <i class="list-item-time">' +
-                moment(item.created)
+                moment(posts[i].created)
                   .startOf('minutes')
                   .fromNow() +
                 '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
                 '<button data-UUID=' +
-                item._id +
+                posts[i]._id +
                 ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
                 '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
                 '<button data-UUID=' +
-                item._id +
+                posts[i]._id +
                 ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
             );
-          });
-        },
-        complete: function(post) {
-          for (var i = 0; i < post.responseJSON.length; i++) {
-            let postUser = post.responseJSON[i].name;
-            if (postUser !== $name.responseText) {
-              let differentUser = postUser;
-              $(`.${differentUser}  .editButton`).addClass('hidden');
-              $(`.${differentUser}  .saveButton`).addClass('hidden');
-              $(`.${differentUser}  .deleteButton`).addClass('hidden');
-              $(`.${differentUser}  .cancelButton`).addClass('hidden');
-              $(`.${differentUser}  .edit-text-input`).addClass('hidden');
+            if (token === null) {
+              $('button').addClass('hidden');
+              $('input').addClass('hidden');
             }
           }
-        },
-        error: function() {
-          alert('error deleting');
         }
-      });
-    } else {
-      alert('Only original poster can delete!');
-    }
+      },
+      complete: function(post) {
+        for (var i = 0; i < post.responseJSON.length; i++) {
+          let postUser = post.responseJSON[i].name;
+          if (postUser !== $name.responseText) {
+            let differentUser = postUser;
+            $(`.${differentUser}  .editButton`).addClass('hidden');
+            $(`.${differentUser}  .saveButton`).addClass('hidden');
+            $(`.${differentUser}  .deleteButton`).addClass('hidden');
+            $(`.${differentUser}  .cancelButton`).addClass('hidden');
+            $(`.${differentUser}  .edit-text-input`).addClass('hidden');
+          }
+        }
+      },
+      error: function() {
+        alert('error deleting');
+      }
+    });
+    // } else {
+    //   alert('Only original poster can delete!');
+    // }
   }); //End of Delete POST
 
   ////////////////////////////PUT//////////////////////////
@@ -265,34 +275,44 @@ window.onload = function() {
       url: '/posts/' + $li.find('.saveEdit').attr('data-UUID'),
       data: post,
       success: function(posts) {
-        console.log(posts);
+        console.log($('#js-petfinder-city').html());
+        // console.log(posts);
         $posts.html('');
-        $.each(posts, function(index, item) {
-          $posts.append(
-            '<li class="' +
-              item.name +
-              ' list-item">' +
-              '<b> <div class="list-header"> <span class="list-header-date"> ' +
-              moment(item.created).format('MMMM Do YYYY, h:mm a') +
-              '</span> </div> <span  class="text">' +
-              item.text +
-              " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
-              "<br>  <u><span class='name'>" +
-              item.name +
-              '</span></u><br> <i class="list-item-time">' +
-              moment(item.created)
-                .startOf('minutes')
-                .fromNow() +
-              '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
-              '<button data-UUID=' +
-              item._id +
-              ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
-              '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
-              '<button data-UUID=' +
-              item._id +
-              ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
-          );
-        });
+        for (var i = 0; i < posts.length; i++) {
+          // console.log(posts[i].city);
+          // console.log(jsonObject.city);
+          if ($('#js-petfinder-city').html() === posts[i].city) {
+            // console.log(posts[i]);
+            $posts.append(
+              '<li class="' +
+                posts[i].name +
+                ' list-item">' +
+                '<b> <div class="list-header"> <span class="list-header-date"> ' +
+                moment(posts[i].created).format('MMMM Do YYYY, h:mm a') +
+                '</span> </div> <span  class="text">' +
+                posts[i].text +
+                " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+                "<br>  <u><span class='name'>" +
+                posts[i].name +
+                '</span></u><br> <i class="list-item-time">' +
+                moment(posts[i].created)
+                  .startOf('minutes')
+                  .fromNow() +
+                '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
+                '<button data-UUID=' +
+                posts[i]._id +
+                ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
+                '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
+                '<button data-UUID=' +
+                posts[i]._id +
+                ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
+            );
+            if (token === null) {
+              $('button').addClass('hidden');
+              $('input').addClass('hidden');
+            }
+          }
+        }
         $li.find('span.text').html(posts.text);
         //$li.find("span.name").html(posts.name);
         $li.removeClass('edit');
