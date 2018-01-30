@@ -60,15 +60,18 @@
             wrap="soft"
           ></textarea>
 
-        </br><textarea required id="js-post-city"class="css-post-city hidden" cols="30" rows="1" placeholder="Click button on right to get city."disabled></textarea>      <button onclick="getLocation()">Get Location</button>
-</br><input class="form-submit" type="submit" value="Submit" id="submit">
-        <textarea required id="map_url" class="hidden" ></textarea>
+        </br>
+        <textarea required id="js-post-city"class="css-post-city hidden" cols="30" rows="1" placeholder="Click button on right to get city."disabled></textarea>
+        <button  type="button" onclick="getLocation()">Get Location</button><input class="form-submit" type="submit" value="Submit" id="submit">
+        <textarea required id="map_url" class="hidden" disabled></textarea>
     	</form>
 
     </div>
 
     <div class="container2">
-    	<h3 class="petfinder-city" id="js-petfinder-city"></h3>
+      <h3 class="container-petfinder-city-state">
+        Viewing lost pets in </br> <span class="petfinder-city" id="js-petfinder-city"></span>, <span class="petfinder-state" id="js-petfinder-state"></span>
+      </h3>
       <div class="posts-container">
         <ul id="posts">
       	</ul>

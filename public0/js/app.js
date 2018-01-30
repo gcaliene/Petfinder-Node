@@ -1,27 +1,9 @@
 //this is where the front end javascript code goes
 /////
-
-function getCoordinatesOnLoad() {
-  console.log('loading');
-  $.ajax({
-    url: 'https://freegeoip.net/json/',
-    dataType: 'text',
-    success: function(jsonString) {
-      const jsonObject = $.parseJSON(jsonString); // this is needed to access the data. Remember we need an object not strings
-      console.log(jsonObject);
-      console.log(jsonObject.city);
-      $('#js-petfinder-city').html(
-        `Viewing lost pets in </br> ${jsonObject.city}, ${
-          jsonObject.region_code
-        }.`
-      );
-    }
-  });
-}
-
 window.onload = function() {
-  getCoordinatesOnLoad();
   const token = localStorage.getItem('token');
+  getCoordinatesOnLoad();
+
   if (token === null) {
     $('#RegisterLogin').removeClass('hidden');
     $('form').addClass('hidden');
@@ -38,10 +20,112 @@ window.onload = function() {
     localStorage.removeItem('token');
   });
 
+  function getCoordinatesOnLoad() {
+    console.log('loading');
+    $.ajax({
+      url: 'https://freegeoip.net/json/',
+      dataType: 'text',
+      success: function(jsonString) {
+        const jsonObject = $.parseJSON(jsonString); // this is needed to access the data. Remember we need an object not strings
+        // console.log(jsonObject);
+        console.log(jsonObject.city);
+        $('#js-petfinder-city').html(`${jsonObject.city}`);
+        $('#js-petfinder-state').html(`${jsonObject.region_code}.`);
+        $.ajax({
+          type: 'GET',
+          url: '/posts',
+          success: function(posts) {
+            // console.log(posts);
+            for (var i = 0; i < posts.length; i++) {
+              console.log(posts[i].city);
+              // console.log(jsonObject.city);
+              if (jsonObject.city === posts[i].city) {
+                console.log(posts[i].city);
+              }
+            }
+            // if ($('#js-petfinder-city').html() === item.city)
+            // console.log($('#js-petfinder-city'));
+            // console.log($('#js-petfinder-city').html());
+            $.each(posts, function(index, item) {
+              // console.log(item.city);
+              // console.log($('#js-petfinder-city').html());
+              // if ($('#js-petfinder-city').html() === item.city) {
+              $posts.append(
+                '<li class="' +
+                  item.name +
+                  ' list-item">' +
+                  '<b> <div class="list-header"> <span class="list-header-date"> ' +
+                  moment(item.created).format('MMMM Do YYYY, h:mm a') +
+                  '</span> </div> <span  class="text">' +
+                  item.text +
+                  " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+                  "<br>  <u><span class='name'>" +
+                  item.name +
+                  '</span></u><br> <i class="list-item-time">' +
+                  moment(item.created)
+                    .startOf('minutes')
+                    .fromNow() +
+                  '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
+                  '<button data-UUID=' +
+                  item._id +
+                  ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
+                  '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
+                  '<button data-UUID=' +
+                  item._id +
+                  ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
+              );
+              // if (token === null) {
+              //   $('button').addClass('hidden');
+              //   $('input').addClass('hidden');
+              // }
+              // }
+            });
+          },
+          complete: function(post) {
+            for (var i = 0; i < post.responseJSON.length; i++) {
+              let postUser = post.responseJSON[i].name;
+              if (postUser !== $name.responseText) {
+                let differentUser = postUser;
+                $(`.${differentUser}  .editButton`).addClass('hidden');
+                $(`.${differentUser}  .saveButton`).addClass('hidden');
+                $(`.${differentUser}  .deleteButton`).addClass('hidden');
+                $(`.${differentUser}  .cancelButton`).addClass('hidden');
+                $(`.${differentUser}  .edit-text-input`).addClass('hidden');
+              }
+            }
+          },
+          error: function() {
+            alert("Couldn't load previous posts!");
+          }
+        });
+      }
+    });
+  }
+
+  // window.onload = function() {
+  //   getCoordinatesOnLoad();
+  //   const token = localStorage.getItem('token');
+  //   if (token === null) {
+  //     $('#RegisterLogin').removeClass('hidden');
+  //     $('form').addClass('hidden');
+  //     $('span').addClass('hidden');
+  //     $('h2').removeClass('hidden');
+  //     $('#logout').addClass('hidden');
+  //   } else if (token !== null) {
+  //     //If token is present i.e. user is logged in, then there is a swap of options
+  //     $('#RegisterLogin').addClass('hidden');
+  //     $('#logout').removeClass('hidden');
+  //   }
+  //
+  //   $('#logout').on('click', function() {
+  //     localStorage.removeItem('token');
+  //   });
+
   const $city = $('#js-post-city');
   const $posts = $('#posts');
   const $text = $('#text');
   const $googleMapUrl = $('#map_url');
+  // const $jsPetfinderCity = $('#js-petfinder-city');
   const $name = $.ajax({
     type: 'GET',
     url: '/currentUser',
@@ -53,57 +137,6 @@ window.onload = function() {
     },
     error: function() {
       console.log('User Not Logged In');
-    }
-  });
-
-  $.ajax({
-    type: 'GET',
-    url: '/posts',
-    success: function(posts) {
-      $.each(posts, function(index, item) {
-        $posts.append(
-          '<li class="' +
-            item.name +
-            ' list-item">' +
-            '<b> <span  class="text">' +
-            item.text +
-            " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
-            "<br>  <u><span class='name'>" +
-            item.name +
-            '</span></u><br> <i class="list-item-time">' +
-            moment(item.created)
-              .startOf('minutes')
-              .fromNow() +
-            '</i> </br><button type="button" id="editButton"  class="editPost noEdit editButton"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
-            '<button data-UUID=' +
-            item._id +
-            ' type="button" class="saveEdit edit saveButton" id="saveButton"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>' +
-            '<button class="cancelEdit edit cancelButton" id="cancelButton"><i class="fa fa-ban" aria-hidden="true"></i></button>' +
-            '<button data-UUID=' +
-            item._id +
-            ' type="button" id="deleteButton" class="deleteButton edit"><i class=\'fa fa-trash   \' aria-hidden=\'true\'></i></button></li>'
-        );
-        if (token === null) {
-          $('button').addClass('hidden');
-          $('input').addClass('hidden');
-        }
-      });
-    },
-    complete: function(post) {
-      for (var i = 0; i < post.responseJSON.length; i++) {
-        let postUser = post.responseJSON[i].name;
-        if (postUser !== $name.responseText) {
-          let differentUser = postUser;
-          $(`.${differentUser}  .editButton`).addClass('hidden');
-          $(`.${differentUser}  .saveButton`).addClass('hidden');
-          $(`.${differentUser}  .deleteButton`).addClass('hidden');
-          $(`.${differentUser}  .cancelButton`).addClass('hidden');
-          $(`.${differentUser}  .edit-text-input`).addClass('hidden');
-        }
-      }
-    },
-    error: function() {
-      alert("Couldn't load previous posts!");
     }
   });
 
@@ -127,7 +160,9 @@ window.onload = function() {
           '<li class="' +
             newPost.userName +
             ' list-item">' +
-            '<b> <span  class="text">' +
+            '<b> <div class="list-header"> <span class="list-header-date"> ' +
+            moment(newPost.created).format('MMMM Do YYYY, h:mm a') +
+            '</span> </div>  <span  class="text">' +
             newPost.text +
             " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
             "<br>  <u><span class='name'>" +
@@ -169,7 +204,9 @@ window.onload = function() {
               '<li class="' +
                 item.name +
                 ' list-item">' +
-                '<b> <span  class="text">' +
+                '<b> <div class="list-header"> <span class="list-header-date"> ' +
+                moment(item.created).format('MMMM Do YYYY, h:mm a') +
+                '</span> </div> <span  class="text">' +
                 item.text +
                 " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
                 "<br>  <u><span class='name'>" +
@@ -261,7 +298,9 @@ window.onload = function() {
             '<li class="' +
               item.name +
               ' list-item">' +
-              '<b> <span  class="text">' +
+              '<b> <div class="list-header"> <span class="list-header-date"> ' +
+              moment(item.created).format('MMMM Do YYYY, h:mm a') +
+              '</span> </div> <span  class="text">' +
               item.text +
               " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
               "<br>  <u><span class='name'>" +
