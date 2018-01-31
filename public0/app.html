@@ -18,65 +18,76 @@
 
   </head>
 
-  <body>
+  <body class="html-body-background">
     <header>
-      <a href="/" id="logo"><i class="fa fa-paw fa-2x" aria-hidden="true"></i> </a>
-      <nav>
-  			<a href="#" id="mobile-menu-icon"><i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-        </a>
-  			<ul>
-          <li id="homeButton" class="header-links"><a href="/">Home</a></li>
-          <li id="logout" class="header-links header-links-logout"><a href="">Logout</a></li>
-          <!-- <li id="RegisterLogin" class="hidden header-links header-links-register-login"><a href="/#register">Register/Login</a></li> -->
-  			</ul>
-  		</nav>
+      <div class="main-header-container">
+        <a href="/" id="logo"><i class="fa fa-paw fa-2x" aria-hidden="true"></i> </a>
+        <nav>
+          <a href="#" id="mobile-menu-icon"><i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+          </a>
+          <ul>
+            <li id="homeButton" class="header-links"><a href="/">Home</a></li>
+            <li id="logout" class="header-links header-links-logout"><a href="">Logout</a></li>
+            <!-- <li id="RegisterLogin" class="hidden header-links header-links-register-login"><a href="/#register">Register/Login</a></li> -->
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <div class="container2">
-    	<div class="dashboard-title">
-    		<h1 class="petfinder-title">PetFinder</h1>
-        <h2 class="hidden">Please login in order to post.</h2>
 
-    		<!-- <p>Below, you will find a list of currently lost animals and sightings.</p> -->
-            		<!-- <span class="input-description">Please provide a thorough description of either your lost pet or any animal sightings. </span> -->
-    	</div>
+    <div class="main-app-container">
 
-    </br>
+      <div class="container2">
+        <div class="dashboard-title">
+          <h1 class="petfinder-title">PetFinder</h1>
+          <h2 class="hidden">Please login in order to post.</h2>
 
-    <div id="mapholder"></div>
+          <!-- <p>Below, you will find a list of currently lost animals and sightings.</p> -->
+                  <!-- <span class="input-description">Please provide a thorough description of either your lost pet or any animal sightings. </span> -->
+        </div>
 
-    	<form id="form-js" class=" errorMessages">
+      </br>
 
-          <textarea
-            id="text"
-            class='form-input'
-            placeholder="Please provide a description of either your lost pet or any animal sightings. Max 200 Characters. "
-            name="name"
-            rows="4"
-            cols="60"
-            autofocus
-            required
-            maxlength="200"
-            wrap="soft"
-          ></textarea>
+      <div id="mapholder"></div>
 
-        </br>
-        <textarea required id="js-post-city"class="css-post-city hidden" cols="30" rows="1" placeholder="Click button on right to get city."disabled></textarea>
-        <button  type="button" onclick="getLocation()">Get Location</button><input class="form-submit" type="submit" value="Submit" id="submit">
-        <textarea required id="map_url" class="hidden" disabled></textarea>
-    	</form>
+        <form id="form-js" class=" errorMessages">
 
-    </div>
+            <textarea
+              id="text"
+              class='form-input'
+              placeholder="Please provide a description of either your lost pet or any animal sightings. Max 200 Characters. "
+              name="name"
+              rows="4"
+              cols="60"
+              autofocus
+              required
+              maxlength="200"
+              wrap="soft"
+            ></textarea>
 
-    <div class="container2">
-      <h3 class="container-petfinder-city-state">
-        Viewing lost pets in </br> <span class="petfinder-city" id="js-petfinder-city"></span>, <span class="petfinder-state" id="js-petfinder-state"></span>
-      </h3>
-      <div class="posts-container">
-        <ul id="posts">
-      	</ul>
+          </br>
+          <textarea required id="js-post-city"class="css-post-city hidden" cols="30" rows="1" placeholder="Click button on right to get city."disabled></textarea>
+          <button  type="button" onclick="getLocation()">Get Location</button><input class="form-submit" type="submit" value="Submit" id="submit">
+          <textarea required id="map_url" class="hidden" disabled></textarea>
+        </form>
+
       </div>
+
+      <div class="container2">
+        <h3 class="container-petfinder-city-state">
+          Viewing lost pets in </br> <span class="petfinder-city" id="js-petfinder-city"></span>, <span class="petfinder-state" id="js-petfinder-state"></span>
+        </h3>
+        <div class="posts-container">
+          <ul id="posts">
+          </ul>
+        </div>
+      </div>
+
     </div>
+
+  <footer class="footer-container">
+    <p>2018</p>
+  </footer>
 
     </body>
 

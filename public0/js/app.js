@@ -41,16 +41,18 @@ window.onload = function() {
               // console.log(posts[i].city);
               // console.log(jsonObject.city);
               if (jsonObject.city === posts[i].city) {
-                // console.log(posts[i]);
+                console.log(posts[i].googleMapsUrl);
                 $posts.append(
                   '<li class="' +
                     posts[i].name +
                     ' list-item">' +
                     '<b> <div class="list-header"> <span class="list-header-date"> ' +
-                    moment(posts[i].created).format('MMMM Do YYYY, h:mm a') +
-                    '</span> </div> <span  class="text">' +
+                    moment(posts[i].created).format('MM/D/YY, h:mm a') +
+                    `</span> <a class="list-header-map" target="_blank" href='${
+                      posts[i].googleMapsUrl
+                    }'>View Map <i class="fa fa-map" aria-hidden="true"></i></a></div> <span  class="text">` +
                     posts[i].text +
-                    " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+                    " </span> </b><textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
                     "<br>  <u><span class='name'>" +
                     posts[i].name +
                     '</span></u><br> <i class="list-item-time">' +
@@ -132,15 +134,17 @@ window.onload = function() {
         $text.val('');
         $posts.append(
           '<li class="' +
-            newPost.userName +
+            newPost.name +
             ' list-item">' +
             '<b> <div class="list-header"> <span class="list-header-date"> ' +
-            moment(newPost.created).format('MMMM Do YYYY, h:mm a') +
-            '</span> </div>  <span  class="text">' +
+            moment(newPost.created).format('MM/D/YY, h:mm a') +
+            `</span> <a class="list-header-map" target="_blank" href='${
+              newPost.googleMapsUrl
+            }'>View Map <i class="fa fa-map" aria-hidden="true"></i></a></div> <span  class="text">` +
             newPost.text +
-            " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+            " </span> </b><textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
             "<br>  <u><span class='name'>" +
-            newPost.userName +
+            newPost.name +
             '</span></u><br> <i class="list-item-time">' +
             moment(newPost.created)
               .startOf('minutes')
@@ -184,10 +188,12 @@ window.onload = function() {
                 posts[i].name +
                 ' list-item">' +
                 '<b> <div class="list-header"> <span class="list-header-date"> ' +
-                moment(posts[i].created).format('MMMM Do YYYY, h:mm a') +
-                '</span> </div> <span  class="text">' +
+                moment(posts[i].created).format('MM/D/YY, h:mm a') +
+                `</span> <a class="list-header-map" target="_blank" href='${
+                  posts[i].googleMapsUrl
+                }'>View Map <i class="fa fa-map" aria-hidden="true"></i></a></div> <span  class="text">` +
                 posts[i].text +
-                " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+                " </span> </b><textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
                 "<br>  <u><span class='name'>" +
                 posts[i].name +
                 '</span></u><br> <i class="list-item-time">' +
@@ -288,10 +294,12 @@ window.onload = function() {
                 posts[i].name +
                 ' list-item">' +
                 '<b> <div class="list-header"> <span class="list-header-date"> ' +
-                moment(posts[i].created).format('MMMM Do YYYY, h:mm a') +
-                '</span> </div> <span  class="text">' +
+                moment(posts[i].created).format('MM/D/YY, h:mm a') +
+                `</span> <a class="list-header-map" target="_blank" href='${
+                  posts[i].googleMapsUrl
+                }'>View Map <i class="fa fa-map" aria-hidden="true"></i></a></div> <span  class="text">` +
                 posts[i].text +
-                " </span> </b> <textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
+                " </span> </b><textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
                 "<br>  <u><span class='name'>" +
                 posts[i].name +
                 '</span></u><br> <i class="list-item-time">' +
