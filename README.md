@@ -6,7 +6,7 @@ The site, which can be found on https://lit-beach-73059.herokuapp.com/, uses Nod
 
 For future updates:
   * ~~I will insert a google map api where it can receive the lat and long of users and place it on a map.
-    * There will be limitations to this as the app will not be national and perhaps focus in a small area. ~~
+    * There will be limitations to this as the app will not be national and perhaps focus in a small area.~~
   * Users will be able to communicate with each other via social media outside the realm of the site itself.
     * Examples would be the option to tweet each other instantly via a button.
   * Add a function to resolve found pets, as to add closure to a post.
