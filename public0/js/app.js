@@ -130,11 +130,12 @@ window.onload = function() {
       url: '/posts',
       data: post,
       success: function(newPost) {
+        console.log(newPost);
         console.log($('#js-petfinder-city').html());
         $text.val('');
         $posts.append(
           '<li class="' +
-            newPost.name +
+            newPost.userName +
             ' list-item">' +
             '<b> <div class="list-header"> <span class="list-header-date"> ' +
             moment(newPost.created).format('MM/D/YY, h:mm a') +
@@ -144,7 +145,7 @@ window.onload = function() {
             newPost.text +
             " </span> </b><textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
             "<br>  <u><span class='name'>" +
-            newPost.name +
+            newPost.userName +
             '</span></u><br> <i class="list-item-time">' +
             moment(newPost.created)
               .startOf('minutes')
