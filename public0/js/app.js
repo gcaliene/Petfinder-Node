@@ -116,7 +116,7 @@ window.onload = function() {
   });
 
   /////////////////////////POST///////////////////////////
-  $('#submit').on('click', function() {
+  $('#submit').on('click', function(event) {
     event.preventDefault();
     const post = {
       text: $text.val(),
@@ -130,8 +130,9 @@ window.onload = function() {
       url: '/posts',
       data: post,
       success: function(newPost) {
-        console.log(newPost);
-        console.log($('#js-petfinder-city').html());
+        // console.log(newPost);
+        // console.log($('#js-petfinder-city').html());
+        // console.log(newPost.googleMapUrl);
         $text.val('');
         $posts.append(
           '<li class="' +
@@ -140,7 +141,7 @@ window.onload = function() {
             '<b> <div class="list-header"> <span class="list-header-date"> ' +
             moment(newPost.created).format('MM/D/YY, h:mm a') +
             `</span> <a class="list-header-map" target="_blank" href='${
-              newPost.googleMapsUrl
+              newPost.googleMapUrl
             }'>View Map <i class="fa fa-map" aria-hidden="true"></i></a></div> <span  class="text">` +
             newPost.text +
             " </span> </b><textarea id=\"post-edit-span\" class='edit text edit-text-input' name='name' rows='4' cols='40' autofocus maxlength='200' wrap='soft'></textarea>" +
@@ -241,11 +242,11 @@ window.onload = function() {
 
   ////////////////////////////PUT//////////////////////////
   $posts.delegate('.editPost', 'click', function() {
-    console.log('clicked edit');
+    // console.log('clicked edit');
     //have to use delegate instead of on click to work, i forgot why.
     const $li = $(this).closest('li');
     if ($name.responseText === $li.find('span.name').text()) {
-      console.log($li.find('input.text').val($li.find('span.text').html()));
+      // console.log($li.find('input.text').val($li.find('span.text').html()));
       $li.find('textarea.text').val($li.find('span.text').html());
       $li.find('span.text').addClass('hidden');
       $li.find('textarea#post-edit-span').removeClass('edit');

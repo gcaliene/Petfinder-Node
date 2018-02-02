@@ -33,7 +33,7 @@ body {
   height: 100vh;
 
   display: block;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: -1;
@@ -58,6 +58,8 @@ body {
 .main-app-container {
   background-color: #fdf7f0;
   max-width: 980px;
+  min-height: 100vh;
+
   margin-left: auto;
   margin-right: auto;
   z-index: 20000;
@@ -270,6 +272,10 @@ p {
   text-align: center;
   padding: 0px;
   margin: 0px;
+}
+
+.footer-container p {
+  margin: 5px;
 }
 
 /* ul li.edit .edit {
