@@ -11,7 +11,7 @@ function getLocation() {
 function showPosition(position) {
   // console.log(position);
   const latlon = position.coords.latitude + ',' + position.coords.longitude;
-  const googleMapsUrl = `https://www.google.com/maps/@${latlon}`;
+  const googleMapsUrl = `https://www.google.com/maps/@${latlon},20.5z`;
   // const googleMapsUrlMongo = `<a href='${googleMapsUrl}'>Map</a>`;
 
   // const img_url =
