@@ -67,7 +67,8 @@
 
           </br>
           <textarea required id="js-post-city"class="css-post-city hidden" cols="30" rows="1" placeholder="Click button on right to get city."disabled></textarea>
-          <button  type="button" onclick="getLocation()">Get Location</button><input class="form-submit" type="submit" value="Submit" id="submit">
+          <button id="js-get-location" type="button" class="button"onclick="getLocation()">Get Location</button></br>
+          <input class="form-submit button" type="submit" value="Submit" id="submit" disabled="disabled" >
           <textarea required id="map_url" class="hidden" disabled></textarea>
         </form>
 
@@ -95,6 +96,8 @@
     <!-- Custom JS Starts-->
         <script type="text/javascript" src="./js/app.js"></script>
         <script type="text/javascript" src="./js/geolocation.js"></script>
+        <script type="text/javascript" src="./js/app-button.js"></script>
+
 
     <!-- Custom JS Ends -->
 

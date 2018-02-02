@@ -138,6 +138,27 @@ ul {
   /* background-color: red; */
 }
 
+.button:enabled {
+  border: none;
+  background-color: #27ae60;
+  color: white;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.button:disabled {
+  border: none;
+  cursor: not-allowed;
+  /* cursor: wait; */
+  /* background-color: #27ae60; */
+  color: lightgrey;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5%;
+}
+
 #homeButton {
   display: inline-block;
   float: left;
