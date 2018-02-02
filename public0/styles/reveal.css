@@ -25,7 +25,7 @@
   top: 100px;
   max-width: 330px;
   min-width: 315px;
-  border: 2px solid #4caf50;
+  border: 2px solid orange;
   border-radius: 25px;
   background: #eee;
 
@@ -83,6 +83,8 @@ body.reveal-modal {
   .reveal-modal {
     /* min-width: 90%; */
     /* min-height: 60vh; */
+    position: absolute;
+
     top: 75px;
   }
   .reveal-modal .close-reveal-modal {
