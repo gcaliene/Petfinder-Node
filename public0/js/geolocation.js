@@ -12,18 +12,7 @@ function showPosition(position) {
   // console.log(position);
   const latlon = position.coords.latitude + ',' + position.coords.longitude;
   const googleMapsUrl = `https://www.google.com/maps/@${latlon},20.5z`;
-  // const googleMapsUrlMongo = `<a href='${googleMapsUrl}'>Map</a>`;
-
-  // const img_url =
-  //   'https://maps.googleapis.com/maps/api/staticmap?center=' +
-  //   latlon +
-  //   '&zoom=14&size=400x300&key=AIzaSyC-09EwnS5ttNn7X-JdM0c7OluJ4I89mpE';
-  // document.getElementById('mapholder').innerHTML =
-  //   "<img src='" + img_url + "'>";
-  // console.log(googleMapsUrlMongo);
   getReverseGeocode(latlon, googleMapsUrl);
-
-  //window.open(googleMapsUrl, '_blank');
 }
 
 function getReverseGeocode(latlon, googleMapsUrl) {
@@ -50,14 +39,6 @@ function getReverseGeocode(latlon, googleMapsUrl) {
     }
   });
 }
-
-// function showPosition(position) {
-//   x.innerHTML =
-//     'Latitude: ' +
-//     position.coords.latitude +
-//     '<br>Longitude: ' +
-//     position.coords.longitude;
-// }
 
 function showError(error) {
   switch (error.code) {

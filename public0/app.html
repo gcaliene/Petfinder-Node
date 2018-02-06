@@ -67,7 +67,11 @@
 
           </br>
           <textarea required id="js-post-city"class="css-post-city hidden" cols="30" rows="1" placeholder="Click button on right to get city."disabled></textarea>
-          <button id="js-get-location" type="button" class="button"onclick="getLocation()">Get Location</button></br>
+          <label id="js-location-label" class="location-label hidden ">Please wait while retrieving location...</br></label>
+          <label id="js-location-label-error" class="location-label label-error hidden ">Geolocation is not unavailable now. Please refresh and try again.</br></label>
+          <button id="js-get-location" type="button" class="button"onclick="getLocation()">Get Location</button>
+          <label id="js-submit-label" class="label-submit"></br>Please get location before submitting.</label></br>
+          <label id="js-submit-label-success" class="label-submit label-success hidden">Geolocation successful! Please proceed to submit.</br></label>
           <input class="form-submit button" type="submit" value="Submit" id="submit" disabled="disabled" >
           <textarea required id="map_url" class="hidden" disabled></textarea>
         </form>

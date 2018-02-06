@@ -5,33 +5,21 @@
 body {
   position: relative;
   min-height: 100%;
-
   font-size: 1.05em;
   line-height: 1.25em;
   font-family: Helvetica Neue, Helvetica, Arial;
   background: #f9f9f9;
-  /* background: black; */
-  /* color: #555; */
-  /* color: #2262ad; */
 }
 
 .html-body-background {
   background-color: #ff7020;
   position: relative;
-  /* overflow: hidden; */
   z-index: -2;
-
-  /* opacity: 0.3; */
 }
-
-/* background: black; */
-/* overflow: hidden; */
-/* height: 100vh; */
 
 .html-body-background:before {
   content: ' ';
   height: 100vh;
-
   display: block;
   position: fixed;
   left: 0;
@@ -59,11 +47,9 @@ body {
   background-color: #fdf7f0;
   max-width: 980px;
   min-height: 100vh;
-
   margin-left: auto;
   margin-right: auto;
   z-index: 20000;
-  /* height: 100vh; */
 }
 
 a {
@@ -134,8 +120,18 @@ ul {
   padding: 0;
   padding-bottom: 60px;
   height: 100%;
+}
 
-  /* background-color: red; */
+label {
+  color: #6694cc;
+}
+
+label.label-error {
+  color: red;
+}
+
+label.label-success {
+  color: #27ae60;
 }
 
 .button:enabled {
