@@ -122,7 +122,7 @@ body {
 }
 
 a {
-  color: #4c9cf1;
+  color: #2262ad;
   cursor: pointer;
   text-decoration: none;
   font-weight: bold;
@@ -274,7 +274,7 @@ p {
 
 .header-content {
   z-index: 2;
-  margin-top: 30vh; /* This is added*/
+  margin-top: 15vh;
 }
 
 .header-content-title {
