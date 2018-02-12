@@ -295,6 +295,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
 }
 /* .section-b {
   flex: 0 0 auto; /* Lets middle column shrink/grow to available width
