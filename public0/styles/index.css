@@ -351,17 +351,18 @@ color: #8bb3ff;
 /* Footer */
 footer {
   text-align: center;
-  background-color: darkorange;
+  background-color: #2262ad;
   margin: 0;
   padding: 10px;
-  margin-top: 15px;
-
+  width: 100%;
+  bottom: 0;
+  position: fixed;
   /* border-top: 4px solid #4c9cf1; */
 }
 
 footer p {
   font-weight: 700;
-  color: #4371a1;
+  color: white;
   padding: 10px;
   margin: 0;
 }
