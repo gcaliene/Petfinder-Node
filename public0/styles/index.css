@@ -123,13 +123,14 @@ body {
 
 a {
   color: #4c9cf1;
-
+  cursor: pointer;
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
   color: #4371a1;
+  border-style: shade;
 }
 
 img {
@@ -238,6 +239,11 @@ p {
   padding-right: 1rem;
   margin: auto;
   text-align: center;
+  color: white;
+}
+
+.container2 i {
+  color: #2262ad;
 }
 
 .fullscreen-video-wrap {
@@ -272,7 +278,9 @@ p {
 }
 
 .header-content-title {
-  color: #4371a1;
+  /* color: #4371a1; */
+  /* color: rgb(0, 0, 255); */
+  color: #2262ad;
 }
 /*
 #logo i {
@@ -296,9 +304,9 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(54, 25, 25, 0.5);
+  background-color: rgba(255, 140, 0, 0.7);
   border: 2px white solid;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 /* .section-b {
   flex: 0 0 auto; /* Lets middle column shrink/grow to available width
