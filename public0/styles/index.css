@@ -247,6 +247,7 @@ p {
   height: 100vh;
   overflow: hidden;
 }
+
 .fullscreen-video-wrap video {
   min-width: 100%;
   min-height: 100%;
@@ -265,7 +266,7 @@ p {
 
 .header-content {
   z-index: 2;
-  margin-top: 100px; /* This is added*/
+  margin-top: 30vh; /* This is added*/
 }
 
 .header-content-title {
