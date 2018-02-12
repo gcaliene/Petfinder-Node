@@ -211,6 +211,7 @@ section {
   max-width: 980px;
   position: relative;
   padding: 20px;
+  min-height: 225px;
 }
 
 h1 {
@@ -295,7 +296,9 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: rgba(54, 25, 25, 0.5);
+  border: 2px white solid;
+  border-radius: 15px;
 }
 /* .section-b {
   flex: 0 0 auto; /* Lets middle column shrink/grow to available width
