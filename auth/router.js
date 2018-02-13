@@ -24,9 +24,9 @@ router.post('/login', localAuth, (req, res) => {
   // console.log(req);
   // console.log(res.setHeader);
   // // res.set('Authorization', authToken);
-  console.log('=============');
-  console.log(res.req);
-  console.log('-----------------------hhh-----');
+  // console.log('=============');
+  // console.log(res.req);
+  // console.log('-----------------------hhh-----');
 
   res.json({ authToken });
   //res.redirect('/app.html');
