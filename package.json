@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "start:dev": "nodemon bin/server.js",
     "test": "mocha --exit"
   },
   "keywords": [],
