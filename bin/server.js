@@ -2,13 +2,22 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
-
+const morgan = require('morgan')
 const { PORT, DATABASE_URL } = require('../config');
 
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here
 // and then assign a value to it in run
 let server;
+
+app.use(morgan('common'));
+// app.get('/', (req, res) => {
+//   console.log('ggg')
+//   res.send('hi')
+// })
+
+app.use(express.static('public0'));
+
 
 // this function connects to our database, then starts the server
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
@@ -26,6 +35,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
           mongoose.disconnect();
           reject(err);
         });
+      return server
     });
   });
 }

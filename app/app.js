@@ -16,6 +16,9 @@ const db = mongoose.connection; //just added this might delete, but not affectin
 
 mongoose.Promise = global.Promise;
 
+
+
+
 // Logging
 app.use(morgan('common'));
 
@@ -38,7 +41,8 @@ app.use('/api/auth/', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-app.use(express.static('public0'));
+// app.use(express.static('public0'));
+
 
 // A protected endpoint for testing
 app.get('/api/protected', jwtAuth, (req, res) => {
