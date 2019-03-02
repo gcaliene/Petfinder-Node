@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-// const app = express();
-const app = require('../app/app')
+const app = express();
+// const app = require('../app/app');
 const morgan = require('morgan')
 const { PORT, DATABASE_URL } = require('../config');
 
@@ -12,10 +12,10 @@ const { PORT, DATABASE_URL } = require('../config');
 let server;
 
 app.use(morgan('common'));
-// app.get('/', (req, res) => {
-//   console.log('ggg')
-//   res.send('hi')
-// })
+app.get('/api/ping', (req, res) => {
+  console.log('ggg')
+  res.send('hi')
+})
 
 app.use(express.static('public0'));
 

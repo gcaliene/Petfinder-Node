@@ -3,15 +3,17 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const passport = require('passport');
-const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const { PetPost } = require('./models');
+
+const app = express();
+
+const { PetPost } = require('./routes/app/models');
 const jsonParser = bodyParser.json();
 // const moment = require('moment');
 
-const { router: usersRouter } = require('./users');
-const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+const { router: usersRouter } = require('./routes/app/index');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./routes/auth');
 const db = mongoose.connection; //just added this might delete, but not affecting outcome
 
 mongoose.Promise = global.Promise;
