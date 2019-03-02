@@ -20,7 +20,7 @@ mongoose.Promise = global.Promise;
 
 
 // Logging
-app.use(morgan('common'));
+// app.use(morgan('common'));
 
 // CORS
 app.use(function(req, res, next) {
@@ -43,6 +43,10 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 // app.use(express.static('public0'));
 
+app.get('/ping', (req, res) => {
+  console.log('You have reached the ping route')
+  res.send('hi')
+})
 
 // A protected endpoint for testing
 app.get('/api/protected', jwtAuth, (req, res) => {

@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const app = express();
+// const app = express();
+const app = require('../app/app')
 const morgan = require('morgan')
 const { PORT, DATABASE_URL } = require('../config');
 
