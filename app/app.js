@@ -3,15 +3,17 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const passport = require('passport');
-const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const { PetPost } = require('./models');
+
+const app = express();
+
+const { PetPost } = require('./routes/app/models');
 const jsonParser = bodyParser.json();
 // const moment = require('moment');
 
-const { router: usersRouter } = require('./users');
-const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+const { router: usersRouter } = require('./routes/app/index');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./routes/auth');
 const db = mongoose.connection; //just added this might delete, but not affecting outcome
 
 mongoose.Promise = global.Promise;
@@ -20,7 +22,7 @@ mongoose.Promise = global.Promise;
 
 
 // Logging
-app.use(morgan('common'));
+// app.use(morgan('common'));
 
 // CORS
 app.use(function(req, res, next) {
@@ -43,6 +45,10 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 // app.use(express.static('public0'));
 
+app.get('/ping', (req, res) => {
+  console.log('You have reached the ping route')
+  res.send('hi')
+})
 
 // A protected endpoint for testing
 app.get('/api/protected', jwtAuth, (req, res) => {
