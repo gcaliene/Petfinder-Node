@@ -17,6 +17,8 @@ app.get('/api/ping', (req, res) => {
   res.send('hi')
 })
 
+//testing commit
+
 app.use(express.static('public0'));
 
 
